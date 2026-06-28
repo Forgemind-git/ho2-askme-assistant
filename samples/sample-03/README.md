@@ -1,47 +1,56 @@
-# Sample 03 — Teacher AI Page
+# HO2 Sample 3 — Teacher AI Page
 
-## Problem Statement
+## What you'll build
+A polished personal "Ask Me" page for a teacher (the example is Ms. Priya Sharma, a
+secondary-school science teacher). It shows her teaching approach, how she uses AI to plan
+lessons and support different learners, and an **Ask Me** section with worked example answers
+for students, parents and fellow educators — plus a button that opens Claude.ai for live
+chat. It's a single self-contained `index.html`: HTML, CSS, and a little JavaScript, no build
+step.
 
-You are a **Secondary school Science teacher**. You use Claude to create lesson plans, quiz questions, and plain-English explainers for complex topics.
+## Use it with your Claude.ai subscription
+No API key needed. This page runs entirely in the browser and uses your normal Claude.ai
+login for the "chat live" part.
 
-This sample shows how to build a personal "Ask Me" page that showcases your teaching philosophy and gives students, parents, and fellow educators an AI assistant pre-scoped to science education topics.
+1. Open **`index.html`** in your browser to see the finished page and its example answers.
+2. Open **Claude.ai** in another tab (your subscription — no API key, no billing, no terminal).
+3. Paste **the example prompt below** into Claude.ai and fill in your own details. Claude
+   will write your About section and a set of strong sample answers.
+4. Open `index.html` in a text editor and replace the example name, About cards, and Q&A
+   pairs with what Claude gave you. Save.
+5. Refresh the browser to see your version. The "Open claude.ai to chat live" button already
+   points visitors to your subscription.
 
-## What this page does
+## The example prompt
+Copy this into Claude.ai and fill in the parts in CAPITALS:
 
-- **About Me section** — introduces your role and explains how you use AI to design better lessons and support diverse learners
-- **Ask Me section** — a live chat widget backed by the Claude API, pre-prompted to answer questions about science education, lesson design, and study tips
+```
+I'm building a personal "Ask Me" web page that shows how I use AI as a teacher. Help me write the content.
 
-## Files
+About me:
+- Name: YOUR NAME
+- Role: e.g. Secondary School Science Teacher, Years 7–13
+- Subjects/curriculum: e.g. UK GCSE Biology, Chemistry, Physics
+- The main ways I use AI: e.g. lesson plans, quiz questions, plain-English explainers, differentiation ideas
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Complete self-contained single-file app — HTML + CSS + JS |
+Please give me:
+1. A two-sentence intro for the "About Me" section.
+2. Four short "how I use AI" cards (a title + two sentences each).
+3. Clear, friendly sample answers to these three visitor questions:
+   - "Can you explain photosynthesis simply?"
+   - "How do I differentiate for mixed-ability classes?"
+   - "Give me a starter activity for Year 9 chemistry."
 
-## How to deploy to GitHub Pages
-
-1. **Fork or copy** this folder to your own GitHub repository.
-2. Go to **Settings → Pages** in your repo.
-3. Under *Source*, select **Deploy from a branch**, choose `main`, and set the folder to the subfolder containing `index.html`.
-4. **Add your Anthropic API key** — open `index.html` and replace the placeholder:
-   ```js
-   const ANTHROPIC_API_KEY = 'YOUR_ANTHROPIC_API_KEY_HERE';
-   ```
-   > **Security note:** For a public GitHub Pages site, do not commit a real API key. Instead, use a backend proxy or serverless function (Netlify Functions, Cloudflare Workers, etc.) to keep your key server-side.
-5. Save, commit, and push. GitHub Pages will publish your site within a few minutes.
-
-## Local preview
-
-No build step needed. Open `index.html` directly in your browser:
-
-```bash
-open index.html   # macOS
-xdg-open index.html  # Linux
+Keep it warm and practical, written for students, parents and fellow teachers.
 ```
 
-## Customisation tips
+## Make it your own
+- Change the subject specialism (Physics vs Biology), year groups and curriculum (GCSE, IB, AP).
+- Replace the sample answers with explanations from topics you actually teach.
+- Swap the green palette via the CSS variables at the top of `<style>`.
 
-- Change the teacher's name, subject specialisation (e.g., Physics vs. Biology), and year groups.
-- Edit the About Me cards to reflect your own teaching methods and AI workflows.
-- Adjust `SYSTEM_PROMPT` to steer Claude toward your specific curriculum (e.g., UK GCSE, IB, AP Sciences) or grade level.
-- The green palette can be swapped via the CSS variables at the top of `<style>`.
-- Add a "Resources" section with links to lesson plan templates or revision guides.
+## Optional — automate it with the API (advanced)
+You do **not** need this for the course. The page works fully on your Claude.ai subscription.
+If you later want the Ask Me box to answer live from your own server, you could add a small
+backend that calls the Anthropic API with a key kept server-side. That's an advanced extra,
+never required to finish this hands-on.

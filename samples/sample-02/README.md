@@ -1,48 +1,55 @@
-# Sample 02 — Data Analyst AI Page
+# HO2 Sample 2 — Data Analyst AI Page
 
-## Problem Statement
+## What you'll build
+A polished personal "Ask Me" page for a data analyst (the example is Jordan Kim, an
+e-commerce analyst). It introduces the role, shows how they use AI for SQL, KPI reading and
+exec summaries, and includes an **Ask Me** section with worked example answers — plus a
+button that opens Claude.ai so visitors can keep chatting live. It's a single self-contained
+`index.html`: HTML, CSS, and a little JavaScript, no build step.
 
-You are a **Data Analyst specialising in e-commerce**. You use Claude to write SQL queries, interpret chart data, and generate executive summaries from raw numbers.
+## Use it with your Claude.ai subscription
+No API key needed. This page runs entirely in the browser and uses your normal Claude.ai
+login for the "chat live" part.
 
-This sample shows how to build a personal "Ask Me" page that introduces your analytical expertise and gives visitors an AI assistant pre-scoped to data analysis, SQL, and business insights topics.
+1. Open **`index.html`** in your browser to see the finished page and its example answers.
+2. Open **Claude.ai** in another tab (your subscription — no API key, no billing, no terminal).
+3. Paste **the example prompt below** into Claude.ai and fill in your own details. Claude
+   will write your About section and a set of strong sample answers.
+4. Open `index.html` in a text editor and replace the example name, About cards, and Q&A
+   pairs with what Claude gave you. Save.
+5. Refresh the browser to see your version. The "Open claude.ai to chat live" button already
+   points visitors to your subscription.
 
-## What this page does
+## The example prompt
+Copy this into Claude.ai and fill in the parts in CAPITALS:
 
-- **About Me section** — introduces your role and lists specific ways you use AI to accelerate data work
-- **Ask Me section** — a live chat widget backed by the Claude API, pre-prompted to answer questions about data analysis, SQL queries, and business insights
+```
+I'm building a personal "Ask Me" web page that shows how I use AI as a data analyst. Help me write the content.
 
-## Files
+About me:
+- Name: YOUR NAME
+- Role: e.g. Data Analyst specialising in e-commerce
+- My stack: e.g. PostgreSQL, Looker, Python
+- The main ways I use AI: e.g. drafting SQL, spotting trends in chart data, turning raw numbers into exec summaries
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Complete self-contained single-file app — HTML + CSS + JS |
+Please give me:
+1. A two-sentence intro for the "About Me" section.
+2. Four short "how I use AI" cards (a title + two sentences each).
+3. Helpful, specific sample answers to these three visitor questions:
+   - "Write a SQL query to find top 10 customers by LTV."
+   - "What does a sudden drop in conversion rate mean?"
+   - "How do I write an exec summary from raw data?"
 
-## How to deploy to GitHub Pages
-
-1. **Fork or copy** this folder to your own GitHub repository.
-2. Go to **Settings → Pages** in your repo.
-3. Under *Source*, select **Deploy from a branch**, choose `main`, and set the folder to the subfolder containing `index.html`.
-4. **Add your Anthropic API key** — open `index.html` and replace the placeholder:
-   ```js
-   const ANTHROPIC_API_KEY = 'YOUR_ANTHROPIC_API_KEY_HERE';
-   ```
-   > **Security note:** For a public GitHub Pages site, do not commit a real API key. Instead, route the API call through a backend proxy or serverless function (Netlify Functions, Cloudflare Workers, etc.).
-5. Save, commit, and push. GitHub Pages will publish your site within a few minutes.
-
-## Local preview
-
-No build step needed. Just open `index.html` directly in your browser:
-
-```bash
-open index.html   # macOS
-xdg-open index.html  # Linux
+Keep it clear and business-focused, the way a real analyst explains insights to non-technical stakeholders.
 ```
 
-Add your API key in the file first, then ask a SQL or data analysis question.
+## Make it your own
+- Edit the About cards to match your own tech stack (BigQuery instead of PostgreSQL, Tableau instead of Looker).
+- Replace the sample SQL and answers with examples from your own industry.
+- Swap the teal palette via the CSS variables at the top of `<style>`.
 
-## Customisation tips
-
-- Update the name, avatar emoji, and role description in the hero section.
-- Edit the About Me cards to match your own tech stack (e.g., BigQuery instead of PostgreSQL, Tableau instead of Looker).
-- Modify `SYSTEM_PROMPT` to add your specific database dialect preferences, industry context (e-commerce, fintech, healthcare), or output formatting requirements.
-- Change CSS colour variables at the top of `<style>` — the teal palette is easy to swap for any brand colour.
+## Optional — automate it with the API (advanced)
+You do **not** need this for the course. The page works fully on your Claude.ai subscription.
+If you later want the Ask Me box to answer live from your own server, you could add a small
+backend that calls the Anthropic API with a key kept server-side. That's an advanced extra,
+never required to finish this hands-on.

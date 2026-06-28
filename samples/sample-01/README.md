@@ -1,48 +1,55 @@
-# Sample 01 — Digital Marketer AI Page
+# HO2 Sample 1 — Digital Marketer AI Page
 
-## Problem Statement
+## What you'll build
+A polished personal "Ask Me" page for a digital marketer (the example is Alex Rivera, a B2B
+SaaS marketer). It introduces the role, shows how they use AI day-to-day, and includes an
+**Ask Me** section with worked example answers about ad copy, campaign analysis, and content
+repurposing — plus a button that opens Claude.ai so visitors can keep chatting live. It's a
+single self-contained `index.html`: HTML, CSS, and a little JavaScript, no build step.
 
-You are a **Digital Marketer at a SaaS company**. You use Claude to draft ad copy, analyse campaign data, and repurpose content across platforms.
+## Use it with your Claude.ai subscription
+No API key needed. This page runs entirely in the browser and uses your normal Claude.ai
+login for the "chat live" part.
 
-This sample shows how to build a personal "Ask Me" page that introduces your role and gives visitors an interactive AI assistant pre-scoped to marketing topics.
+1. Open **`index.html`** in your browser to see the finished page and its example answers.
+2. Open **Claude.ai** in another tab (your subscription — no API key, no billing, no terminal).
+3. Paste **the example prompt below** into Claude.ai and fill in your own details. Claude
+   will write your About section and a set of strong sample answers.
+4. Open `index.html` in a text editor (Notepad, TextEdit, or VS Code) and replace the
+   example name, About cards, and Q&A pairs with what Claude gave you. Save.
+5. Refresh the browser to see your version. The "Open claude.ai to chat live" button already
+   points visitors to your subscription — nothing else to wire up.
 
-## What this page does
+## The example prompt
+Copy this into Claude.ai and fill in the parts in CAPITALS:
 
-- **About Me section** — introduces your role and lists specific ways you use AI in your day-to-day marketing work
-- **Ask Me section** — a live chat widget backed by the Claude API, pre-prompted to answer questions about marketing strategy and campaign ideas
+```
+I'm building a personal "Ask Me" web page that shows how I use AI as a digital marketer. Help me write the content.
 
-## Files
+About me:
+- Name: YOUR NAME
+- Role: e.g. Digital Marketer at a B2B SaaS company
+- The marketing work I do: e.g. demand gen, paid media, content strategy
+- The main ways I use AI: e.g. ad copy variations, analysing campaign CSV exports, repurposing one blog into many formats
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Complete self-contained single-file app — HTML + CSS + JS |
+Please give me:
+1. A two-sentence intro for the "About Me" section.
+2. Four short "how I use AI" cards (a title + two sentences each).
+3. Helpful, specific sample answers to these three visitor questions:
+   - "How do I improve my Google Ads CTR?"
+   - "Write me a LinkedIn ad for a SaaS free trial."
+   - "What's a good content repurposing workflow?"
 
-## How to deploy to GitHub Pages
-
-1. **Fork or copy** this folder to your own GitHub repository.
-2. Go to **Settings → Pages** in your repo.
-3. Under *Source*, select **Deploy from a branch**, choose `main`, and set the folder to `/` (or the subfolder containing `index.html`).
-4. **Add your Anthropic API key** — open `index.html` and replace the placeholder:
-   ```js
-   const ANTHROPIC_API_KEY = 'YOUR_ANTHROPIC_API_KEY_HERE';
-   ```
-   > **Security note:** For a public GitHub Pages site, do not commit a real API key. Instead, use a backend proxy, a Cloudflare Worker, or a service like Netlify Functions to keep the key server-side. The placeholder is for local/demo use only.
-5. Save, commit, and push. GitHub Pages will publish your site within a few minutes.
-
-## Local preview
-
-No build step needed. Just open `index.html` directly in your browser:
-
-```bash
-open index.html   # macOS
-xdg-open index.html  # Linux
+Keep it practical and confident, the way a real marketer would explain their craft.
 ```
 
-Add your API key in the file first, then type a marketing question in the Ask Me box.
+## Make it your own
+- Edit the four About cards to match your actual AI workflows and niche (B2B, e-commerce, influencer).
+- Replace the three sample Q&A pairs with the questions people really ask you.
+- Swap the colour palette via the CSS variables at the top of `<style>` to match your brand.
 
-## Customisation tips
-
-- Change the name, photo placeholder colour, and role in the hero section.
-- Edit the bullet points in the About section to reflect your actual AI workflows.
-- Adjust `SYSTEM_PROMPT` in the `<script>` block to steer Claude toward your specific marketing niche (e.g., B2B SaaS, e-commerce, influencer marketing).
-- Swap the CSS colour variables at the top of `<style>` to match your personal brand.
+## Optional — automate it with the API (advanced)
+You do **not** need this for the course. The page works fully on your Claude.ai subscription.
+If you later want the Ask Me box to answer live from your own server instead of linking out
+to Claude.ai, you could add a small backend that calls the Anthropic API with a key kept
+server-side. That's an advanced extra and is never required to finish this hands-on.
