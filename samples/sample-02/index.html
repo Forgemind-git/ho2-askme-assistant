@@ -270,125 +270,86 @@
         <span class="chat-header-sub">Powered by Claude</span>
       </div>
 
-      <div class="chat-messages" id="chatMessages">
+            <div class="chat-messages" id="chatMessages">
         <div class="msg msg-ai">
           <div class="msg-label">ASSISTANT</div>
-          Hi! I'm Jordan's AI assistant, specialised in data analysis, SQL, and business insights. Ask me to write a SQL query, explain a metric, interpret a trend, or structure an executive summary. What are you working on?
+          Hi! I'm Jordan's AI assistant, specialised in data analysis and SQL. Below are sample responses — visit claude.ai to chat live.
+        </div>
+        <div style="font-size:0.75rem;color:var(--c-muted);padding:4px 0 8px;text-align:center;letter-spacing:.04em;font-weight:600;">— SAMPLE RESPONSES — OPEN CLAUDE.AI TO CHAT LIVE →</div>
+
+        <div class="msg msg-user">
+          <div class="msg-label">YOU</div>
+          <div>Write a SQL query to find top 10 customers by LTV</div>
+        </div>
+        <div class="msg msg-ai">
+          <div class="msg-label">ASSISTANT</div>
+          <div style="white-space:pre-wrap">Here's a PostgreSQL example:
+
+SELECT
+  customer_id,
+  SUM(order_total) AS lifetime_value,
+  COUNT(order_id)  AS total_orders,
+  MIN(created_at)  AS first_order,
+  MAX(created_at)  AS last_order
+FROM orders
+WHERE status = 'completed'
+GROUP BY customer_id
+ORDER BY lifetime_value DESC
+LIMIT 10;
+
+Tip: Join to a customers table to pull in name/email for reporting.</div>
+        </div>
+        <div class="msg msg-user">
+          <div class="msg-label">YOU</div>
+          <div>What does a sudden drop in conversion rate mean?</div>
+        </div>
+        <div class="msg msg-ai">
+          <div class="msg-label">ASSISTANT</div>
+          <div style="white-space:pre-wrap">Work through this structured checklist:
+
+1. Data quality — Was the tracking tag firing correctly? Check for GA4 / pixel gaps on the exact dates.
+2. Traffic mix — Did a new paid campaign bring in lower-intent visitors? Compare CVR by channel.
+3. Product/UX change — Did anything ship to the checkout or landing page? Run a git blame or release log check.
+4. External factor — Holiday, competitor promo, or macro event? Check news + seasonality comps YoY.
+5. Cohort split — Is the drop uniform or isolated to mobile/new users/one geo?
+
+Narrow it to one root cause before acting.</div>
+        </div>
+        <div class="msg msg-user">
+          <div class="msg-label">YOU</div>
+          <div>How do I write an exec summary from raw data?</div>
+        </div>
+        <div class="msg msg-ai">
+          <div class="msg-label">ASSISTANT</div>
+          <div style="white-space:pre-wrap">Use this three-paragraph structure:
+
+▸ Paragraph 1 — The headline number
+"In Q2, revenue grew 18% QoQ to £1.2M, driven primarily by new logo acquisition (+34 accounts)."
+
+▸ Paragraph 2 — What's working / what's at risk
+"Customer retention remained strong at 94%. However, average deal size declined 12%, suggesting a shift toward SMB segments that warrants monitoring."
+
+▸ Paragraph 3 — Recommended action
+"We recommend prioritising mid-market outbound in Q3 to recover ACV, while maintaining current retention programmes."
+
+Feed your metric table to Claude with: "Summarise this as a 3-paragraph exec summary. Be specific with numbers."</div>
         </div>
       </div>
 
-      <div class="chat-composer">
-        <textarea
-          class="chat-input"
-          id="chatInput"
-          placeholder="Ask about SQL, metrics, charts, or business insights…"
-          rows="1"
-        ></textarea>
-        <button class="send-btn" id="sendBtn" onclick="sendMessage()">Send ↑</button>
+      <div class="chat-composer" style="justify-content:center;padding:1.25rem;">
+        <a href="https://claude.ai" target="_blank" rel="noopener" class="send-btn" style="text-decoration:none;padding:0.7rem 1.5rem;border-radius:8px;">
+          Open claude.ai to chat live →
+        </a>
       </div>
-    </div>
 
-    <div class="starter-chips">
-      <span class="chip" onclick="useChip(this)">Write a SQL query to find top 10 customers by LTV</span>
-      <span class="chip" onclick="useChip(this)">What does a sudden drop in conversion rate mean?</span>
-      <span class="chip" onclick="useChip(this)">How do I calculate cohort retention in SQL?</span>
-      <span class="chip" onclick="useChip(this)">Explain the difference between median and mean AOV</span>
-      <span class="chip" onclick="useChip(this)">How do I write an exec summary from raw data?</span>
+    <div style="background:rgba(8,145,178,0.08);border:1px solid rgba(8,145,178,0.25);border-radius:8px;padding:0.75rem 1rem;font-size:0.82rem;color:var(--c-muted);margin-top:1rem;">
+      <strong style="color:var(--c-accent-lt);">Claude.ai subscription required</strong> — No API key needed. Open <a href="https://claude.ai" target="_blank" style="color:var(--c-accent-lt);">claude.ai</a> in a browser to use this assistant live. Edit the About section and Q&amp;A pairs to match your own role.
     </div>
-
-    <div class="api-notice">
-      <strong>Demo note:</strong> Replace <code>ANTHROPIC_API_KEY</code> in the script below with your key to activate this widget.
-      For a public site, proxy the API call through a backend to keep your key secure.
-    </div>
-  </div>
-</section>
+  </section>
 
 <footer>
   Built with Claude AI · HO2: Ask-Me AI Assistant · Forgemind AI Course
 </footer>
 
-<script>
-  const ANTHROPIC_API_KEY = 'YOUR_ANTHROPIC_API_KEY_HERE';
-
-  const SYSTEM_PROMPT = `You are a senior data analyst with deep expertise in e-commerce analytics, SQL, Python (pandas), and business intelligence.
-You specialise in: writing optimised SQL queries (PostgreSQL, BigQuery, Snowflake), interpreting KPIs and trend data, statistical analysis, cohort analysis, funnel analysis, and translating data findings into executive-level narratives.
-When asked to write SQL: provide clean, well-commented code with explanations of the logic. Ask clarifying questions if the schema is ambiguous.
-When interpreting data: structure your response as (1) what the data likely shows, (2) possible causes, (3) recommended next steps.
-Keep answers precise and practical. Use code blocks for SQL and Python snippets.`;
-
-  const history = [];
-
-  const input = document.getElementById('chatInput');
-  input.addEventListener('input', () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 120) + 'px'; });
-  input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
-
-  function useChip(el) { input.value = el.textContent; input.dispatchEvent(new Event('input')); input.focus(); }
-
-  function appendMessage(role, text) {
-    const box = document.getElementById('chatMessages');
-    const div = document.createElement('div');
-    div.className = 'msg ' + (role === 'user' ? 'msg-user' : 'msg-ai');
-    const label = document.createElement('div');
-    label.className = 'msg-label';
-    label.textContent = role === 'user' ? 'YOU' : 'ASSISTANT';
-    const content = document.createElement('div');
-    content.style.whiteSpace = 'pre-wrap';
-    content.textContent = text;
-    div.appendChild(label);
-    div.appendChild(content);
-    box.appendChild(div);
-    box.scrollTop = box.scrollHeight;
-  }
-
-  function showTyping() {
-    const box = document.getElementById('chatMessages');
-    const div = document.createElement('div');
-    div.className = 'msg msg-ai'; div.id = 'typingIndicator';
-    div.innerHTML = `<div class="msg-label">ASSISTANT</div><div class="typing-indicator"><span></span><span></span><span></span></div>`;
-    box.appendChild(div);
-    box.scrollTop = box.scrollHeight;
-  }
-
-  function removeTyping() { const el = document.getElementById('typingIndicator'); if (el) el.remove(); }
-
-  async function sendMessage() {
-    const text = input.value.trim();
-    if (!text) return;
-    const btn = document.getElementById('sendBtn');
-    btn.disabled = true;
-    input.value = ''; input.style.height = 'auto';
-    appendMessage('user', text);
-    history.push({ role: 'user', content: text });
-    showTyping();
-
-    try {
-      if (ANTHROPIC_API_KEY === 'YOUR_ANTHROPIC_API_KEY_HERE') throw new Error('API key not set. Please replace ANTHROPIC_API_KEY in the script.');
-
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': ANTHROPIC_API_KEY,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
-        body: JSON.stringify({ model: 'claude-3-5-haiku-20241022', max_tokens: 1024, system: SYSTEM_PROMPT, messages: history })
-      });
-
-      if (!res.ok) { const err = await res.json(); throw new Error(err.error?.message || `API error ${res.status}`); }
-      const data = await res.json();
-      const reply = data.content[0].text;
-      history.push({ role: 'assistant', content: reply });
-      removeTyping();
-      appendMessage('assistant', reply);
-    } catch (err) {
-      removeTyping();
-      appendMessage('assistant', '⚠️ ' + err.message);
-    } finally {
-      btn.disabled = false;
-      input.focus();
-    }
-  }
-</script>
 </body>
 </html>

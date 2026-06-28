@@ -161,74 +161,79 @@
         <span class="chat-header-title">Product Intelligence Assistant</span>
         <span class="chat-header-sub">Powered by Claude</span>
       </div>
-      <div class="chat-messages" id="chatMessages">
+            <div class="chat-messages" id="chatMessages">
         <div class="msg msg-ai">
           <div class="msg-label">ASSISTANT</div>
-          Hi! I'm Maya's AI assistant, specialised in product strategy, feature prioritisation, and user story writing. Ask me to draft a PRD, write user stories, score features with RICE, or frame a competitor analysis. What are you building?
+          Hi! I'm Maya's AI assistant for product strategy and fintech. Below are sample responses — visit claude.ai to chat live.
+        </div>
+        <div style="font-size:0.75rem;color:var(--c-muted);padding:4px 0 8px;text-align:center;letter-spacing:.04em;font-weight:600;">— SAMPLE RESPONSES — OPEN CLAUDE.AI TO CHAT LIVE →</div>
+
+        <div class="msg msg-user">
+          <div class="msg-label">YOU</div>
+          <div>How do I prioritise a feature backlog?</div>
+        </div>
+        <div class="msg msg-ai">
+          <div class="msg-label">ASSISTANT</div>
+          <div style="white-space:pre-wrap">Use the RICE framework for objective scoring:
+
+RICE = (Reach × Impact × Confidence) ÷ Effort
+
+• Reach — How many users affected per quarter?
+• Impact — Scale 0.25 (minimal) to 3 (massive). Be honest.
+• Confidence — % certainty in your estimates (80% = solid data, 50% = gut feel)
+• Effort — Person-weeks of engineering time
+
+For fintech specifically, add a Compliance column — anything touching payments or KYC gets a mandatory review regardless of RICE score.
+
+Tip: Run the scoring in a shared sheet so engineers and stakeholders can see the logic. Reduces 'HiPPO' decisions.</div>
+        </div>
+        <div class="msg msg-user">
+          <div class="msg-label">YOU</div>
+          <div>What's the best way to write a PRD?</div>
+        </div>
+        <div class="msg msg-ai">
+          <div class="msg-label">ASSISTANT</div>
+          <div style="white-space:pre-wrap">Lean PRD structure (avoids 20-page documents nobody reads):
+
+1. Problem statement (2 sentences) — What user pain are we solving? What evidence do we have?
+2. Success metrics — 2–3 measurable outcomes (activation rate, D7 retention, support ticket volume)
+3. User stories — "As a [persona], I want [action] so that [outcome]"
+4. Scope: In / Out — Explicit list of what is NOT in v1
+5. Open questions — Things Engineering/Design need to resolve before building
+6. Timeline — Target ship date + key milestones
+
+Ask Claude: "Turn these bullet points into a concise PRD. Keep it under one page." Then refine.</div>
+        </div>
+        <div class="msg msg-user">
+          <div class="msg-label">YOU</div>
+          <div>How do I measure if a feature was successful?</div>
+        </div>
+        <div class="msg msg-ai">
+          <div class="msg-label">ASSISTANT</div>
+          <div style="white-space:pre-wrap">Three layers of measurement:
+
+▸ Adoption — Did users find and use it? (Feature reach %, time-to-first-use)
+▸ Engagement — Did they come back to it? (Weekly active users of feature, depth of usage)
+▸ Outcome — Did it move the needle on the metric you set out to improve? (Conversion rate, churn, NPS)
+
+For fintech: also track error rates, failed transactions, and support tickets related to the feature.
+
+Common mistake: Measuring adoption only and calling it a success. A feature used once that doesn't retain users hasn't solved the problem.
+
+Set your success criteria in the PRD before you build — not after you ship.</div>
         </div>
       </div>
-      <div class="chat-composer">
-        <textarea class="chat-input" id="chatInput" placeholder="Ask about PRDs, user stories, prioritisation, roadmaps&hellip;" rows="1"></textarea>
-        <button class="send-btn" id="sendBtn" onclick="sendMessage()">Send &uarr;</button>
+
+      <div class="chat-composer" style="justify-content:center;padding:1.25rem;">
+        <a href="https://claude.ai" target="_blank" rel="noopener" class="send-btn" style="text-decoration:none;padding:0.7rem 1.5rem;border-radius:8px;">
+          Open claude.ai to chat live →
+        </a>
       </div>
+
+<div style="background:rgba(8,145,178,0.08);border:1px solid rgba(8,145,178,0.25);border-radius:8px;padding:0.75rem 1rem;font-size:0.82rem;color:var(--c-muted);margin-top:1rem;">
+      <strong style="color:var(--c-accent-lt);">Claude.ai subscription required</strong> — No API key needed. Open <a href="https://claude.ai" target="_blank" style="color:var(--c-accent-lt);">claude.ai</a> to use this assistant live. Edit the About section and Q&amp;A pairs to match your own role.
     </div>
-    <div class="starter-chips">
-      <span class="chip" onclick="useChip(this)">Write user stories for a bank account linking feature</span>
-      <span class="chip" onclick="useChip(this)">How do I prioritise features using RICE scoring?</span>
-      <span class="chip" onclick="useChip(this)">Draft a PRD outline for a mobile payment feature</span>
-      <span class="chip" onclick="useChip(this)">How do I write a good problem statement?</span>
-      <span class="chip" onclick="useChip(this)">What should a product roadmap presentation include?</span>
-    </div>
-    <div class="api-notice"><strong>Demo note:</strong> Replace <code>ANTHROPIC_API_KEY</code> in the script below with your key to activate this widget. For a public site, proxy the API call through a backend to keep your key secure.</div>
-  </div>
 </section>
 <footer>Built with Claude AI &middot; HO2: Ask-Me AI Assistant &middot; Forgemind AI Course</footer>
-<script>
-  const ANTHROPIC_API_KEY = 'YOUR_ANTHROPIC_API_KEY_HERE';
-  const SYSTEM_PROMPT = `You are a senior Product Manager with 8+ years of experience at high-growth tech startups, specialising in fintech products (payments, onboarding, lending, investing).
-You are an expert in: writing Product Requirements Documents (PRDs), crafting INVEST-formatted user stories with acceptance criteria, applying prioritisation frameworks (RICE, MoSCoW, Kano), running competitor analysis, structuring product roadmaps, and communicating product decisions to engineering and leadership.
-When writing PRDs: use sections — Background, Problem Statement, Goals, Non-Goals, User Stories, Requirements (functional + non-functional), Open Questions, Success Metrics.
-When writing user stories: use format "As a [persona], I want to [action] so that [benefit]." Add 3-5 acceptance criteria per story. Flag edge cases.
-When prioritising: show your workings. Give RICE scores (Reach, Impact, Confidence, Effort) with brief rationale for each dimension.
-Be concise, opinionated, and practical. Think like a PM who ships.`;
-  const history = [];
-  const input = document.getElementById('chatInput');
-  input.addEventListener('input', () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 120) + 'px'; });
-  input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
-  function useChip(el) { input.value = el.textContent; input.dispatchEvent(new Event('input')); input.focus(); }
-  function appendMessage(role, text) {
-    const box = document.getElementById('chatMessages');
-    const div = document.createElement('div');
-    div.className = 'msg ' + (role === 'user' ? 'msg-user' : 'msg-ai');
-    const label = document.createElement('div'); label.className = 'msg-label'; label.textContent = role === 'user' ? 'YOU' : 'ASSISTANT';
-    const content = document.createElement('div'); content.style.whiteSpace = 'pre-wrap'; content.textContent = text;
-    div.appendChild(label); div.appendChild(content); box.appendChild(div); box.scrollTop = box.scrollHeight;
-  }
-  function showTyping() {
-    const box = document.getElementById('chatMessages');
-    const div = document.createElement('div'); div.className = 'msg msg-ai'; div.id = 'typingIndicator';
-    div.innerHTML = '<div class="msg-label">ASSISTANT</div><div class="typing-indicator"><span></span><span></span><span></span></div>';
-    box.appendChild(div); box.scrollTop = box.scrollHeight;
-  }
-  function removeTyping() { const el = document.getElementById('typingIndicator'); if (el) el.remove(); }
-  async function sendMessage() {
-    const text = input.value.trim(); if (!text) return;
-    const btn = document.getElementById('sendBtn'); btn.disabled = true;
-    input.value = ''; input.style.height = 'auto';
-    appendMessage('user', text); history.push({ role: 'user', content: text }); showTyping();
-    try {
-      if (ANTHROPIC_API_KEY === 'YOUR_ANTHROPIC_API_KEY_HERE') throw new Error('API key not set. Please replace ANTHROPIC_API_KEY in the script.');
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
-        body: JSON.stringify({ model: 'claude-3-5-haiku-20241022', max_tokens: 1024, system: SYSTEM_PROMPT, messages: history })
-      });
-      if (!res.ok) { const err = await res.json(); throw new Error(err.error?.message || 'API error ' + res.status); }
-      const data = await res.json(); const reply = data.content[0].text;
-      history.push({ role: 'assistant', content: reply }); removeTyping(); appendMessage('assistant', reply);
-    } catch (err) { removeTyping(); appendMessage('assistant', 'Error: ' + err.message); }
-    finally { btn.disabled = false; input.focus(); }
-  }
-</script>
 </body>
 </html>

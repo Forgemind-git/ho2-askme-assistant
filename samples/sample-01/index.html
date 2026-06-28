@@ -313,164 +313,74 @@
         <span class="chat-header-sub">Powered by Claude</span>
       </div>
 
-      <div class="chat-messages" id="chatMessages">
+            <div class="chat-messages" id="chatMessages">
         <div class="msg msg-ai">
           <div class="msg-label">ASSISTANT</div>
-          Hi! I'm Alex's AI assistant, specialised in marketing strategy and campaign ideas. Ask me about ad copy, campaign planning, audience targeting, content repurposing, or growth tactics. What can I help you with?
+          Hi! I'm Alex's AI assistant, specialised in marketing strategy and campaign ideas. Below are sample responses — visit claude.ai to chat live.
+        </div>
+        <div style="font-size:0.75rem;color:var(--c-muted);padding:4px 0 8px;text-align:center;letter-spacing:.04em;font-weight:600;">— SAMPLE RESPONSES — OPEN CLAUDE.AI TO CHAT LIVE →</div>
+
+        <div class="msg msg-user">
+          <div class="msg-label">YOU</div>
+          <div>How do I improve my Google Ads CTR?</div>
+        </div>
+        <div class="msg msg-ai">
+          <div class="msg-label">ASSISTANT</div>
+          <div style="white-space:pre-wrap">Great question! Here are the top levers:
+• Headlines: Test 3–5 variations per ad group. Include the keyword in headline 1.
+• Description: Lead with the benefit, end with a CTA ("Start free", "Get quote today").
+• Ad strength: Aim for "Excellent" — Google rewards variety.
+• Negative keywords: Audit your search terms weekly to cut irrelevant spend.
+• Extensions: Add sitelinks, callouts, and structured snippets — they expand your ad real estate for free.</div>
+        </div>
+        <div class="msg msg-user">
+          <div class="msg-label">YOU</div>
+          <div>Write me a LinkedIn ad for a SaaS free trial</div>
+        </div>
+        <div class="msg msg-ai">
+          <div class="msg-label">ASSISTANT</div>
+          <div style="white-space:pre-wrap">Here are two variations:
+
+▸ Variation A
+Headline: Stop juggling spreadsheets.
+Body: [Product] gives ops teams one place to track, assign, and close tasks — in under 5 minutes to set up. Start your free 14-day trial.
+CTA: Start Free Trial
+
+▸ Variation B
+Headline: Your team is ready. Is your tooling?
+Body: Join 2,000+ ops leads who replaced 4 tools with [Product]. No credit card. No setup call.
+CTA: Try It Free</div>
+        </div>
+        <div class="msg msg-user">
+          <div class="msg-label">YOU</div>
+          <div>What's a good content repurposing workflow?</div>
+        </div>
+        <div class="msg msg-ai">
+          <div class="msg-label">ASSISTANT</div>
+          <div style="white-space:pre-wrap">Here's the workflow I recommend:
+1. Publish the long-form asset (blog post, webinar, report)
+2. Feed it to Claude with the prompt: "Extract 5 key insights and rewrite each as a standalone LinkedIn post"
+3. Ask for a Twitter/X thread from the same source
+4. Request 3 email subject line options for a nurture sequence
+5. Ask for a short-form video script (60–90 sec) for Reels/Shorts
+One piece of content → 10+ assets in about 30 minutes.</div>
         </div>
       </div>
 
-      <div class="chat-composer">
-        <textarea
-          class="chat-input"
-          id="chatInput"
-          placeholder="Ask about marketing strategy, campaign ideas, ad copy…"
-          rows="1"
-        ></textarea>
-        <button class="send-btn" id="sendBtn" onclick="sendMessage()">
-          Send ↑
-        </button>
+      <div class="chat-composer" style="justify-content:center;padding:1.25rem;">
+        <a href="https://claude.ai" target="_blank" rel="noopener" class="send-btn" style="text-decoration:none;padding:0.7rem 1.5rem;border-radius:8px;">
+          Open claude.ai to chat live →
+        </a>
       </div>
-    </div>
 
-    <div class="starter-chips">
-      <span class="chip" onclick="useChip(this)">How do I improve my Google Ads CTR?</span>
-      <span class="chip" onclick="useChip(this)">Write me a LinkedIn ad for a SaaS free trial</span>
-      <span class="chip" onclick="useChip(this)">What's a good content repurposing workflow?</span>
-      <span class="chip" onclick="useChip(this)">How do I build a demand gen funnel?</span>
-      <span class="chip" onclick="useChip(this)">Tips for reducing Cost Per Lead on Meta</span>
+    <div style="background:rgba(8,145,178,0.08);border:1px solid rgba(8,145,178,0.25);border-radius:8px;padding:0.75rem 1rem;font-size:0.82rem;color:var(--c-muted);margin-top:1rem;">
+      <strong style="color:var(--c-accent-lt);">Claude.ai subscription required</strong> — No API key needed. Open <a href="https://claude.ai" target="_blank" style="color:var(--c-accent-lt);">claude.ai</a> in a browser to use this assistant live. Edit the About section and Q&amp;A pairs to match your own role.
     </div>
-
-    <div class="api-notice">
-      <strong>Demo note:</strong> Replace <code>ANTHROPIC_API_KEY</code> in the script below with your key to activate this widget.
-      For a public site, proxy the API call through a backend to keep your key secure.
-    </div>
-  </div>
-</section>
+  </section>
 
 <footer>
   Built with Claude AI · HO2: Ask-Me AI Assistant · Forgemind AI Course
 </footer>
 
-<script>
-  // ── Config ─────────────────────────────────────────────────
-  const ANTHROPIC_API_KEY = 'YOUR_ANTHROPIC_API_KEY_HERE';
-
-  const SYSTEM_PROMPT = `You are a senior digital marketing strategist and creative director with 10+ years of experience in B2B SaaS growth marketing.
-You specialise in: paid media (Google Ads, Meta, LinkedIn), demand generation, content strategy, ad copywriting, campaign analytics, and conversion optimisation.
-Keep answers practical and specific. Use bullet points where helpful. Avoid jargon unless the user clearly understands it.
-When writing ad copy, always provide at least 2-3 variations. When analysing campaigns, always suggest a concrete next action.`;
-
-  const history = [];
-
-  // ── Auto-resize textarea ───────────────────────────────────
-  const input = document.getElementById('chatInput');
-  input.addEventListener('input', () => {
-    input.style.height = 'auto';
-    input.style.height = Math.min(input.scrollHeight, 120) + 'px';
-  });
-  input.addEventListener('keydown', e => {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-  });
-
-  function useChip(el) {
-    input.value = el.textContent;
-    input.dispatchEvent(new Event('input'));
-    input.focus();
-  }
-
-  function appendMessage(role, text) {
-    const box = document.getElementById('chatMessages');
-    const div = document.createElement('div');
-    div.className = 'msg ' + (role === 'user' ? 'msg-user' : 'msg-ai');
-
-    const label = document.createElement('div');
-    label.className = 'msg-label';
-    label.textContent = role === 'user' ? 'YOU' : 'ASSISTANT';
-
-    const content = document.createElement('div');
-    content.textContent = text;
-
-    div.appendChild(label);
-    div.appendChild(content);
-    box.appendChild(div);
-    box.scrollTop = box.scrollHeight;
-    return div;
-  }
-
-  function showTyping() {
-    const box = document.getElementById('chatMessages');
-    const div = document.createElement('div');
-    div.className = 'msg msg-ai';
-    div.id = 'typingIndicator';
-    div.innerHTML = `
-      <div class="msg-label">ASSISTANT</div>
-      <div class="typing-indicator">
-        <span></span><span></span><span></span>
-      </div>`;
-    box.appendChild(div);
-    box.scrollTop = box.scrollHeight;
-  }
-
-  function removeTyping() {
-    const el = document.getElementById('typingIndicator');
-    if (el) el.remove();
-  }
-
-  async function sendMessage() {
-    const text = input.value.trim();
-    if (!text) return;
-
-    const btn = document.getElementById('sendBtn');
-    btn.disabled = true;
-    input.value = '';
-    input.style.height = 'auto';
-
-    appendMessage('user', text);
-    history.push({ role: 'user', content: text });
-    showTyping();
-
-    try {
-      if (ANTHROPIC_API_KEY === 'YOUR_ANTHROPIC_API_KEY_HERE') {
-        throw new Error('API key not set. Please replace ANTHROPIC_API_KEY in the script.');
-      }
-
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': ANTHROPIC_API_KEY,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
-        body: JSON.stringify({
-          model: 'claude-3-5-haiku-20241022',
-          max_tokens: 1024,
-          system: SYSTEM_PROMPT,
-          messages: history
-        })
-      });
-
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error?.message || `API error ${res.status}`);
-      }
-
-      const data = await res.json();
-      const reply = data.content[0].text;
-      history.push({ role: 'assistant', content: reply });
-
-      removeTyping();
-      appendMessage('assistant', reply);
-
-    } catch (err) {
-      removeTyping();
-      appendMessage('assistant', '⚠️ ' + err.message);
-    } finally {
-      btn.disabled = false;
-      input.focus();
-    }
-  }
-</script>
 </body>
 </html>
