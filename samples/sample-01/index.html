@@ -1,386 +1,179 @@
+<!-- TODO: Replace all placeholder text with your real information -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Digital Marketer AI Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- TODO: Update the title with your name and role -->
+  <title><!-- YOUR NAME --> — Job Seeker</title>
   <style>
-    /* ── Design tokens ───────────────────────────────────────── */
+    /* TODO: Change --color to match your personal brand */
     :root {
-      --c-bg:        #0f1117;
-      --c-surface:   #1a1d27;
-      --c-border:    #2a2d3e;
-      --c-accent:    #6c63ff;
-      --c-accent-lt: #8b84ff;
-      --c-text:      #e8eaf0;
-      --c-muted:     #8a8fa8;
-      --c-user-bg:   #6c63ff;
-      --c-ai-bg:     #222638;
-      --radius:      12px;
-      --radius-sm:   8px;
-      --font:        'Segoe UI', system-ui, -apple-system, sans-serif;
+      --color: #0891B2;
+      --color-dark: #0e7490;
     }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#F8F9FA; color:#1a1a2e; }
 
-    /* ── Reset ───────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font);
-      background: var(--c-bg);
-      color: var(--c-text);
-      line-height: 1.6;
-    }
+    /* HERO */
+    .hero { background:var(--color); color:#fff; padding:60px 32px 48px; text-align:center; }
+    .avatar { width:80px; height:80px; border-radius:50%; background:rgba(255,255,255,.25); margin:0 auto 16px; display:flex; align-items:center; justify-content:center; font-size:32px; }
+    .hero h1 { font-size:28px; font-weight:800; margin-bottom:6px; }
+    .hero .tagline { font-size:15px; opacity:.85; max-width:480px; margin:0 auto; }
 
-    /* ── Nav ─────────────────────────────────────────────────── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(15, 17, 23, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--c-border);
-      padding: 0 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
-    }
-    .nav-brand { font-weight: 700; color: var(--c-accent-lt); font-size: 1rem; letter-spacing: -0.02em; }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a {
-      color: var(--c-muted); text-decoration: none; font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--c-text); }
+    /* SECTIONS */
+    .section { max-width:720px; margin:0 auto; padding:40px 24px; }
+    .section h2 { font-size:18px; font-weight:700; color:var(--color); margin-bottom:16px; border-bottom:2px solid var(--color); padding-bottom:6px; }
+    .section p { font-size:14px; color:#4B5563; line-height:1.7; margin-bottom:12px; }
 
-    /* ── Hero ────────────────────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 4rem 2rem;
-      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(108,99,255,0.18) 0%, transparent 70%);
-    }
-    .hero-inner { max-width: 680px; }
-    .avatar {
-      width: 96px; height: 96px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--c-accent), #a78bfa);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.4rem; margin: 0 auto 1.5rem;
-      box-shadow: 0 0 0 4px rgba(108,99,255,0.2);
-    }
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 800; letter-spacing: -0.03em;
-      background: linear-gradient(135deg, var(--c-text) 40%, var(--c-accent-lt));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 0.5rem;
-    }
-    .hero .role {
-      font-size: 1.05rem; color: var(--c-accent-lt);
-      font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.01em;
-    }
-    .hero .tagline { font-size: 1.1rem; color: var(--c-muted); max-width: 520px; margin: 0 auto 2rem; }
-    .btn-primary {
-      display: inline-block;
-      background: var(--c-accent); color: #fff;
-      padding: 0.75rem 2rem; border-radius: 40px;
-      font-weight: 600; text-decoration: none; font-size: 0.95rem;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(108,99,255,0.35);
-    }
-    .btn-primary:hover { background: var(--c-accent-lt); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(108,99,255,0.45); }
+    /* SKILLS */
+    .skills { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+    .skill { background:#E0F2FE; color:var(--color-dark); font-size:13px; font-weight:600; padding:4px 12px; border-radius:20px; }
 
-    /* ── Section wrapper ─────────────────────────────────────── */
-    section { padding: 5rem 2rem; }
-    .container { max-width: 800px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--c-accent-lt);
-      margin-bottom: 0.75rem;
-    }
-    h2 {
-      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-      font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1.25rem;
-    }
-    .divider { border: none; border-top: 1px solid var(--c-border); margin: 0; }
+    /* PROJECTS */
+    .projects { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; }
+    .project-card { background:#fff; border:1px solid #E5E7EB; border-radius:8px; padding:16px; }
+    .project-card h3 { font-size:14px; font-weight:700; margin-bottom:6px; color:#111827; }
+    .project-card p { font-size:13px; color:#6B7280; line-height:1.5; }
+    .todo-label { display:inline-block; background:#FEF3C7; color:#92400E; font-size:11px; font-weight:700; padding:1px 7px; border-radius:20px; margin-bottom:6px; }
 
-    /* ── About ───────────────────────────────────────────────── */
-    #about { background: var(--c-surface); }
-    .about-grid { display: grid; gap: 1.25rem; margin-top: 2rem; }
-    .about-card {
-      background: var(--c-bg); border: 1px solid var(--c-border);
-      border-radius: var(--radius); padding: 1.25rem 1.5rem;
-      display: flex; gap: 1rem; align-items: flex-start;
-      transition: border-color 0.2s;
-    }
-    .about-card:hover { border-color: var(--c-accent); }
-    .about-icon {
-      width: 40px; height: 40px; border-radius: var(--radius-sm);
-      background: rgba(108,99,255,0.15); color: var(--c-accent-lt);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.25rem; flex-shrink: 0;
-    }
-    .about-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .about-card p { font-size: 0.9rem; color: var(--c-muted); }
+    /* ASK ME */
+    .ask-section { background:#fff; border:1px solid #E5E7EB; border-radius:10px; padding:24px; margin-top:16px; }
+    .ask-section p { font-size:13px; color:#6B7280; margin-bottom:16px; }
+    .qa-item { background:#F0F9FF; border-left:3px solid var(--color); border-radius:0 6px 6px 0; padding:12px 14px; margin-bottom:10px; }
+    .qa-item .q { font-size:13px; font-weight:700; color:#0e7490; margin-bottom:4px; }
+    .qa-item .a { font-size:13px; color:#374151; line-height:1.5; }
+    .ask-form { display:flex; gap:8px; margin-top:16px; }
+    .ask-form input { flex:1; padding:10px 14px; border:1px solid #D1D5DB; border-radius:6px; font-size:14px; }
+    .ask-form button { padding:10px 18px; background:var(--color); color:#fff; border:none; border-radius:6px; font-size:14px; font-weight:600; cursor:pointer; }
 
-    /* ── Ask Me ──────────────────────────────────────────────── */
-    #askme { background: var(--c-bg); }
-    .chat-box {
-      background: var(--c-surface); border: 1px solid var(--c-border);
-      border-radius: var(--radius); overflow: hidden;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
-    }
-    .chat-header {
-      padding: 1rem 1.25rem; border-bottom: 1px solid var(--c-border);
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    .chat-header-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: #34d399; box-shadow: 0 0 6px #34d399;
-    }
-    .chat-header-title { font-weight: 700; font-size: 0.95rem; }
-    .chat-header-sub { font-size: 0.8rem; color: var(--c-muted); margin-left: auto; }
-
-    .chat-messages {
-      height: 360px; overflow-y: auto; padding: 1.25rem;
-      display: flex; flex-direction: column; gap: 0.875rem;
-    }
-    .chat-messages::-webkit-scrollbar { width: 4px; }
-    .chat-messages::-webkit-scrollbar-track { background: transparent; }
-    .chat-messages::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 2px; }
-
-    .msg {
-      max-width: 80%; padding: 0.7rem 1rem;
-      border-radius: var(--radius); font-size: 0.9rem; line-height: 1.55;
-      animation: fadeUp 0.25s ease;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(6px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .msg-ai   { background: var(--c-ai-bg); border: 1px solid var(--c-border); align-self: flex-start; border-bottom-left-radius: 4px; }
-    .msg-user { background: var(--c-user-bg); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
-    .msg-label { font-size: 0.7rem; color: var(--c-muted); margin-bottom: 0.2rem; font-weight: 600; letter-spacing: 0.04em; }
-    .msg-ai .msg-label { color: var(--c-accent-lt); }
-
-    .typing-indicator { display: flex; gap: 5px; padding: 0.7rem 1rem; align-items: center; }
-    .typing-indicator span {
-      width: 7px; height: 7px; border-radius: 50%; background: var(--c-muted);
-      animation: bounce 1.2s infinite ease-in-out;
-    }
-    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes bounce {
-      0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
-      40%            { transform: scale(1.2); opacity: 1; }
-    }
-
-    .chat-composer {
-      display: flex; gap: 0.5rem; padding: 1rem; border-top: 1px solid var(--c-border);
-    }
-    .chat-input {
-      flex: 1; background: var(--c-bg); border: 1px solid var(--c-border);
-      border-radius: var(--radius-sm); padding: 0.65rem 1rem;
-      color: var(--c-text); font-family: var(--font); font-size: 0.9rem;
-      outline: none; transition: border-color 0.2s;
-      resize: none; min-height: 42px; max-height: 120px;
-    }
-    .chat-input:focus { border-color: var(--c-accent); }
-    .chat-input::placeholder { color: var(--c-muted); }
-    .send-btn {
-      background: var(--c-accent); color: #fff; border: none;
-      border-radius: var(--radius-sm); padding: 0 1.1rem;
-      font-weight: 600; font-size: 0.9rem; cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-      display: flex; align-items: center; gap: 0.4rem;
-    }
-    .send-btn:hover:not(:disabled) { background: var(--c-accent-lt); transform: translateY(-1px); }
-    .send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    .starter-chips {
-      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem;
-    }
-    .chip {
-      background: var(--c-surface); border: 1px solid var(--c-border);
-      border-radius: 20px; padding: 0.4rem 0.9rem;
-      font-size: 0.8rem; color: var(--c-muted); cursor: pointer;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .chip:hover { border-color: var(--c-accent); color: var(--c-text); }
-
-    .api-notice {
-      background: rgba(108,99,255,0.08); border: 1px solid rgba(108,99,255,0.2);
-      border-radius: var(--radius-sm); padding: 0.7rem 1rem;
-      font-size: 0.8rem; color: var(--c-muted); margin-top: 1rem;
-    }
-    .api-notice strong { color: var(--c-accent-lt); }
-
-    /* ── Footer ──────────────────────────────────────────────── */
-    footer {
-      background: var(--c-surface); border-top: 1px solid var(--c-border);
-      text-align: center; padding: 2rem;
-      font-size: 0.8rem; color: var(--c-muted);
-    }
-
-    @media (max-width: 600px) {
-      nav { padding: 0 1rem; }
-      .nav-links { gap: 1rem; }
-      section { padding: 3.5rem 1.25rem; }
-    }
+    footer { text-align:center; padding:24px; color:#9CA3AF; font-size:13px; border-top:1px solid #E5E7EB; margin-top:40px; }
   </style>
 </head>
 <body>
 
-<!-- ── Nav ─────────────────────────────────────────────────── -->
-<nav>
-  <span class="nav-brand">Alex Rivera</span>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#askme">Ask Me</a></li>
-  </ul>
-</nav>
-
-<!-- ── Hero ────────────────────────────────────────────────── -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="avatar">📢</div>
-    <h1>Alex Rivera</h1>
-    <p class="role">Digital Marketer · SaaS Growth</p>
-    <p class="tagline">
-      I turn data into campaigns and campaigns into pipeline — with a little help from AI.
-    </p>
-    <a href="#askme" class="btn-primary">Ask Me Anything →</a>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- ── About ───────────────────────────────────────────────── -->
-<section id="about">
-  <div class="container">
-    <p class="section-label">About Me</p>
-    <h2>How I use AI in my marketing work</h2>
-    <p style="color: var(--c-muted); font-size: 0.95rem;">
-      I'm a Digital Marketer at a B2B SaaS company, focused on demand generation, paid media, and content strategy.
-      AI — especially Claude — has become my daily co-pilot across the full campaign lifecycle.
-    </p>
-
-    <div class="about-grid">
-      <div class="about-card">
-        <div class="about-icon">✍️</div>
-        <div>
-          <h3>Ad Copy &amp; Creative Briefs</h3>
-          <p>I use Claude to generate 10+ headline and body copy variations in minutes, then A/B test the top performers. What used to take a copywriter half a day now takes me 20 minutes.</p>
-        </div>
-      </div>
-      <div class="about-card">
-        <div class="about-icon">📊</div>
-        <div>
-          <h3>Campaign Data Analysis</h3>
-          <p>I paste CSV exports from Google Ads, Meta, or LinkedIn into Claude and ask it to surface the key trends, anomalies, and optimisation opportunities — plain English, no analyst needed.</p>
-        </div>
-      </div>
-      <div class="about-card">
-        <div class="about-icon">♻️</div>
-        <div>
-          <h3>Content Repurposing</h3>
-          <p>A single blog post becomes a LinkedIn carousel, three email subject lines, a Twitter/X thread, and a short-form video script — all from one Claude prompt chain.</p>
-        </div>
-      </div>
-      <div class="about-card">
-        <div class="about-icon">🎯</div>
-        <div>
-          <h3>Audience &amp; Positioning Research</h3>
-          <p>I feed Claude our ICP attributes and competitor landing pages, then ask it to draft positioning hypotheses and messaging frameworks I can test with customers.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- ── Ask Me ──────────────────────────────────────────────── -->
-<section id="askme">
-  <div class="container">
-    <p class="section-label">Ask Me</p>
-    <h2>Your AI marketing strategy assistant</h2>
-    <p style="color: var(--c-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
-      Ask anything about marketing strategy, campaign ideas, ad copy, content, or growth tactics. Powered by Claude.
-    </p>
-
-    <div class="chat-box">
-      <div class="chat-header">
-        <div class="chat-header-dot"></div>
-        <span class="chat-header-title">Marketing AI Assistant</span>
-        <span class="chat-header-sub">Powered by Claude</span>
-      </div>
-
-            <div class="chat-messages" id="chatMessages">
-        <div class="msg msg-ai">
-          <div class="msg-label">ASSISTANT</div>
-          Hi! I'm Alex's AI assistant, specialised in marketing strategy and campaign ideas. Below are sample responses — visit claude.ai to chat live.
-        </div>
-        <div style="font-size:0.75rem;color:var(--c-muted);padding:4px 0 8px;text-align:center;letter-spacing:.04em;font-weight:600;">— SAMPLE RESPONSES — OPEN CLAUDE.AI TO CHAT LIVE →</div>
-
-        <div class="msg msg-user">
-          <div class="msg-label">YOU</div>
-          <div>How do I improve my Google Ads CTR?</div>
-        </div>
-        <div class="msg msg-ai">
-          <div class="msg-label">ASSISTANT</div>
-          <div style="white-space:pre-wrap">Great question! Here are the top levers:
-• Headlines: Test 3–5 variations per ad group. Include the keyword in headline 1.
-• Description: Lead with the benefit, end with a CTA ("Start free", "Get quote today").
-• Ad strength: Aim for "Excellent" — Google rewards variety.
-• Negative keywords: Audit your search terms weekly to cut irrelevant spend.
-• Extensions: Add sitelinks, callouts, and structured snippets — they expand your ad real estate for free.</div>
-        </div>
-        <div class="msg msg-user">
-          <div class="msg-label">YOU</div>
-          <div>Write me a LinkedIn ad for a SaaS free trial</div>
-        </div>
-        <div class="msg msg-ai">
-          <div class="msg-label">ASSISTANT</div>
-          <div style="white-space:pre-wrap">Here are two variations:
-
-▸ Variation A
-Headline: Stop juggling spreadsheets.
-Body: [Product] gives ops teams one place to track, assign, and close tasks — in under 5 minutes to set up. Start your free 14-day trial.
-CTA: Start Free Trial
-
-▸ Variation B
-Headline: Your team is ready. Is your tooling?
-Body: Join 2,000+ ops leads who replaced 4 tools with [Product]. No credit card. No setup call.
-CTA: Try It Free</div>
-        </div>
-        <div class="msg msg-user">
-          <div class="msg-label">YOU</div>
-          <div>What's a good content repurposing workflow?</div>
-        </div>
-        <div class="msg msg-ai">
-          <div class="msg-label">ASSISTANT</div>
-          <div style="white-space:pre-wrap">Here's the workflow I recommend:
-1. Publish the long-form asset (blog post, webinar, report)
-2. Feed it to Claude with the prompt: "Extract 5 key insights and rewrite each as a standalone LinkedIn post"
-3. Ask for a Twitter/X thread from the same source
-4. Request 3 email subject line options for a nurture sequence
-5. Ask for a short-form video script (60–90 sec) for Reels/Shorts
-One piece of content → 10+ assets in about 30 minutes.</div>
-        </div>
-      </div>
-
-      <div class="chat-composer" style="justify-content:center;padding:1.25rem;">
-        <a href="https://claude.ai" target="_blank" rel="noopener" class="send-btn" style="text-decoration:none;padding:0.7rem 1.5rem;border-radius:8px;">
-          Open claude.ai to chat live →
-        </a>
-      </div>
-
-    <div style="background:rgba(8,145,178,0.08);border:1px solid rgba(8,145,178,0.25);border-radius:8px;padding:0.75rem 1rem;font-size:0.82rem;color:var(--c-muted);margin-top:1rem;">
-      <strong style="color:var(--c-accent-lt);">Claude.ai subscription required</strong> — No API key needed. Open <a href="https://claude.ai" target="_blank" style="color:var(--c-accent-lt);">claude.ai</a> in a browser to use this assistant live. Edit the About section and Q&amp;A pairs to match your own role.
-    </div>
+  <!-- ============================================================
+       SECTION: HERO
+       TODO: Replace placeholder text with your real name,
+             emoji/initials for the avatar, and your tagline.
+  ============================================================ -->
+  <section class="hero">
+    <div class="avatar"><!-- YOUR INITIALS or EMOJI --></div>
+    <h1><!-- YOUR NAME --></h1>
+    <p class="tagline"><!-- YOUR ROLE --> &mdash; <!-- YOUR TAGLINE / VALUE PROPOSITION --></p>
   </section>
 
-<footer>
-  Built with Claude AI · HO2: Ask-Me AI Assistant · Forgemind AI Course
-</footer>
+  <!-- ============================================================
+       SECTION: ABOUT ME
+       TODO: Write 2-3 sentences about who you are, what you are
+             looking for, and what makes you different.
+  ============================================================ -->
+  <div class="section">
+    <h2>About Me</h2>
+    <p><!-- TODO: Write a short introduction. Who are you? What kind of role are you targeting? What is your background? --></p>
+    <p><!-- TODO: Add a second sentence about what excites you or what you bring to a team. --></p>
+  </div>
+
+  <!-- ============================================================
+       SECTION: SKILLS & TOOLS
+       TODO: Replace each skill chip with a real skill or tool you
+             use. Add or remove chips as needed.
+  ============================================================ -->
+  <div class="section">
+    <h2>Skills &amp; Tools</h2>
+    <div class="skills">
+      <span class="skill"><!-- SKILL 1 --></span>
+      <span class="skill"><!-- SKILL 2 --></span>
+      <span class="skill"><!-- SKILL 3 --></span>
+      <span class="skill"><!-- SKILL 4 --></span>
+      <span class="skill"><!-- SKILL 5 --></span>
+      <span class="skill"><!-- SKILL 6 --></span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION: FEATURED PROJECTS
+       TODO: Fill in 2-3 projects you are proud of.
+             Give each a title, brief description, and outcome.
+  ============================================================ -->
+  <div class="section">
+    <h2>Featured Projects</h2>
+    <div class="projects">
+
+      <div class="project-card">
+        <span class="todo-label">TODO</span>
+        <h3><!-- PROJECT 1 TITLE --></h3>
+        <p><!-- What was the project? What did you build or solve? What was the result? --></p>
+      </div>
+
+      <div class="project-card">
+        <span class="todo-label">TODO</span>
+        <h3><!-- PROJECT 2 TITLE --></h3>
+        <p><!-- What was the project? What did you build or solve? What was the result? --></p>
+      </div>
+
+      <div class="project-card">
+        <span class="todo-label">TODO</span>
+        <h3><!-- PROJECT 3 TITLE --></h3>
+        <p><!-- What was the project? What did you build or solve? What was the result? --></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION: ASK ME ANYTHING
+       TODO: Add 3 pre-written Q&A pairs that recruiters might ask.
+             Use Claude.ai to help you write honest, strong answers.
+             The form button opens Claude.ai for live questions.
+  ============================================================ -->
+  <div class="section">
+    <h2>Ask Me Anything</h2>
+    <div class="ask-section">
+      <p>Pre-written answers to common recruiter questions &mdash; or ask me live.</p>
+
+      <div class="qa-item">
+        <div class="q"><!-- QUESTION 1: e.g. "What is your strongest skill?" --></div>
+        <div class="a"><!-- ANSWER 1: Write a clear, specific answer using Claude.ai --></div>
+      </div>
+
+      <div class="qa-item">
+        <div class="q"><!-- QUESTION 2: e.g. "Why are you changing jobs?" --></div>
+        <div class="a"><!-- ANSWER 2: Write a clear, specific answer using Claude.ai --></div>
+      </div>
+
+      <div class="qa-item">
+        <div class="q"><!-- QUESTION 3: e.g. "What kind of team do you thrive in?" --></div>
+        <div class="a"><!-- ANSWER 3: Write a clear, specific answer using Claude.ai --></div>
+      </div>
+
+      <div class="ask-form">
+        <input type="text" id="q" placeholder="Ask me anything about my background...">
+        <button onclick="handleAsk()">Ask</button>
+      </div>
+      <p id="ask-hint" style="display:none;margin-top:10px;font-size:13px;color:#0891B2;"></p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       FOOTER
+       TODO: Replace with your name, LinkedIn/GitHub links.
+  ============================================================ -->
+  <footer>
+    <!-- YOUR NAME --> &mdash; <!-- YOUR CITY / COUNTRY --> &middot;
+    <a href="<!-- YOUR LINKEDIN URL -->" style="color:#0891B2">LinkedIn</a> &middot;
+    <a href="<!-- YOUR GITHUB URL -->" style="color:#0891B2">GitHub</a>
+  </footer>
+
+  <script>
+    function handleAsk() {
+      const q = document.getElementById('q').value.trim();
+      const hint = document.getElementById('ask-hint');
+      if (!q) return;
+      hint.style.display = 'block';
+      hint.textContent = 'Open claude.ai to answer questions live — or replace this with your own pre-written Q&As above.';
+    }
+  </script>
 
 </body>
 </html>
