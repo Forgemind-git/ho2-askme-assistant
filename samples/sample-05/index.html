@@ -1,208 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daniel Reyes — Career Transition</title>
-  <style>
-    :root {
-      --color: #0891B2;
-      --color-dark: #0e7490;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#F8F9FA; color:#1a1a2e; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ask Sofia Reyes — Science Teacher → UX Researcher</title>
+<style>
+  /* ── Sample 05 · Career changer · accent: ochre ─────────────────────── */
+  :root{
+    --ink:#221a10;          /* near-black, warm */
+    --paper:#f6f1e8;        /* warm paper, biased toward amber */
+    --card:#ffffff;
+    --muted:#6a5f4e;
+    --hair:#e7ddca;
+    --accent:#b5761f;       /* ochre / amber */
+    --accent-soft:#f5e6c9;
+    --good:#1e7a5e;
+    --warn:#9a5b00;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",Menlo,monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    font-family:var(--sans);background:var(--paper);color:var(--ink);
+    line-height:1.6;font-size:16px;
+    background-image:linear-gradient(180deg,var(--accent-soft) 0%,var(--paper) 340px);
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+  a{color:var(--accent);}
+  .label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
 
-    /* HERO */
-    .hero { background:var(--color); color:#fff; padding:60px 32px 48px; text-align:center; }
-    .avatar { width:80px; height:80px; border-radius:50%; background:rgba(255,255,255,.25); margin:0 auto 16px; display:flex; align-items:center; justify-content:center; font-size:32px; }
-    .hero h1 { font-size:28px; font-weight:800; margin-bottom:6px; }
-    .hero .tagline { font-size:15px; opacity:.85; max-width:480px; margin:0 auto; }
+  /* ── Masthead ───────────────────────────────────────────────────────── */
+  header{padding:56px 0 40px;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(30,122,94,.15);}
+  header h1{font-family:var(--serif);font-weight:600;font-size:clamp(38px,7vw,62px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance;}
+  .role{font-size:17px;color:var(--accent);font-weight:600;margin-top:12px;}
+  .thesis{font-size:19px;color:var(--muted);max-width:34em;margin-top:14px;line-height:1.5;}
 
-    /* SECTIONS */
-    .section { max-width:720px; margin:0 auto; padding:40px 24px; }
-    .section h2 { font-size:18px; font-weight:700; color:var(--color); margin-bottom:16px; border-bottom:2px solid var(--color); padding-bottom:6px; }
-    .section p { font-size:14px; color:#4B5563; line-height:1.7; margin-bottom:12px; }
+  /* ── Record ─────────────────────────────────────────────────────────── */
+  section{padding:40px 0;border-top:1px solid var(--hair);}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;}
+  .sec-head h2{font-family:var(--serif);font-weight:600;font-size:26px;letter-spacing:-.01em;}
+  .about{font-size:18px;max-width:38em;line-height:1.62;}
+  .about strong{font-weight:600;}
 
-    /* SKILLS */
-    .skills-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; }
-    .skill-card { background:#fff; border:1px solid #E5E7EB; border-radius:8px; padding:16px; }
-    .skill-card h3 { font-size:14px; font-weight:700; color:var(--color-dark); margin-bottom:6px; }
-    .skill-card .from { font-size:11px; color:#9CA3AF; font-style:italic; margin-bottom:6px; }
-    .skill-card p { font-size:13px; color:#6B7280; line-height:1.5; }
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+  .chip{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);
+    border:1px solid var(--hair);border-radius:2px;padding:6px 11px;}
 
-    /* TARGET ROLE */
-    .target-box { background:#fff; border:2px solid var(--color); border-radius:10px; padding:20px; }
-    .target-box h3 { font-size:16px; font-weight:700; color:var(--color-dark); margin-bottom:10px; }
-    .target-box ul { padding-left:18px; }
-    .target-box li { font-size:14px; color:#374151; line-height:1.8; }
+  .work{display:grid;gap:16px;margin-top:8px;}
+  @media(min-width:680px){.work{grid-template-columns:1fr 1fr;}}
+  .proj{background:var(--card);border:1px solid var(--hair);border-radius:6px;padding:20px 22px;}
+  .proj .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
+  .proj h3{font-size:17px;font-weight:650;margin:6px 0 8px;}
+  .proj p{font-size:14.5px;color:var(--muted);line-height:1.55;}
+  .proj .res{margin-top:10px;font-size:13.5px;color:var(--ink);}
+  .proj .res b{color:var(--accent);font-weight:600;}
 
-    /* STORY TIMELINE */
-    .timeline { display:flex; flex-direction:column; gap:16px; }
-    .tl-item { display:flex; gap:14px; }
-    .tl-dot { width:12px; height:12px; border-radius:50%; background:var(--color); margin-top:4px; flex-shrink:0; }
-    .tl-body h3 { font-size:14px; font-weight:700; margin-bottom:3px; }
-    .tl-body p { font-size:13px; color:#6B7280; line-height:1.5; }
+  .facts{display:flex;flex-wrap:wrap;gap:28px;margin-top:6px;}
+  .fact .n{font-family:var(--serif);font-size:30px;font-weight:600;font-variant-numeric:tabular-nums;}
+  .fact .l{font-size:13px;color:var(--muted);}
 
-    /* ASK ME */
-    .ask-section { background:#fff; border:1px solid #E5E7EB; border-radius:10px; padding:24px; margin-top:16px; }
-    .ask-section p { font-size:13px; color:#6B7280; margin-bottom:16px; }
-    .qa-item { background:#F0F9FF; border-left:3px solid var(--color); border-radius:0 6px 6px 0; padding:12px 14px; margin-bottom:10px; }
-    .qa-item .q { font-size:13px; font-weight:700; color:#0e7490; margin-bottom:4px; }
-    .qa-item .a { font-size:13px; color:#374151; line-height:1.5; }
-    .ask-form { display:flex; gap:8px; margin-top:16px; }
-    .ask-form input { flex:1; padding:10px 14px; border:1px solid #D1D5DB; border-radius:6px; font-size:14px; }
-    .ask-form button { padding:10px 18px; background:var(--color); color:#fff; border:none; border-radius:6px; font-size:14px; font-weight:600; cursor:pointer; }
+  /* ── Ask me ─────────────────────────────────────────────────────────── */
+  #ask{border-top:2px solid var(--ink);}
+  .ask-note{background:var(--accent-soft);border:1px solid #e6cf9c;border-radius:6px;
+    padding:12px 15px;font-size:13.5px;color:#6b4a10;margin-bottom:18px;line-height:1.5;}
+  .ask-note b{color:var(--accent);}
+  .setup{display:none;background:#fff6e5;border:1px solid #f0d59a;color:#6b4e12;
+    border-radius:6px;padding:12px 15px;font-size:13.5px;margin-bottom:18px;line-height:1.5;}
+  .setup b{color:var(--warn);}
 
-    .todo-label { display:inline-block; background:#FEF3C7; color:#92400E; font-size:11px; font-weight:700; padding:1px 7px; border-radius:20px; margin-bottom:6px; }
-    footer { text-align:center; padding:24px; color:#9CA3AF; font-size:13px; border-top:1px solid #E5E7EB; margin-top:40px; }
-  </style>
+  .panel{background:var(--card);border:1px solid var(--hair);border-radius:8px;overflow:hidden;
+    box-shadow:0 1px 2px rgba(45,35,20,.04),0 8px 30px rgba(45,35,20,.05);}
+  .transcript{padding:8px 18px 4px;display:flex;flex-direction:column;gap:14px;max-height:440px;overflow-y:auto;}
+  .msg{max-width:82%;font-size:14.5px;line-height:1.55;}
+  .msg .who{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+  .msg.you{align-self:flex-end;text-align:right;}
+  .msg.you .b{display:inline-block;background:var(--accent);color:#fff;border-radius:12px 12px 3px 12px;padding:9px 14px;text-align:left;}
+  .msg.me .b{display:inline-block;background:#f4efe4;border:1px solid var(--hair);border-radius:12px 12px 12px 3px;padding:9px 14px;white-space:pre-wrap;}
+  .msg.me .who{color:var(--accent);}
+
+  .dots{display:inline-flex;gap:4px;padding:10px 14px;}
+  .dots span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:b 1.1s infinite ease-in-out;}
+  .dots span:nth-child(2){animation-delay:.18s;}.dots span:nth-child(3){animation-delay:.36s;}
+  @keyframes b{0%,80%,100%{transform:scale(.7);opacity:.4;}40%{transform:scale(1.1);opacity:1;}}
+
+  .suggest{display:flex;flex-wrap:wrap;gap:7px;padding:10px 18px 14px;border-top:1px solid var(--hair);}
+  .sug{font-family:var(--mono);font-size:12px;color:var(--accent);background:var(--accent-soft);
+    border:1px solid #e6cf9c;border-radius:20px;padding:5px 12px;cursor:pointer;transition:background .15s;}
+  .sug:hover{background:#efdcb3;}
+  .composer{display:flex;gap:8px;padding:14px 16px;border-top:1px solid var(--hair);background:#fbf8f1;}
+  .composer input{flex:1;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--card);
+    border:1px solid var(--hair);border-radius:6px;padding:11px 14px;outline:none;}
+  .composer input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);}
+  .composer button{font-family:var(--sans);font-weight:600;font-size:14px;color:#fff;background:var(--accent);
+    border:none;border-radius:6px;padding:0 18px;cursor:pointer;transition:opacity .15s;}
+  .composer button:hover:not(:disabled){opacity:.9;}
+  .composer button:disabled{opacity:.45;cursor:not-allowed;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  footer{border-top:1px solid var(--hair);padding:34px 0 60px;color:var(--muted);font-size:13.5px;line-height:1.6;}
+  footer .label{display:block;margin-bottom:8px;}
+  footer code{font-family:var(--mono);font-size:12.5px;background:#efe8d8;padding:1px 5px;border-radius:3px;}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;}}
+</style>
 </head>
 <body>
+<div class="wrap">
 
-  <!-- ============================================================
-       SECTION: HERO
-  ============================================================ -->
-  <section class="hero">
-    <div class="avatar">DR</div>
-    <h1>Daniel Reyes</h1>
-    <p class="tagline">Teacher &rarr; UX Researcher &mdash; eight years turning confused students into confident ones, now turning user confusion into product clarity.</p>
+  <header>
+    <div class="eyebrow"><span class="dot"></span><span class="label">Career change in progress · answers live</span></div>
+    <h1>Sofia Reyes</h1>
+    <p class="role">Science teacher → UX Researcher</p>
+    <p class="thesis">My old job titles don't say "UX" — but the work does. Ask my page why I'm qualified, and it answers by reframing what I actually did in the classroom.</p>
+  </header>
+
+  <!-- ═══ GROUNDING (the human-readable record — also fed to the assistant) ═══ -->
+  <section id="about">
+    <div class="sec-head"><span class="label">01</span><h2>About</h2></div>
+    <p class="about">I spent <strong>7 years</strong> as a secondary school science teacher, and I'm now moving into <strong>UX research</strong>. Here's the honest bridge: teaching is really the daily practice of watching real people struggle with something, finding where they get stuck, and redesigning until it clicks. That's user research. I've since completed a UX research course and run three volunteer projects to prove it in the field. I'm still building my quantitative and analytics depth — and I'd rather say that plainly than pretend otherwise.</p>
+    <div class="chips">
+      <span class="chip">User interviews</span><span class="chip">Affinity mapping</span><span class="chip">Usability testing</span>
+      <span class="chip">Surveys</span><span class="chip">Research synthesis</span><span class="chip">Figma basics</span>
+      <span class="chip">Stakeholder facilitation</span><span class="chip">7 yrs teaching</span><span class="chip">Building: quant / analytics</span>
+    </div>
   </section>
 
-  <!-- ============================================================
-       SECTION: TRANSFERABLE SKILLS
-  ============================================================ -->
-  <div class="section">
-    <h2>Transferable Skills</h2>
-    <div class="skills-grid">
-
-      <div class="skill-card">
-        <h3>User Interviewing</h3>
-        <div class="from">From: 8 years teaching secondary students</div>
-        <p>A classroom of 30 teenagers teaches you to ask open questions, listen past the first answer, and read what people aren't saying. That's the core of every good user interview.</p>
+  <section id="work">
+    <div class="sec-head"><span class="label">02</span><h2>Experience, reframed</h2></div>
+    <div class="work">
+      <div class="proj">
+        <span class="k">Classroom</span>
+        <h3>Understanding real users</h3>
+        <p>Spent 7 years watching how ~150 students a year actually understood — and misunderstood — material, adjusting my explanations to whatever genuinely worked for them.</p>
+        <p class="res">Reads as: <b>qualitative user research &amp; usability observation.</b></p>
       </div>
-
-      <div class="skill-card">
-        <h3>Synthesising Messy Feedback</h3>
-        <div class="from">From: Grading and assessment design</div>
-        <p>I spent years turning hundreds of test responses into clear patterns about what students did and didn't understand. The same affinity-mapping instinct turns raw research notes into themes a team can act on.</p>
+      <div class="proj">
+        <span class="k">Assessment design</span>
+        <h3>Turning behaviour into insight</h3>
+        <p>Built and analysed assessments to find exactly where students got stuck, then redesigned lessons around what the data showed.</p>
+        <p class="res">Reads as: <b>research synthesis &amp; findings-to-action.</b></p>
       </div>
-
-      <div class="skill-card">
-        <h3>Communicating to Stakeholders</h3>
-        <div class="from">From: Parent meetings &amp; staff briefings</div>
-        <p>Explaining a struggling student to anxious parents and a busy head of department taught me to tailor the same insight to very different audiences &mdash; exactly what research read-outs to PMs, designers and execs demand.</p>
+      <div class="proj">
+        <span class="k">Curriculum projects</span>
+        <h3>Stakeholder-driven redesign</h3>
+        <p>Led a department curriculum overhaul with input from staff, parents and students, delivered under a fixed deadline.</p>
+        <p class="res">Reads as: <b>stakeholder interviews &amp; project delivery.</b></p>
       </div>
-
-      <div class="skill-card">
-        <h3>Designing for Real Behaviour</h3>
-        <div class="from">From: Lesson &amp; curriculum planning</div>
-        <p>Every lesson is a usability test: plan it, watch where people get stuck, iterate next week. I learned to design around how people actually behave, not how I wished they would.</p>
+      <div class="proj">
+        <span class="k">Retraining</span>
+        <h3>Deliberate UX transition</h3>
+        <p>Completed a UX research course and ran 3 volunteer research projects — interviews, affinity mapping and a usability test — for a local nonprofit.</p>
+        <p class="res">Reads as: <b>applied UX research portfolio.</b></p>
       </div>
-
     </div>
-  </div>
-
-  <!-- ============================================================
-       SECTION: NEW TARGET ROLE
-  ============================================================ -->
-  <div class="section">
-    <h2>New Target Role</h2>
-    <div class="target-box">
-      <h3>Mixed-Methods UX Researcher</h3>
-      <ul>
-        <li><strong>Industry:</strong> EdTech or HealthTech &mdash; mission-driven products where understanding real users matters</li>
-        <li><strong>Company size:</strong> Series A&ndash;C startups or mid-market teams building their first dedicated research function</li>
-        <li><strong>Location:</strong> Remote-first, or hybrid in Manchester, UK</li>
-        <li><strong>Level:</strong> Mid-level individual contributor (Junior&ndash;Mid UX Researcher)</li>
-        <li><strong>Why this role:</strong> I want to spend my days doing what I already love &mdash; talking to people, finding the gap between intention and reality, and helping a team build something that genuinely works for its users.</li>
-      </ul>
+    <div class="facts" style="margin-top:22px">
+      <div class="fact"><div class="n">7</div><div class="l">yrs teaching</div></div>
+      <div class="fact"><div class="n">3</div><div class="l">volunteer UX projects</div></div>
+      <div class="fact"><div class="n">150+</div><div class="l">"users" a year</div></div>
     </div>
-  </div>
+  </section>
 
-  <!-- ============================================================
-       SECTION: MY STORY
-  ============================================================ -->
-  <div class="section">
-    <h2>My Story</h2>
-    <div class="timeline">
+  <!-- ═══ ASK ME (live, grounded in the record above) ═══ -->
+  <section id="ask">
+    <div class="sec-head"><span class="label">Ask me anything</span><h2>Put a hiring question to my page</h2></div>
+    <div class="ask-note">This answers <b>live</b> using Claude, grounded only in the real material above — it reframes my genuine teaching experience toward UX research, and it won't invent UX job titles I don't have. Anyone with a Claude account can ask it; when you send a question you'll be asked to sign in to your own Claude account first.</div>
+    <div class="setup" id="setup"><b>Almost there.</b> Live answers only work when this page runs as a <b>Claude Artifact</b>. Open it inside a Claude chat (with "Create AI-powered artifacts" turned on in Settings → Feature preview) and sign in. The profile above still reads fine on its own.</div>
 
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-body">
-          <h3>Where I started</h3>
-          <p>I spent eight years as a secondary-school geography and humanities teacher, eventually leading a department of six. My job was understanding why a concept wasn't landing and redesigning how I taught it until it did.</p>
-        </div>
+    <div class="panel">
+      <div class="transcript" id="transcript">
+        <div class="msg me"><div class="who">Sofia's assistant</div><div class="b">Hi — I'm Sofia's Ask-Me assistant. Ask me anything about how her teaching experience transfers to UX research and I'll answer from her real record, reframing what she actually did — never inventing. Try a question below.</div></div>
       </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-body">
-          <h3>The turning point</h3>
-          <p>During the shift to remote learning I volunteered to help pilot a new digital learning platform. Running feedback sessions with students and writing up what confused them, I realised the part of teaching I loved most &mdash; figuring out how people think and removing their friction &mdash; was an entire profession: UX research.</p>
-        </div>
+      <div class="suggest" id="suggest">
+        <button class="sug">Why are you qualified for a UX research role?</button>
+        <button class="sug">How does teaching transfer to UX?</button>
+        <button class="sug">Have you done real user research?</button>
       </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-body">
-          <h3>Where I am heading</h3>
-          <p>Over the past year I completed the Google UX Design Certificate and a dedicated UX research course, ran three volunteer research projects for a local non-profit's booking app, and built a portfolio of interview scripts, usability studies and research repositories. I'm now ready to do this full-time.</p>
-        </div>
-      </div>
-
+      <form class="composer" id="composer" autocomplete="off">
+        <input id="q" type="text" placeholder="e.g. What's a gap you're still working on?" aria-label="Your question" />
+        <button type="submit" id="send">Ask</button>
+      </form>
     </div>
-  </div>
+  </section>
 
-  <!-- ============================================================
-       SECTION: ASK ME ANYTHING
-  ============================================================ -->
-  <div class="section">
-    <h2>Ask Me Anything</h2>
-    <div class="ask-section">
-      <p>Common questions about my career change &mdash; answered honestly.</p>
-
-      <div class="qa-item">
-        <div class="q">You don't have a UX research job title yet &mdash; why should we hire you?</div>
-        <div class="a">Because the core skills aren't new to me, only the label is. I've run thousands of "interviews", synthesised messy qualitative data into clear themes, and presented findings to demanding stakeholders for eight years. On top of that I've completed formal UX research training and shipped three real research projects with documented impact &mdash; you can read the write-ups in my portfolio.</div>
-      </div>
-
-      <div class="qa-item">
-        <div class="q">Why the switch from teaching?</div>
-        <div class="a">I'm not running from teaching &mdash; I'm running toward the part of it I loved most. The work that energised me was diagnosing why people got stuck and redesigning the experience until it clicked. UX research is that, full-time, for products that can reach far more people than one classroom ever could.</div>
-      </div>
-
-      <div class="qa-item">
-        <div class="q">What have you actually done to prepare for this field?</div>
-        <div class="a">Concretely: the Google UX Design Certificate, a mixed-methods UX research course, and three pro-bono studies for a local non-profit &mdash; including user interviews, a usability test on their booking flow, and an affinity-mapped findings report that changed their onboarding screen. I've also joined two UX research communities and do regular peer portfolio reviews.</div>
-      </div>
-
-      <div class="ask-form">
-        <input type="text" id="q" placeholder="Ask me about my career change or experience...">
-        <button onclick="handleAsk()">Ask</button>
-      </div>
-      <p id="ask-hint" style="display:none;margin-top:10px;font-size:13px;color:#0891B2;"></p>
-    </div>
-  </div>
-
-  <!-- ============================================================
-       FOOTER
-  ============================================================ -->
   <footer>
-    Daniel Reyes &middot; Manchester, UK &middot;
-    <a href="mailto:daniel.reyes.ux@example.com" style="color:#0891B2">Get in touch</a> &middot;
-    <a href="https://www.linkedin.com/in/danielreyes-ux" style="color:#0891B2">LinkedIn</a> &middot;
-    <a href="https://danielreyes.example.com" style="color:#0891B2">Portfolio</a>
+    <span class="label">About this page</span>
+    A published Claude Artifact that answers grounded in Sofia's real experience — reframing teaching toward UX research, not fabricating it. Built by prompting Claude —
+    no code, no API key; live answers run on the visitor's own Claude account.
+    Live link: <code>[paste your published artifact share link here]</code>
   </footer>
 
-  <script>
-    function handleAsk() {
-      const q = document.getElementById('q').value.trim();
-      const hint = document.getElementById('ask-hint');
-      if (!q) return;
-      hint.style.display = 'block';
-      hint.textContent = 'Open claude.ai to answer questions live — or replace this with your own pre-written Q&As above.';
-    }
-  </script>
+</div>
 
+<script>
+  /* ── The grounding: the ONLY facts the assistant may use ─────────────── */
+  /* ╔══════════════════════════════════════════════════════════════════╗
+     ║  EDIT HERE — replace everything in PROFILE with YOUR real material. ║
+     ║  Keep it truthful: the assistant can only answer from what's here.  ║
+     ║  Also update the visible About / cards above to match.             ║
+     ╚══════════════════════════════════════════════════════════════════╝ */
+  const PROFILE = `
+Name: Sofia Reyes
+Old role: Secondary school science teacher, 7 years.
+Target role: UX Researcher.
+The honest bridge: Sofia's old job titles don't signal UX, but her skills do. She is a career changer moving from teaching into UX research. Teaching, in practice, is watching real people struggle with material, finding where they get stuck, and redesigning until it works — which is user research.
+Transferable experience 1 — Classroom (reads as qualitative user research & usability observation): 7 years watching how ~150 students per year actually understood and misunderstood material, adjusting explanations to what genuinely worked.
+Transferable experience 2 — Assessment design (reads as research synthesis & findings-to-action): built and analysed assessments to pinpoint exactly where students got stuck, then redesigned lessons around the data.
+Transferable experience 3 — Curriculum projects (reads as stakeholder interviews & project delivery): led a department curriculum overhaul with input from staff, parents and students, under a fixed deadline.
+Transferable experience 4 — Retraining (reads as applied UX research portfolio): completed a UX research course and ran 3 volunteer research projects (user interviews, affinity mapping, and a usability test) for a local nonprofit.
+UX methods/tools she has learned: user interviews, affinity mapping, usability testing, surveys, research synthesis, Figma basics.
+Why she is qualified: she is fluent at pattern-matching people's real behaviour, translating findings into concrete changes, and working to deadlines with mixed stakeholders (staff, parents, students).
+Honest gaps: she is still building her quantitative and analytics depth. She does NOT have prior paid UX job titles — her UX experience is the course plus the 3 volunteer projects. Be honest about this if asked.
+Facts: 7 years teaching; 3 volunteer UX projects; 150+ "users" (students) a year.
+`.trim();
+
+  const transcript = document.getElementById('transcript');
+  const form = document.getElementById('composer');
+  const input = document.getElementById('q');
+  const sendBtn = document.getElementById('send');
+  const liveOK = !!(window.claude && typeof window.claude.complete === 'function');
+  if(!liveOK){ document.getElementById('setup').style.display='block'; }
+
+  function bubble(kind, who, text){
+    const el = document.createElement('div');
+    el.className = 'msg ' + kind;
+    el.innerHTML = '<div class="who"></div><div class="b"></div>';
+    el.querySelector('.who').textContent = who;
+    el.querySelector('.b').textContent = text;
+    transcript.appendChild(el);
+    transcript.scrollTop = transcript.scrollHeight;
+    return el;
+  }
+  function thinking(){
+    const el = document.createElement('div');
+    el.className = 'msg me';
+    el.innerHTML = '<div class="who">Sofia’s assistant</div><div class="dots"><span></span><span></span><span></span></div>';
+    transcript.appendChild(el);
+    transcript.scrollTop = transcript.scrollHeight;
+    return el;
+  }
+
+  async function ask(question){
+    bubble('you','You',question);
+    input.value=''; sendBtn.disabled=true;
+    const wait = thinking();
+
+    if(!liveOK){
+      wait.remove();
+      bubble('me','Sofia’s assistant','To answer live, open this page as a Claude Artifact inside claude.ai and sign in — then ask me again. (This is running as a plain web page right now, so I can’t reach Claude.)');
+      sendBtn.disabled=false; input.focus(); return;
+    }
+    /* window.claude.complete(prompt: string) -> Promise<string>.
+       Anthropic changed this method's behaviour on 2025-07-31 — if it stops
+       working, confirm the current call inside claude.ai and adjust here. */
+    const prompt =
+      'You are the personal "Ask-Me" assistant for Sofia Reyes, speaking in the first person as Sofia. '+
+      'Sofia is a career changer: a science teacher of 7 years moving into UX research. '+
+      'Answer the visitor\'s question using ONLY the facts in the PROFILE below. '+
+      'Be warm, specific and concise (2–4 sentences). '+
+      'When asked why she is qualified, REFRAME her real teaching experience toward UX research using only facts in the PROFILE — never fabricate UX job titles, employers, dates or experience she does not have. '+
+      'If asked about gaps, be honest (she is still building quantitative/analytics depth and has no prior paid UX role). '+
+      'If the answer is not in the PROFILE, say you don\'t have that detail rather than guessing.\n\n'+
+      'PROFILE:\n'+PROFILE+'\n\nVisitor question: '+question+'\n\nAnswer as Sofia:';
+    try{
+      const reply = await window.claude.complete(prompt);
+      wait.remove();
+      bubble('me','Sofia’s assistant',(reply||'').trim() || 'Sorry, I didn\'t catch that — try asking another way.');
+    }catch(err){
+      wait.remove();
+      bubble('me','Sofia’s assistant','Something went wrong reaching Claude just now. Please try again in a moment.');
+    }
+    sendBtn.disabled=false; input.focus();
+  }
+
+  form.addEventListener('submit', e=>{ e.preventDefault(); const q=input.value.trim(); if(q) ask(q); });
+  document.getElementById('suggest').addEventListener('click', e=>{
+    if(e.target.classList.contains('sug')) ask(e.target.textContent);
+  });
+</script>
 </body>
 </html>

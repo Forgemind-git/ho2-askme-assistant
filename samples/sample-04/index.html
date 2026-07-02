@@ -1,196 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jordan Blake — Speaker &amp; Creator</title>
-  <style>
-    :root {
-      --color: #0891B2;
-      --color-dark: #0e7490;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#F8F9FA; color:#1a1a2e; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ask Marcus Bell — Keynote Speaker</title>
+<style>
+  /* ── Sample 04 · Speaker / creator · accent: plum ───────────────────── */
+  :root{
+    --ink:#20182a;          /* near-black, warm plum-tinted */
+    --paper:#f4f0f7;        /* soft plum paper */
+    --card:#ffffff;
+    --muted:#635a6d;
+    --hair:#e6ddec;
+    --accent:#7a3e9d;       /* plum */
+    --accent-soft:#efe4f6;
+    --good:#1e7a5e;
+    --warn:#9a5b00;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",Menlo,monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    font-family:var(--sans);background:var(--paper);color:var(--ink);
+    line-height:1.6;font-size:16px;
+    background-image:linear-gradient(180deg,var(--accent-soft) 0%,var(--paper) 340px);
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+  a{color:var(--accent);}
+  .label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
 
-    /* HERO */
-    .hero { background:var(--color); color:#fff; padding:60px 32px 48px; text-align:center; }
-    .avatar { width:80px; height:80px; border-radius:50%; background:rgba(255,255,255,.25); margin:0 auto 16px; display:flex; align-items:center; justify-content:center; font-size:32px; }
-    .hero h1 { font-size:28px; font-weight:800; margin-bottom:6px; }
-    .hero .tagline { font-size:15px; opacity:.85; max-width:480px; margin:0 auto; }
+  /* ── Masthead ───────────────────────────────────────────────────────── */
+  header{padding:56px 0 40px;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(30,122,94,.15);}
+  header h1{font-family:var(--serif);font-weight:600;font-size:clamp(38px,7vw,62px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance;}
+  .role{font-size:17px;color:var(--accent);font-weight:600;margin-top:12px;}
+  .thesis{font-size:19px;color:var(--muted);max-width:34em;margin-top:14px;line-height:1.5;}
 
-    /* SECTIONS */
-    .section { max-width:720px; margin:0 auto; padding:40px 24px; }
-    .section h2 { font-size:18px; font-weight:700; color:var(--color); margin-bottom:16px; border-bottom:2px solid var(--color); padding-bottom:6px; }
-    .section p { font-size:14px; color:#4B5563; line-height:1.7; margin-bottom:12px; }
+  /* ── Record ─────────────────────────────────────────────────────────── */
+  section{padding:40px 0;border-top:1px solid var(--hair);}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;}
+  .sec-head h2{font-family:var(--serif);font-weight:600;font-size:26px;letter-spacing:-.01em;}
+  .about{font-size:18px;max-width:38em;line-height:1.62;}
+  .about strong{font-weight:600;}
 
-    /* TOPICS */
-    .topics { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; }
-    .topic-card { background:#fff; border:1px solid #E5E7EB; border-radius:8px; padding:16px; }
-    .topic-card h3 { font-size:14px; font-weight:700; color:var(--color-dark); margin-bottom:6px; }
-    .topic-card p { font-size:13px; color:#6B7280; line-height:1.5; }
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+  .chip{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);
+    border:1px solid var(--hair);border-radius:2px;padding:6px 11px;}
 
-    /* PAST EVENTS */
-    .events { display:flex; flex-direction:column; gap:10px; }
-    .event-row { display:flex; gap:14px; align-items:flex-start; background:#fff; border:1px solid #E5E7EB; border-radius:8px; padding:14px; }
-    .event-year { font-size:13px; font-weight:700; color:var(--color); min-width:44px; }
-    .event-body h3 { font-size:14px; font-weight:700; margin-bottom:3px; }
-    .event-body p { font-size:13px; color:#6B7280; line-height:1.4; }
+  .work{display:grid;gap:16px;margin-top:8px;}
+  @media(min-width:680px){.work{grid-template-columns:1fr 1fr;}}
+  .proj{background:var(--card);border:1px solid var(--hair);border-radius:6px;padding:20px 22px;}
+  .proj .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
+  .proj h3{font-size:17px;font-weight:650;margin:6px 0 8px;}
+  .proj p{font-size:14.5px;color:var(--muted);line-height:1.55;}
+  .proj .res{margin-top:10px;font-size:13.5px;color:var(--ink);}
+  .proj .res b{color:var(--accent);font-weight:600;}
 
-    /* BOOKING */
-    .booking-box { background:#fff; border:1px solid #E5E7EB; border-radius:8px; padding:20px; }
-    .booking-box ul { padding-left:18px; }
-    .booking-box li { font-size:14px; color:#374151; line-height:1.8; }
+  .facts{display:flex;flex-wrap:wrap;gap:28px;margin-top:6px;}
+  .fact .n{font-family:var(--serif);font-size:30px;font-weight:600;font-variant-numeric:tabular-nums;}
+  .fact .l{font-size:13px;color:var(--muted);}
 
-    /* ASK ME */
-    .ask-section { background:#fff; border:1px solid #E5E7EB; border-radius:10px; padding:24px; margin-top:16px; }
-    .ask-section p { font-size:13px; color:#6B7280; margin-bottom:16px; }
-    .qa-item { background:#F0F9FF; border-left:3px solid var(--color); border-radius:0 6px 6px 0; padding:12px 14px; margin-bottom:10px; }
-    .qa-item .q { font-size:13px; font-weight:700; color:#0e7490; margin-bottom:4px; }
-    .qa-item .a { font-size:13px; color:#374151; line-height:1.5; }
-    .ask-form { display:flex; gap:8px; margin-top:16px; }
-    .ask-form input { flex:1; padding:10px 14px; border:1px solid #D1D5DB; border-radius:6px; font-size:14px; }
-    .ask-form button { padding:10px 18px; background:var(--color); color:#fff; border:none; border-radius:6px; font-size:14px; font-weight:600; cursor:pointer; }
+  /* ── Ask me ─────────────────────────────────────────────────────────── */
+  #ask{border-top:2px solid var(--ink);}
+  .ask-note{background:var(--accent-soft);border:1px solid #d8c3e6;border-radius:6px;
+    padding:12px 15px;font-size:13.5px;color:#4d2a63;margin-bottom:18px;line-height:1.5;}
+  .ask-note b{color:var(--accent);}
+  .setup{display:none;background:#fff6e5;border:1px solid #f0d59a;color:#6b4e12;
+    border-radius:6px;padding:12px 15px;font-size:13.5px;margin-bottom:18px;line-height:1.5;}
+  .setup b{color:var(--warn);}
 
-    .todo-label { display:inline-block; background:#FEF3C7; color:#92400E; font-size:11px; font-weight:700; padding:1px 7px; border-radius:20px; margin-bottom:6px; }
-    footer { text-align:center; padding:24px; color:#9CA3AF; font-size:13px; border-top:1px solid #E5E7EB; margin-top:40px; }
-  </style>
+  .panel{background:var(--card);border:1px solid var(--hair);border-radius:8px;overflow:hidden;
+    box-shadow:0 1px 2px rgba(20,25,45,.04),0 8px 30px rgba(20,25,45,.05);}
+  .transcript{padding:8px 18px 4px;display:flex;flex-direction:column;gap:14px;max-height:440px;overflow-y:auto;}
+  .msg{max-width:82%;font-size:14.5px;line-height:1.55;}
+  .msg .who{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+  .msg.you{align-self:flex-end;text-align:right;}
+  .msg.you .b{display:inline-block;background:var(--accent);color:#fff;border-radius:12px 12px 3px 12px;padding:9px 14px;text-align:left;}
+  .msg.me .b{display:inline-block;background:#f1f2f6;border:1px solid var(--hair);border-radius:12px 12px 12px 3px;padding:9px 14px;white-space:pre-wrap;}
+  .msg.me .who{color:var(--accent);}
+
+  .dots{display:inline-flex;gap:4px;padding:10px 14px;}
+  .dots span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:b 1.1s infinite ease-in-out;}
+  .dots span:nth-child(2){animation-delay:.18s;}.dots span:nth-child(3){animation-delay:.36s;}
+  @keyframes b{0%,80%,100%{transform:scale(.7);opacity:.4;}40%{transform:scale(1.1);opacity:1;}}
+
+  .suggest{display:flex;flex-wrap:wrap;gap:7px;padding:10px 18px 14px;border-top:1px solid var(--hair);}
+  .sug{font-family:var(--mono);font-size:12px;color:var(--accent);background:var(--accent-soft);
+    border:1px solid #d8c3e6;border-radius:20px;padding:5px 12px;cursor:pointer;transition:background .15s;}
+  .sug:hover{background:#dae1fa;}
+  .composer{display:flex;gap:8px;padding:14px 16px;border-top:1px solid var(--hair);background:#fafbfd;}
+  .composer input{flex:1;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--card);
+    border:1px solid var(--hair);border-radius:6px;padding:11px 14px;outline:none;}
+  .composer input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);}
+  .composer button{font-family:var(--sans);font-weight:600;font-size:14px;color:#fff;background:var(--accent);
+    border:none;border-radius:6px;padding:0 18px;cursor:pointer;transition:opacity .15s;}
+  .composer button:hover:not(:disabled){opacity:.9;}
+  .composer button:disabled{opacity:.45;cursor:not-allowed;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  footer{border-top:1px solid var(--hair);padding:34px 0 60px;color:var(--muted);font-size:13.5px;line-height:1.6;}
+  footer .label{display:block;margin-bottom:8px;}
+  footer code{font-family:var(--mono);font-size:12.5px;background:#eceef4;padding:1px 5px;border-radius:3px;}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;}}
+</style>
 </head>
 <body>
+<div class="wrap">
 
-  <!-- ============================================================
-       SECTION: HERO
-  ============================================================ -->
-  <section class="hero">
-    <div class="avatar">JB</div>
-    <h1>Jordan Blake</h1>
-    <p class="tagline">Keynote Speaker &amp; Content Creator &mdash; helping teams work smarter with AI productivity</p>
+  <header>
+    <div class="eyebrow"><span class="dot"></span><span class="label">Booking speakers · answers live</span></div>
+    <h1>Marcus Bell</h1>
+    <p class="role">Keynote speaker &amp; workshop host — practical AI adoption for non-technical teams</p>
+    <p class="thesis">Event organisers ask me the same booking questions over and over. Instead of a back-and-forth, ask my page — it answers what I speak about and whether I fit your event, live, from my real material.</p>
+  </header>
+
+  <!-- ═══ GROUNDING (the human-readable record — also fed to the assistant) ═══ -->
+  <section id="about">
+    <div class="sec-head"><span class="label">01</span><h2>About</h2></div>
+    <p class="about">I spent <strong>9 years in operations</strong> before going full-time as a speaker, and that's still the heart of what I do: help everyday, non-technical teams adopt AI without the hype. I've spoken at <strong>60+ events across 12 countries</strong> — from 30-person workshops to 1,500-seat keynotes — always with live demos and honest limits. I speak in English and travel from London.</p>
+    <div class="chips">
+      <span class="chip">Keynotes</span><span class="chip">Workshops</span><span class="chip">Firesides</span>
+      <span class="chip">Panels</span><span class="chip">Live demos</span><span class="chip">Remote-friendly</span>
+      <span class="chip">Practical AI adoption</span><span class="chip">Non-technical teams</span><span class="chip">No hype</span>
+    </div>
   </section>
 
-  <!-- ============================================================
-       SECTION: SPEAKING TOPICS
-  ============================================================ -->
-  <div class="section">
-    <h2>Speaking Topics</h2>
-    <div class="topics">
-
-      <div class="topic-card">
-        <h3>AI-Powered Productivity for Modern Teams</h3>
-        <p>A practical keynote showing how teams can use AI tools to cut busywork, automate workflows, and reclaim hours every week. For leaders and knowledge workers ready to move past the hype and ship real results.</p>
+  <section id="work">
+    <div class="sec-head"><span class="label">02</span><h2>Signature talks</h2></div>
+    <div class="work">
+      <div class="proj">
+        <span class="k">Keynote · 45 min</span>
+        <h3>AI Without the Hype</h3>
+        <p>A grounded tour of what AI actually changes for everyday teams, with live demos and honest limits.</p>
+        <p class="res"><b>Best for:</b> leadership offsites, conferences.</p>
       </div>
-
-      <div class="topic-card">
-        <h3>Building a Personal Brand in the Age of AI</h3>
-        <p>How creators and professionals can grow an authentic audience using AI without losing their voice. Covers content systems, consistency, and the human edge that algorithms can't replace. Great for marketers and founders.</p>
+      <div class="proj">
+        <span class="k">Workshop · 3 hrs</span>
+        <h3>Your First AI Workflow</h3>
+        <p>Hands-on: each attendee leaves having built one real assistant for their own job.</p>
+        <p class="res"><b>Best for:</b> ops, marketing &amp; support teams.</p>
       </div>
-
-      <div class="topic-card">
-        <h3>From Idea to Audience: The Creator Playbook</h3>
-        <p>A hands-on workshop walking through how to turn one idea into a week of content across platforms. Attendees leave with a repeatable system, real templates, and a 30-day plan they can start the next morning.</p>
+      <div class="proj">
+        <span class="k">Fireside · 30 min</span>
+        <h3>The Human Skills AI Can't Replace</h3>
+        <p>A conversational session on judgement, taste and trust in an AI workplace.</p>
+        <p class="res"><b>Best for:</b> culture &amp; L&amp;D events.</p>
       </div>
-
+      <div class="proj">
+        <span class="k">Panel · 60 min</span>
+        <h3>Adopting AI Responsibly</h3>
+        <p>Practical governance without killing momentum: policy, privacy, and pace.</p>
+        <p class="res"><b>Best for:</b> fintech, health, public sector.</p>
+      </div>
     </div>
-  </div>
-
-  <!-- ============================================================
-       SECTION: PAST EVENTS
-  ============================================================ -->
-  <div class="section">
-    <h2>Past Events</h2>
-    <div class="events">
-
-      <div class="event-row">
-        <div class="event-year">2025</div>
-        <div class="event-body">
-          <h3>SaaStr Annual &mdash; San Francisco, CA</h3>
-          <p>Closing keynote "AI-Powered Productivity for Modern Teams" to ~2,000 founders and operators.</p>
-        </div>
-      </div>
-
-      <div class="event-row">
-        <div class="event-year">2024</div>
-        <div class="event-body">
-          <h3>Web Summit &mdash; Lisbon, Portugal</h3>
-          <p>Main-stage talk on building a personal brand in the age of AI, with live Q&amp;A for 1,200+ attendees.</p>
-        </div>
-      </div>
-
-      <div class="event-row">
-        <div class="event-year">2024</div>
-        <div class="event-body">
-          <h3>Content Marketing World &mdash; Cleveland, OH</h3>
-          <p>Half-day workshop "From Idea to Audience: The Creator Playbook" for 80 marketing teams.</p>
-        </div>
-      </div>
-
+    <div class="facts" style="margin-top:22px">
+      <div class="fact"><div class="n">60+</div><div class="l">events</div></div>
+      <div class="fact"><div class="n">12</div><div class="l">countries</div></div>
+      <div class="fact"><div class="n">1,500</div><div class="l">up to audience</div></div>
     </div>
-  </div>
+  </section>
 
-  <!-- ============================================================
-       SECTION: BOOKING INFO
-  ============================================================ -->
-  <div class="section">
-    <h2>Booking Info</h2>
-    <div class="booking-box">
-      <ul>
-        <li><strong>Formats:</strong> Keynote (45 min), Half-day Workshop, Fireside Chat / Panel</li>
-        <li><strong>Audience size:</strong> 50&ndash;2,000 attendees</li>
-        <li><strong>Available:</strong> In-person (global, travels from Austin) and virtual</li>
-        <li><strong>Fee range:</strong> Keynotes from $12,000; workshops and virtual sessions on request</li>
-        <li><strong>Contact:</strong> <a href="mailto:hello@jordanblake.example.com" style="color:#0891B2">hello@jordanblake.example.com</a></li>
-      </ul>
+  <!-- ═══ ASK ME (live, grounded in the record above) ═══ -->
+  <section id="ask">
+    <div class="sec-head"><span class="label">Ask me anything</span><h2>Put an organiser question to my page</h2></div>
+    <div class="ask-note">This answers <b>live</b> using Claude, grounded only in my real material above — it won't invent talks, claims or fees I don't have. Anyone with a Claude account can ask it; when you send a question you'll be asked to sign in to your own Claude account first, and the usage counts against your account — this is <b>not</b> an anonymous public bot.</div>
+    <div class="setup" id="setup"><b>Almost there.</b> Live answers only work when this page runs as a <b>Claude Artifact</b>. Open it inside a Claude chat (with "Create AI-powered artifacts" turned on in Settings → Feature preview) and sign in. The profile above still reads fine on its own.</div>
+
+    <div class="panel">
+      <div class="transcript" id="transcript">
+        <div class="msg me"><div class="who">Marcus's assistant</div><div class="b">Hi — I'm Marcus's Ask-Me assistant. Ask me anything about his talks, topics, format needs or whether he's a fit for your event, and I'll answer from his real material. Try a question below.</div></div>
+      </div>
+      <div class="suggest" id="suggest">
+        <button class="sug">What do you speak about?</button>
+        <button class="sug">Are you a fit for a fintech conference?</button>
+        <button class="sug">What do you need on stage?</button>
+      </div>
+      <form class="composer" id="composer" autocomplete="off">
+        <input id="q" type="text" placeholder="e.g. Can you run a hands-on workshop for our ops team?" aria-label="Your question" />
+        <button type="submit" id="send">Ask</button>
+      </form>
     </div>
-  </div>
+  </section>
 
-  <!-- ============================================================
-       SECTION: ASK ME ANYTHING
-  ============================================================ -->
-  <div class="section">
-    <h2>Ask Me Anything</h2>
-    <div class="ask-section">
-      <p>Common questions from event organisers &mdash; or ask me something directly.</p>
-
-      <div class="qa-item">
-        <div class="q">Do you offer virtual keynotes, or in-person only?</div>
-        <div class="a">Both. I deliver in-person keynotes worldwide and run polished virtual sessions over Zoom or your preferred platform, including a tech check and interactive Q&amp;A. Virtual sessions are a great fit for distributed teams and tighter budgets.</div>
-      </div>
-
-      <div class="qa-item">
-        <div class="q">Can you tailor the talk to our industry or theme?</div>
-        <div class="a">Always. Before every event I run a short discovery call with your team to learn your audience, goals, and event theme, then customise examples and takeaways to fit. You get a talk that feels made for your room, not a generic stock deck.</div>
-      </div>
-
-      <div class="qa-item">
-        <div class="q">What topics and dates are you currently booking?</div>
-        <div class="a">I'm booking AI productivity and creator/personal-brand talks through next year, with a few keynote slots open each quarter. Send your dates early &mdash; popular weeks fill fast &mdash; and I'll confirm availability within two business days.</div>
-      </div>
-
-      <div class="ask-form">
-        <input type="text" id="q" placeholder="Ask me about speaking, booking, or topics...">
-        <button onclick="handleAsk()">Ask</button>
-      </div>
-      <p id="ask-hint" style="display:none;margin-top:10px;font-size:13px;color:#0891B2;"></p>
-    </div>
-  </div>
-
-  <!-- ============================================================
-       FOOTER
-  ============================================================ -->
   <footer>
-    Jordan Blake &middot; Austin, TX, USA &middot;
-    <a href="mailto:hello@jordanblake.example.com" style="color:#0891B2">Book me</a> &middot;
-    <a href="https://www.linkedin.com/in/jordanblake" style="color:#0891B2">LinkedIn</a> &middot;
-    <a href="https://www.jordanblake.example.com" style="color:#0891B2">Website</a>
+    <span class="label">About this page</span>
+    A published Claude Artifact that answers grounded in Marcus's real talks and background. Built by prompting Claude —
+    no code, no API key; live answers run on the visitor's own Claude account.
+    Live link: <code>[paste your published artifact share link here]</code>
   </footer>
 
-  <script>
-    function handleAsk() {
-      const q = document.getElementById('q').value.trim();
-      const hint = document.getElementById('ask-hint');
-      if (!q) return;
-      hint.style.display = 'block';
-      hint.textContent = 'Open claude.ai to answer questions live — or replace this with your own pre-written Q&As above.';
-    }
-  </script>
+</div>
 
+<script>
+  /* ── The grounding: the ONLY facts the assistant may use ─────────────── */
+  /* ╔══════════════════════════════════════════════════════════════════╗
+     ║  EDIT HERE — replace everything in PROFILE with YOUR real material. ║
+     ║  Keep it truthful: the assistant can only answer from what's here.  ║
+     ║  Also update the visible About / cards above to match.             ║
+     ╚══════════════════════════════════════════════════════════════════╝ */
+  const PROFILE = `
+Name: Marcus Bell
+Role: Keynote speaker and workshop host on practical AI adoption for non-technical teams.
+Background: 9 years in operations before going full-time speaking. Has spoken at 60+ events across 12 countries, for audiences ranging from 30-person workshops up to 1,500-seat keynotes.
+Approach: Grounded, no-hype, always with live demos and honest limits about what AI can and can't do.
+Talk — AI Without the Hype (Keynote, 45 min): a grounded tour of what AI actually changes for everyday teams, with live demos and honest limits. Best for leadership offsites and conferences.
+Talk — Your First AI Workflow (Workshop, 3 hrs): hands-on session where each attendee leaves having built one real assistant for their own job. Best for ops, marketing and support teams.
+Talk — The Human Skills AI Can't Replace (Fireside, 30 min): a conversational session on judgement, taste and trust in an AI workplace. Best for culture and L&D events.
+Talk — Adopting AI Responsibly (Panel, 60 min): practical governance without killing momentum — policy, privacy, and pace. Best for fintech, health and public sector audiences.
+AV / format needs: needs a confidence monitor and the ability to run live demos (so stable wifi on stage). Can also present remotely.
+Fees: fees are not published — they depend on format and travel. Organisers should ask for a quote.
+Travel base: travels from London.
+Languages: English.
+Good fit for: teams that want practical, non-hype AI adoption they can act on.
+Not a fit for: deep-technical machine-learning research conferences.
+`.trim();
+
+  const transcript = document.getElementById('transcript');
+  const form = document.getElementById('composer');
+  const input = document.getElementById('q');
+  const sendBtn = document.getElementById('send');
+  const liveOK = !!(window.claude && typeof window.claude.complete === 'function');
+  if(!liveOK){ document.getElementById('setup').style.display='block'; }
+
+  function bubble(kind, who, text){
+    const el = document.createElement('div');
+    el.className = 'msg ' + kind;
+    el.innerHTML = '<div class="who"></div><div class="b"></div>';
+    el.querySelector('.who').textContent = who;
+    el.querySelector('.b').textContent = text;
+    transcript.appendChild(el);
+    transcript.scrollTop = transcript.scrollHeight;
+    return el;
+  }
+  function thinking(){
+    const el = document.createElement('div');
+    el.className = 'msg me';
+    el.innerHTML = '<div class="who">Marcus’s assistant</div><div class="dots"><span></span><span></span><span></span></div>';
+    transcript.appendChild(el);
+    transcript.scrollTop = transcript.scrollHeight;
+    return el;
+  }
+
+  async function ask(question){
+    bubble('you','You',question);
+    input.value=''; sendBtn.disabled=true;
+    const wait = thinking();
+
+    if(!liveOK){
+      wait.remove();
+      bubble('me','Marcus’s assistant','To answer live, open this page as a Claude Artifact inside claude.ai and sign in — then ask me again. (This is running as a plain web page right now, so I can’t reach Claude.)');
+      sendBtn.disabled=false; input.focus(); return;
+    }
+    /* window.claude.complete(prompt: string) -> Promise<string>.
+       Anthropic changed this method's behaviour on 2025-07-31 — if it stops
+       working, confirm the current call inside claude.ai and adjust here. */
+    const prompt =
+      'You are the personal "Ask-Me" assistant for Marcus Bell, a keynote speaker, speaking in the first person as Marcus. '+
+      'Answer the visitor\'s question (usually an event organiser) using ONLY the facts in the PROFILE below. '+
+      'Be warm, specific and concise (2–4 sentences). Never invent talks, events, claims or skills that are not in the PROFILE. '+
+      'For questions about fees, say that fees depend on format and travel and invite them to ask for a quote — never invent or state a number. '+
+      'If the answer is not in the PROFILE, say you don\'t have that detail rather than guessing.\n\n'+
+      'PROFILE:\n'+PROFILE+'\n\nVisitor question: '+question+'\n\nAnswer as Marcus:';
+    try{
+      const reply = await window.claude.complete(prompt);
+      wait.remove();
+      bubble('me','Marcus’s assistant',(reply||'').trim() || 'Sorry, I didn\'t catch that — try asking another way.');
+    }catch(err){
+      wait.remove();
+      bubble('me','Marcus’s assistant','Something went wrong reaching Claude just now. Please try again in a moment.');
+    }
+    sendBtn.disabled=false; input.focus();
+  }
+
+  form.addEventListener('submit', e=>{ e.preventDefault(); const q=input.value.trim(); if(q) ask(q); });
+  document.getElementById('suggest').addEventListener('click', e=>{
+    if(e.target.classList.contains('sug')) ask(e.target.textContent);
+  });
+</script>
 </body>
 </html>

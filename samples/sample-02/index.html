@@ -1,218 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sam Okafor — Freelance Brand &amp; Web Designer</title>
-  <style>
-    :root {
-      --color: #0891B2;
-      --color-dark: #0e7490;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#F8F9FA; color:#1a1a2e; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ask Dan Okoye — Freelance Product Designer</title>
+<style>
+  /* ── Sample 02 · Freelancer portfolio · accent: coral ───────────────── */
+  :root{
+    --ink:#241a17;          /* warm near-black */
+    --paper:#f7f2ef;        /* warm paper */
+    --card:#ffffff;
+    --muted:#6b5d57;
+    --hair:#e9ddd6;
+    --accent:#d2513c;       /* coral */
+    --accent-soft:#fbe7e1;
+    --good:#1e7a5e;
+    --warn:#9a5b00;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",Menlo,monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    font-family:var(--sans);background:var(--paper);color:var(--ink);
+    line-height:1.6;font-size:16px;
+    background-image:linear-gradient(180deg,var(--accent-soft) 0%,var(--paper) 340px);
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+  a{color:var(--accent);}
+  .label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
 
-    /* HERO */
-    .hero { background:var(--color); color:#fff; padding:60px 32px 48px; text-align:center; }
-    .avatar { width:80px; height:80px; border-radius:50%; background:rgba(255,255,255,.25); margin:0 auto 16px; display:flex; align-items:center; justify-content:center; font-size:32px; }
-    .hero h1 { font-size:28px; font-weight:800; margin-bottom:6px; }
-    .hero .tagline { font-size:15px; opacity:.85; max-width:480px; margin:0 auto; }
+  /* ── Masthead ───────────────────────────────────────────────────────── */
+  header{padding:56px 0 40px;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(30,122,94,.15);}
+  header h1{font-family:var(--serif);font-weight:600;font-size:clamp(38px,7vw,62px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance;}
+  .role{font-size:17px;color:var(--accent);font-weight:600;margin-top:12px;}
+  .thesis{font-size:19px;color:var(--muted);max-width:34em;margin-top:14px;line-height:1.5;}
 
-    /* SECTIONS */
-    .section { max-width:720px; margin:0 auto; padding:40px 24px; }
-    .section h2 { font-size:18px; font-weight:700; color:var(--color); margin-bottom:16px; border-bottom:2px solid var(--color); padding-bottom:6px; }
-    .section p { font-size:14px; color:#4B5563; line-height:1.7; margin-bottom:12px; }
+  /* ── Record ─────────────────────────────────────────────────────────── */
+  section{padding:40px 0;border-top:1px solid var(--hair);}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;}
+  .sec-head h2{font-family:var(--serif);font-weight:600;font-size:26px;letter-spacing:-.01em;}
+  .about{font-size:18px;max-width:38em;line-height:1.62;}
+  .about strong{font-weight:600;}
 
-    /* SERVICES */
-    .services { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; }
-    .service-card { background:#fff; border:1px solid #E5E7EB; border-radius:8px; padding:16px; }
-    .service-card h3 { font-size:14px; font-weight:700; color:var(--color-dark); margin-bottom:6px; }
-    .service-card .price { font-size:13px; font-weight:600; color:#111827; margin-bottom:6px; }
-    .service-card p { font-size:13px; color:#6B7280; line-height:1.5; }
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+  .chip{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);
+    border:1px solid var(--hair);border-radius:2px;padding:6px 11px;}
 
-    /* PORTFOLIO */
-    .portfolio { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; }
-    .portfolio-card { background:#fff; border:1px solid #E5E7EB; border-radius:8px; padding:16px; }
-    .portfolio-card h3 { font-size:14px; font-weight:700; margin-bottom:6px; }
-    .portfolio-card p { font-size:13px; color:#6B7280; line-height:1.5; }
+  .work{display:grid;gap:16px;margin-top:8px;}
+  @media(min-width:680px){.work{grid-template-columns:1fr 1fr;}}
+  .proj{background:var(--card);border:1px solid var(--hair);border-radius:6px;padding:20px 22px;}
+  .proj .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
+  .proj h3{font-size:17px;font-weight:650;margin:6px 0 8px;}
+  .proj p{font-size:14.5px;color:var(--muted);line-height:1.55;}
+  .proj .res{margin-top:10px;font-size:13.5px;color:var(--ink);}
+  .proj .res b{color:var(--good);font-weight:600;}
 
-    /* PROCESS */
-    .steps { display:flex; flex-direction:column; gap:12px; }
-    .step { display:flex; gap:14px; align-items:flex-start; }
-    .step-num { background:var(--color); color:#fff; font-weight:800; font-size:13px; min-width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:2px; }
-    .step-body h3 { font-size:14px; font-weight:700; margin-bottom:3px; }
-    .step-body p { font-size:13px; color:#6B7280; line-height:1.5; }
+  .facts{display:flex;flex-wrap:wrap;gap:28px;margin-top:6px;}
+  .fact .n{font-family:var(--serif);font-size:30px;font-weight:600;font-variant-numeric:tabular-nums;}
+  .fact .l{font-size:13px;color:var(--muted);}
 
-    /* ASK ME */
-    .ask-section { background:#fff; border:1px solid #E5E7EB; border-radius:10px; padding:24px; margin-top:16px; }
-    .ask-section p { font-size:13px; color:#6B7280; margin-bottom:16px; }
-    .qa-item { background:#F0F9FF; border-left:3px solid var(--color); border-radius:0 6px 6px 0; padding:12px 14px; margin-bottom:10px; }
-    .qa-item .q { font-size:13px; font-weight:700; color:#0e7490; margin-bottom:4px; }
-    .qa-item .a { font-size:13px; color:#374151; line-height:1.5; }
-    .ask-form { display:flex; gap:8px; margin-top:16px; }
-    .ask-form input { flex:1; padding:10px 14px; border:1px solid #D1D5DB; border-radius:6px; font-size:14px; }
-    .ask-form button { padding:10px 18px; background:var(--color); color:#fff; border:none; border-radius:6px; font-size:14px; font-weight:600; cursor:pointer; }
+  /* ── Ask me ─────────────────────────────────────────────────────────── */
+  #ask{border-top:2px solid var(--ink);}
+  .ask-note{background:var(--accent-soft);border:1px solid #f2cabf;border-radius:6px;
+    padding:12px 15px;font-size:13.5px;color:#7a2f22;margin-bottom:18px;line-height:1.5;}
+  .ask-note b{color:var(--accent);}
+  .setup{display:none;background:#fff6e5;border:1px solid #f0d59a;color:#6b4e12;
+    border-radius:6px;padding:12px 15px;font-size:13.5px;margin-bottom:18px;line-height:1.5;}
+  .setup b{color:var(--warn);}
 
-    .todo-label { display:inline-block; background:#FEF3C7; color:#92400E; font-size:11px; font-weight:700; padding:1px 7px; border-radius:20px; margin-bottom:6px; }
-    footer { text-align:center; padding:24px; color:#9CA3AF; font-size:13px; border-top:1px solid #E5E7EB; margin-top:40px; }
-  </style>
+  .panel{background:var(--card);border:1px solid var(--hair);border-radius:8px;overflow:hidden;
+    box-shadow:0 1px 2px rgba(45,25,20,.04),0 8px 30px rgba(45,25,20,.05);}
+  .transcript{padding:8px 18px 4px;display:flex;flex-direction:column;gap:14px;max-height:440px;overflow-y:auto;}
+  .msg{max-width:82%;font-size:14.5px;line-height:1.55;}
+  .msg .who{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+  .msg.you{align-self:flex-end;text-align:right;}
+  .msg.you .b{display:inline-block;background:var(--accent);color:#fff;border-radius:12px 12px 3px 12px;padding:9px 14px;text-align:left;}
+  .msg.me .b{display:inline-block;background:#f4efec;border:1px solid var(--hair);border-radius:12px 12px 12px 3px;padding:9px 14px;white-space:pre-wrap;}
+  .msg.me .who{color:var(--accent);}
+
+  .dots{display:inline-flex;gap:4px;padding:10px 14px;}
+  .dots span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:b 1.1s infinite ease-in-out;}
+  .dots span:nth-child(2){animation-delay:.18s;}.dots span:nth-child(3){animation-delay:.36s;}
+  @keyframes b{0%,80%,100%{transform:scale(.7);opacity:.4;}40%{transform:scale(1.1);opacity:1;}}
+
+  .suggest{display:flex;flex-wrap:wrap;gap:7px;padding:10px 18px 14px;border-top:1px solid var(--hair);}
+  .sug{font-family:var(--mono);font-size:12px;color:var(--accent);background:var(--accent-soft);
+    border:1px solid #f2cabf;border-radius:20px;padding:5px 12px;cursor:pointer;transition:background .15s;}
+  .sug:hover{background:#f8d8cf;}
+  .composer{display:flex;gap:8px;padding:14px 16px;border-top:1px solid var(--hair);background:#fbf8f6;}
+  .composer input{flex:1;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--card);
+    border:1px solid var(--hair);border-radius:6px;padding:11px 14px;outline:none;}
+  .composer input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);}
+  .composer button{font-family:var(--sans);font-weight:600;font-size:14px;color:#fff;background:var(--accent);
+    border:none;border-radius:6px;padding:0 18px;cursor:pointer;transition:opacity .15s;}
+  .composer button:hover:not(:disabled){opacity:.9;}
+  .composer button:disabled{opacity:.45;cursor:not-allowed;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  footer{border-top:1px solid var(--hair);padding:34px 0 60px;color:var(--muted);font-size:13.5px;line-height:1.6;}
+  footer .label{display:block;margin-bottom:8px;}
+  footer code{font-family:var(--mono);font-size:12.5px;background:#efe7e2;padding:1px 5px;border-radius:3px;}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;}}
+</style>
 </head>
 <body>
+<div class="wrap">
 
-  <!-- ============================================================
-       SECTION: HERO
-  ============================================================ -->
-  <section class="hero">
-    <div class="avatar">SO</div>
-    <h1>Sam Okafor</h1>
-    <p class="tagline">Freelance brand &amp; web designer &mdash; I help small businesses and founders launch a brand and website they're proud to share.</p>
+  <header>
+    <div class="eyebrow"><span class="dot"></span><span class="label">Open to product work · answers live</span></div>
+    <h1>Dan Okoye</h1>
+    <p class="role">Freelance Product Designer — UX / UI</p>
+    <p class="thesis">Instead of a scattered portfolio, one link that tells the real story behind each project — grounded only in my own write-ups, nothing invented.</p>
+  </header>
+
+  <!-- ═══ GROUNDING (the human-readable record — also fed to the assistant) ═══ -->
+  <section id="about">
+    <div class="sec-head"><span class="label">01</span><h2>About</h2></div>
+    <p class="about">I'm a freelance product designer with <strong>8 years</strong> of UX/UI work, most of it hands-on with early and growth-stage product teams. I've shipped <strong>40+ projects</strong> — onboarding flows, checkouts, design systems and the research behind them. I care about the messy middle: the KYC step people abandon, the checkout that leaks, the two squads drifting apart. I work closely with engineers and I write up every project honestly, which is what this page answers from.</p>
+    <div class="chips">
+      <span class="chip">UX design</span><span class="chip">UI design</span><span class="chip">Design systems</span>
+      <span class="chip">User research</span><span class="chip">Prototyping</span><span class="chip">Accessibility / WCAG</span>
+      <span class="chip">Onboarding</span><span class="chip">Checkout / CRO</span><span class="chip">Figma</span>
+    </div>
   </section>
 
-  <!-- ============================================================
-       SECTION: SERVICES & PRICING
-  ============================================================ -->
-  <div class="section">
-    <h2>Services &amp; Pricing</h2>
-    <div class="services">
-
-      <div class="service-card">
-        <h3>Brand Identity</h3>
-        <div class="price">From &pound;1,200 / project</div>
-        <p>Logo suite, colour palette, typography and a simple brand guide so everything you publish looks consistent.</p>
+  <section id="work">
+    <div class="sec-head"><span class="label">02</span><h2>Projects</h2></div>
+    <div class="work">
+      <div class="proj">
+        <span class="k">Kite · Fintech app</span>
+        <h3>Onboarding redesign</h3>
+        <p>A savings app was losing 60% of new users at the KYC step. I simplified it to 3 clear steps, added a progress indicator and rewrote the copy into plain language people actually trust.</p>
+        <p class="res">Result: <b>activation up ~22%</b>, far fewer KYC drop-offs.</p>
       </div>
-
-      <div class="service-card">
-        <h3>Website Design &amp; Build</h3>
-        <div class="price">From &pound;2,500 / project</div>
-        <p>A fast, mobile-friendly marketing site (up to 5 pages) designed and built on Webflow, ready for you to edit yourself.</p>
+      <div class="proj">
+        <span class="k">Marketplace · Checkout</span>
+        <h3>Single-page checkout rebuild</h3>
+        <p>A handmade-goods marketplace had complaints about cart abandonment. I rebuilt a confusing 5-step checkout into one accountable page where buyers always know what they're paying and why.</p>
+        <p class="res">Result: <b>checkout completion up ~15%</b>.</p>
       </div>
-
-      <div class="service-card">
-        <h3>Design Retainer</h3>
-        <div class="price">&pound;850 / month</div>
-        <p>Ongoing design support for growing teams &mdash; landing pages, social templates and small tweaks, billed monthly.</p>
+      <div class="proj">
+        <span class="k">Clinic booking · Design system</span>
+        <h3>Small accessible design system</h3>
+        <p>A health-booking startup's two squads kept diverging on patterns. I built a small, accessible design system so they shared components and language instead of rebuilding them.</p>
+        <p class="res">Result: <b>screens shipped ~2× faster</b>, WCAG AA throughout.</p>
       </div>
-
+      <div class="proj">
+        <span class="k">Field-ops · Research</span>
+        <h3>Dispatch flow research</h3>
+        <p>I ran 12 contextual interviews with delivery drivers to understand the real dispatch experience, then turned the findings into a redesigned flow built around how they actually work.</p>
+        <p class="res">Result: <b>task time cut by a third</b>.</p>
+      </div>
     </div>
-  </div>
-
-  <!-- ============================================================
-       SECTION: PORTFOLIO HIGHLIGHTS
-  ============================================================ -->
-  <div class="section">
-    <h2>Portfolio Highlights</h2>
-    <div class="portfolio">
-
-      <div class="portfolio-card">
-        <h3>Maple &amp; Thyme Cafe</h3>
-        <p>Rebranded a local cafe and built a one-page site with online booking. Online reservations went from zero to roughly 40 per week within two months.</p>
-      </div>
-
-      <div class="portfolio-card">
-        <h3>Northwind Coaching</h3>
-        <p>Designed a clear, trustworthy brand and a 4-page site for a solo career coach. The new booking page lifted enquiry-to-call conversions by about 30%.</p>
-      </div>
-
-      <div class="portfolio-card">
-        <h3>Loop Fitness Studio</h3>
-        <p>Created class-schedule templates and a refreshed website. The studio cut time spent on weekly marketing graphics from hours to minutes.</p>
-      </div>
-
+    <div class="facts" style="margin-top:22px">
+      <div class="fact"><div class="n">8</div><div class="l">yrs freelance</div></div>
+      <div class="fact"><div class="n">40+</div><div class="l">projects</div></div>
+      <div class="fact"><div class="n">12</div><div class="l">interviews last project</div></div>
     </div>
-  </div>
+  </section>
 
-  <!-- ============================================================
-       SECTION: PROCESS
-  ============================================================ -->
-  <div class="section">
-    <h2>My Process</h2>
-    <div class="steps">
+  <!-- ═══ ASK ME (live, grounded in the record above) ═══ -->
+  <section id="ask">
+    <div class="sec-head"><span class="label">Ask me anything</span><h2>Put a question to my portfolio</h2></div>
+    <div class="ask-note">This answers <b>live</b> using Claude, grounded only in the real material above — it won't invent detail I haven't written up. Anyone with a Claude account can ask it; when you send a question you'll be asked to sign in to your own Claude account first.</div>
+    <div class="setup" id="setup"><b>Almost there.</b> Live answers only work when this page runs as a <b>Claude Artifact</b>. Open it inside a Claude chat (with "Create AI-powered artifacts" turned on in Settings → Feature preview) and sign in. The portfolio above still reads fine on its own.</div>
 
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>Discovery Call</h3>
-          <p>A free 30-minute call to understand your business, your goals and who you're trying to reach. No obligation.</p>
-        </div>
+    <div class="panel">
+      <div class="transcript" id="transcript">
+        <div class="msg me"><div class="who">Dan's assistant</div><div class="b">Hi — I'm Dan's Ask-Me assistant. Ask me anything about his projects, process or the results he's shipped and I'll answer from his real write-ups. Try a question below.</div></div>
       </div>
-
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>Proposal &amp; Scoping</h3>
-          <p>I send a written proposal with a fixed price, clear deliverables and a timeline so you know exactly what to expect.</p>
-        </div>
+      <div class="suggest" id="suggest">
+        <button class="sug">Tell me about the fintech project</button>
+        <button class="sug">What was your hardest design decision?</button>
+        <button class="sug">Do you do design systems?</button>
       </div>
-
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>Design &amp; Feedback</h3>
-          <p>I share work in rounds and you give feedback in one place. Most projects include two rounds of revisions.</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-body">
-          <h3>Handover &amp; Support</h3>
-          <p>You get the final files plus a short walkthrough video, and 14 days of free support for any small fixes.</p>
-        </div>
-      </div>
-
+      <form class="composer" id="composer" autocomplete="off">
+        <input id="q" type="text" placeholder="e.g. How do you approach a leaky checkout?" aria-label="Your question" />
+        <button type="submit" id="send">Ask</button>
+      </form>
     </div>
-  </div>
+  </section>
 
-  <!-- ============================================================
-       SECTION: ASK ME ANYTHING
-  ============================================================ -->
-  <div class="section">
-    <h2>Ask Me Anything</h2>
-    <div class="ask-section">
-      <p>Common questions from clients &mdash; or ask me something live.</p>
-
-      <div class="qa-item">
-        <div class="q">How much does a typical project cost?</div>
-        <div class="a">Brand identity projects start at &pound;1,200 and a full website starts at &pound;2,500. After our discovery call I'll send a fixed quote so there are no surprises.</div>
-      </div>
-
-      <div class="qa-item">
-        <div class="q">What's your typical turnaround time?</div>
-        <div class="a">A brand project usually takes 2&ndash;3 weeks and a website 4&ndash;6 weeks, depending on how quickly we exchange feedback. I'll confirm exact dates in the proposal.</div>
-      </div>
-
-      <div class="qa-item">
-        <div class="q">Are you available for new work right now?</div>
-        <div class="a">Yes &mdash; I take on two to three projects at a time and currently have capacity to start a new project within the next two weeks. Email me to grab a slot.</div>
-      </div>
-
-      <div class="ask-form">
-        <input type="text" id="q" placeholder="Ask me anything about my services...">
-        <button onclick="handleAsk()">Ask</button>
-      </div>
-      <p id="ask-hint" style="display:none;margin-top:10px;font-size:13px;color:#0891B2;"></p>
-    </div>
-  </div>
-
-  <!-- ============================================================
-       FOOTER
-  ============================================================ -->
   <footer>
-    Sam Okafor &middot; Manchester, United Kingdom &middot;
-    <a href="mailto:hello@samokafor.design" style="color:#0891B2">Email me</a> &middot;
-    <a href="https://www.linkedin.com/in/samokafordesign" style="color:#0891B2">LinkedIn</a> &middot;
-    <a href="https://samokafor.design" style="color:#0891B2">Portfolio</a>
+    <span class="label">About this page</span>
+    A published Claude Artifact that answers grounded in Dan's real project write-ups. Built by prompting Claude —
+    no code, no API key; live answers run on the visitor's own Claude account.
+    Live link: <code>[paste your published artifact share link here]</code>
   </footer>
 
-  <script>
-    function handleAsk() {
-      const q = document.getElementById('q').value.trim();
-      const hint = document.getElementById('ask-hint');
-      if (!q) return;
-      hint.style.display = 'block';
-      hint.textContent = 'Open claude.ai to answer questions live — or replace this with your own pre-written Q&As above.';
-    }
-  </script>
+</div>
 
+<script>
+  /* ── The grounding: the ONLY facts the assistant may use ─────────────── */
+  /* ╔══════════════════════════════════════════════════════════════════╗
+     ║  EDIT HERE — replace everything in PROFILE with YOUR real material. ║
+     ║  Keep it truthful: the assistant can only answer from what's here.  ║
+     ║  Also update the visible About / cards above to match.             ║
+     ╚══════════════════════════════════════════════════════════════════╝ */
+  const PROFILE = `
+Name: Dan Okoye
+Role: Freelance product designer (UX/UI).
+Experience: 8 years freelance product design, mostly with early and growth-stage product teams. 40+ projects shipped — onboarding flows, checkouts, design systems and the research behind them.
+Skills: UX design, UI design, design systems, user research, prototyping, accessibility (WCAG), onboarding, checkout/CRO, Figma. Works closely with engineers.
+Project — Kite (fintech app), onboarding redesign: a savings app was losing 60% of new users at the KYC step. Problem: KYC was long and jargon-heavy. Decision: simplified to 3 clear steps, added a progress indicator, rewrote copy into plain language. Result: activation up ~22%, far fewer KYC drop-offs.
+Project — Marketplace, checkout rebuild: a handmade-goods marketplace had cart-abandonment complaints. Problem: a confusing 5-step checkout. Decision: rebuilt it into a single accountable page where buyers always see what they're paying and why. Result: checkout completion up ~15%.
+Project — Clinic booking, design system: a health-booking startup's two squads kept diverging on patterns. Problem: duplicated, inconsistent components. Decision: built a small, accessible design system so squads shared components and language. Result: screens shipped ~2x faster, WCAG AA throughout.
+Project — Field-ops, research: redesigned a dispatch flow for delivery drivers. Problem: the flow didn't match how drivers actually work. Decision: ran 12 contextual interviews with drivers, turned findings into a redesigned dispatch flow built around real behaviour. Result: task time cut by a third.
+Looking for: interesting product work, contract or project-based.
+`.trim();
+
+  const transcript = document.getElementById('transcript');
+  const form = document.getElementById('composer');
+  const input = document.getElementById('q');
+  const sendBtn = document.getElementById('send');
+  const liveOK = !!(window.claude && typeof window.claude.complete === 'function');
+  if(!liveOK){ document.getElementById('setup').style.display='block'; }
+
+  function bubble(kind, who, text){
+    const el = document.createElement('div');
+    el.className = 'msg ' + kind;
+    el.innerHTML = '<div class="who"></div><div class="b"></div>';
+    el.querySelector('.who').textContent = who;
+    el.querySelector('.b').textContent = text;
+    transcript.appendChild(el);
+    transcript.scrollTop = transcript.scrollHeight;
+    return el;
+  }
+  function thinking(){
+    const el = document.createElement('div');
+    el.className = 'msg me';
+    el.innerHTML = '<div class="who">Dan’s assistant</div><div class="dots"><span></span><span></span><span></span></div>';
+    transcript.appendChild(el);
+    transcript.scrollTop = transcript.scrollHeight;
+    return el;
+  }
+
+  async function ask(question){
+    bubble('you','You',question);
+    input.value=''; sendBtn.disabled=true;
+    const wait = thinking();
+
+    if(!liveOK){
+      wait.remove();
+      bubble('me','Dan’s assistant','To answer live, open this page as a Claude Artifact inside claude.ai and sign in — then ask me again. (This is running as a plain web page right now, so I can’t reach Claude.)');
+      sendBtn.disabled=false; input.focus(); return;
+    }
+    /* window.claude.complete(prompt: string) -> Promise<string>.
+       Anthropic changed this method's behaviour on 2025-07-31 — if it stops
+       working, confirm the current call inside claude.ai and adjust here. */
+    const prompt =
+      'You are the personal "Ask-Me" assistant for Dan Okoye, speaking in the first person as Dan. '+
+      'Answer the visitor\'s question using ONLY the facts in the PROFILE below. '+
+      'Be warm, specific and concise (2–4 sentences). Never invent projects, clients, dates or results that are not in the PROFILE. '+
+      'If the answer is not in the PROFILE, say you don\'t have that detail rather than guessing.\n\n'+
+      'PROFILE:\n'+PROFILE+'\n\nVisitor question: '+question+'\n\nAnswer as Dan:';
+    try{
+      const reply = await window.claude.complete(prompt);
+      wait.remove();
+      bubble('me','Dan’s assistant',(reply||'').trim() || 'Sorry, I didn\'t catch that — try asking another way.');
+    }catch(err){
+      wait.remove();
+      bubble('me','Dan’s assistant','Something went wrong reaching Claude just now. Please try again in a moment.');
+    }
+    sendBtn.disabled=false; input.focus();
+  }
+
+  form.addEventListener('submit', e=>{ e.preventDefault(); const q=input.value.trim(); if(q) ask(q); });
+  document.getElementById('suggest').addEventListener('click', e=>{
+    if(e.target.classList.contains('sug')) ask(e.target.textContent);
+  });
+</script>
 </body>
 </html>

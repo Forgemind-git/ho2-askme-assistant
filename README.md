@@ -1,34 +1,67 @@
-# HO2 — "Ask-Me" AI Assistant
+# HO2 — "Ask-Me" AI Assistant · **starter (copy-and-use)**
 
 > Hands-on portfolio project · **Week 2** · **Solo** · module M5. Part of the **ForgeMind AI — AI Productivity Essentials** course.
+>
+> **You're on the `starter` branch.** Every sample here is a **finished, working
+> template** with example grounding already filled in. Don't start from a blank page —
+> pick the one closest to you, swap in your real details where it says **EDIT HERE**,
+> and publish.
 
-## Goal
+## What you'll ship
 
-**Done when:** A hosted page with a working, grounded assistant
+A shareable **AI-powered Claude Artifact** that answers questions about *you* **live**,
+grounded only in your real information — no code you host, **no API key**. It runs on the
+Claude account of whoever is viewing it.
 
-## What to ship
+## The one template, five ready examples
 
-index.html + the grounding content + README with the live URL.
+`samples/sample-01 … sample-05` are five copy-and-use versions of the same template, one per
+situation. Open the one that fits, then make it yours:
 
-## Pick a problem statement
+| Sample | For you if… |
+|--------|-------------|
+| **01 · Job seeker** | you're job-hunting and want recruiters to get real answers about your experience |
+| **02 · Freelancer portfolio** | you want one link that tells the real story behind each project |
+| **03 · Freelancer leads** | prospects ask the same questions about your services, pricing and process |
+| **04 · Speaker / creator** | event organisers keep asking what you speak about and whether you fit |
+| **05 · Career changer** | your old job titles don't signal the role you want next |
 
-Choose **one** of these real use-cases — or bring your own (get it approved first):
+## Use it with your Claude.ai subscription (no API key)
 
-1. You are job-hunting and tired of recruiters skimming past your CV. Build a hosted page with a chat assistant grounded in your experience, projects and skills so a recruiter can ask 'have you led a team?' or 'do you know React?' and get an accurate, sourced answer. Success: a live URL where three sample questions answer correctly.
+1. In Claude.ai, turn on **Settings → Feature preview → "Create AI-powered artifacts"** (one-time).
+2. Open a sample's `index.html` here to see the finished example, and its `README.md` for the
+   ready-to-copy prompt.
+3. **Two ways to make it yours — pick one:**
+   - **Prompt Claude:** paste the sample's example prompt into a new chat with *your* details.
+     Claude rebuilds the page as an Artifact you can refine in the chat.
+   - **Edit the file:** open the sample's `index.html`, find the big **`EDIT HERE`** banner in
+     the script, and replace the `PROFILE` text (and the visible About/cards) with your own.
+4. Click **Publish** on the artifact to get a shareable link. Paste it into the sample's README
+   where it says `[paste your published artifact share link here]`, and onto your CV / LinkedIn.
 
-2. As a freelancer with a scattered portfolio, you want one link that sells your work. Build a hosted concierge that explains each of your projects, the problem each solved and the decisions behind them, grounded only in your own write-ups. Success: a visitor can ask about any project and get the real story, not invented detail.
+## Who can use it live (the honest bit)
 
-3. You freelance and lose leads to slow replies. Build a hosted first-contact bot grounded in your services, pricing and process that answers a prospect's questions and captures their name and email at the end. Success: a live page where a test prospect gets accurate pricing answers and you receive their captured contact details.
+To use the live AI in a **shared** artifact, a viewer needs their **own Claude account** — when
+they ask a question they're prompted to sign in, and the usage counts against *their* account.
+It is **not** an anonymous public bot. So: *anyone with a Claude account can ask it live.*
 
-4. You are a speaker and creator fielding the same booking questions over and over. Build a hosted bio bot grounded in your talks, topics and background so event organisers can ask what you speak about and whether you fit their event. Success: a live URL that answers three organiser questions correctly from your real material.
+> **One caveat:** Anthropic changed how `window.claude.complete` behaves on **2025-07-31**. The
+> template uses the documented `window.claude.complete(prompt: string): Promise<string>` API. If
+> live answers ever stop working, open your artifact inside claude.ai and confirm the current way
+> to call Claude — the feature may have shifted since this was written.
 
-5. You are switching careers and your old titles do not signal your new target role. Build a hosted assistant grounded in your past experience that translates it into the language of the role you want, answering 'why are you qualified for this?'. Success: a live page that reframes three of your past roles toward the target convincingly.
+## Make it your own
 
-## How to use this repo
+- Swap the `PROFILE` grounding and the visible About / project cards for your real material.
+- Change the accent colour via `--accent` at the top of the `<style>` block.
+- Edit the three suggested question chips to match what people actually ask you.
 
-1. Click **Use this template** to create your own copy.
-2. Build your chosen project in your copy.
-3. Replace this section of the README with: what you built, the problem it solves, and how to run it.
+## Optional — automate it with the API (advanced)
+
+You do **not** need this for the course. `window.claude.complete` runs on the viewer's Claude
+account, so there's no key. If you later want a page that answers without the viewer needing a
+Claude account, you'd host it yourself and call the Anthropic API with a key kept server-side —
+a separate, paid path that is never required to finish this hands-on.
 
 ---
 

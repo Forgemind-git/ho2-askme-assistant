@@ -1,50 +1,82 @@
-# HO2 Sample 2 — Freelancer
+# HO2 Sample 2 — Freelancer: "Ask My Portfolio"
+
+> **Starter branch — copy-and-use.** This folder's `index.html` is a finished, working
+> example. Open it, then either paste the example prompt below into Claude, **or** edit the
+> file directly at the **`EDIT HERE`** banner and swap the `PROFILE` for your own material.
+
 
 ## What you'll build
-One link that sells your freelance work. The page shows your services and prices, your best
-projects, how you work, and an **"Ask Me Anything"** section that answers the questions
-prospects ask before they hire you. This folder already contains a finished example (Sam
-Okafor, a brand & web designer) — open it, see it working, then make it yours.
+An **AI-powered Claude Artifact** that acts as a concierge for your freelance portfolio. Instead
+of a scattered set of case studies, it's one page grounded in your real project write-ups —
+problem, decision, result — with an **Ask Me** box that answers client questions **live**:
+"tell me about the fintech project", "do you do design systems?" — from your actual material,
+never invented. You build it by chatting with Claude, then publish it and share the link. This
+folder's `index.html` is a finished, working example (Dan Okoye, a freelance product designer)
+you can open, read, and copy.
+
+**Who can use it live:** anyone with a Claude account. It is **not** an anonymous public bot —
+when a visitor sends a question they're prompted to sign in to their **own** Claude account, and
+the usage counts against *their* account. Replace "a client just asks and gets an answer" in
+your head with "anyone with a Claude account can ask it live."
 
 ## Use it with your Claude.ai subscription
-No API key needed. Just your normal Claude.ai login.
+No API key needed. This runs on your normal Claude.ai login.
 
-1. Open **`index.html`** from this folder in your browser to see the finished example page.
-2. Open **Claude.ai** in another tab (your subscription — no API key, no billing).
-3. Paste **the example prompt below** and fill in your own services and prices. Claude will
-   write your service descriptions, project blurbs, and prospect answers.
-4. Open `index.html` in a text editor (Notepad, TextEdit, or VS Code), replace the example
-   text with what Claude wrote, and save.
-5. Refresh the page in your browser to see your version.
-6. (Optional) For a live link, push to GitHub and turn on **Settings → Pages** on the
-   `main` branch.
+1. In Claude.ai, turn on **Settings → Feature preview → "Create AI-powered artifacts"** (one-time).
+2. Start a new chat and paste **the example prompt below**, filled in with your real projects.
+3. Claude builds the page as an **Artifact** on the right. Ask it in the chat to tweak wording,
+   colours or which questions show — until it feels like you.
+4. Click **Publish** on the artifact to get a shareable link. Put that link in your bio, proposals
+   or the top of your portfolio.
+5. Anyone with a Claude account who opens the link can ask your portfolio questions live (they
+   sign in to their own account first).
+
+> **One caveat to know:** Anthropic changed how `window.claude.complete` behaves on 2025-07-31.
+> If live answers ever stop working, open the artifact inside claude.ai and confirm the current
+> way to call Claude from an artifact — the feature may have shifted since this was written.
 
 ## The example prompt
 Copy this into Claude.ai and fill in the parts in CAPITALS:
 
 ```
-I'm a freelancer building a one-page website to win more clients. Help me write the content.
+Build me a single-file HTML "Ask-Me" Claude Artifact that acts as a concierge for my freelance
+portfolio.
 
-About my freelance business:
+It should be a clean personal page with: my name and role, a short About, a skills list, a
+"Projects" section of 3–4 project cards (each with a kicker, title, the problem, and a "Result:"
+line), a small facts row, and an "Ask Me" box.
+
+The Ask Me box must answer LIVE using window.claude.complete(prompt) — no API key. Hardcode my
+real project write-ups into the page as the grounding, and instruct the assistant to answer ONLY
+from that grounding, in the first person as me, warm and specific, 2–4 sentences, and to say
+"I don't have that detail" instead of inventing anything. If window.claude.complete isn't
+available, show a friendly note telling the visitor to open it as a Claude Artifact and sign in.
+
+My details:
 - Name: YOUR NAME
-- What I do: e.g. freelance brand & web designer
-- My three main services and rough prices: e.g. Brand identity (from £1,200), Website design (from £2,500), Monthly retainer (£850/mo)
-- Two or three past projects I'm proud of: DESCRIBE EACH (the client, what they needed, the result)
-- My usual turnaround time and how I like to work
+- Role: e.g. Freelance product designer (UX/UI)
+- Experience: e.g. 8 years freelance, 40+ projects across onboarding, checkout, design systems
+- Skills: e.g. UX/UI, design systems, user research, prototyping, accessibility, Figma
+- Projects (kicker → problem → decision → result), 3–4 of them: DESCRIBE EACH
+- What I'm looking for: e.g. interesting product work, contract or project-based
 
-Please give me:
-1. A one-line tagline for the top of the page.
-2. A short, benefit-focused description for each of my three services.
-3. A title and one-line result for each past project.
-4. Friendly answers to these three prospect questions, two or three sentences each:
-   - "How much do you charge?"
-   - "How long will my project take?"
-   - "Are you available right now?"
-
-Keep the tone confident, clear, and easy for a non-technical client to understand.
+Give me three good starter questions a client would ask, as clickable chips, and use a warm
+coral accent colour.
 ```
 
 ## Make it your own
-- Update the prices and service names to match exactly what you offer.
-- Swap the colour by editing `--color` near the top of `index.html`.
-- Replace the portfolio examples with real client work and a one-line result for each.
+- Swap the grounding: everything in the `PROFILE` string (and the visible About/Projects) is
+  yours to edit. Keep it truthful — the assistant can only be as honest as your write-ups.
+- Change the accent colour via `--accent` at the top of the `<style>` block.
+- Edit the three suggested questions to match what clients actually ask you.
+
+## How it works (30-second version)
+The page hardcodes your real project write-ups and calls `window.claude.complete(prompt)` at
+runtime. That API is provided by Claude to published artifacts — it runs on the **viewer's**
+Claude subscription, so there's no key and no server. Grounding = your facts pasted into the
+prompt with a firm "answer only from this" instruction.
+
+## Optional — automate it with the API (advanced)
+You do **not** need this for the course. If you later want the page to answer without the
+viewer needing a Claude account, you'd host it yourself and call the Anthropic API with a key
+kept server-side. That's a separate, paid path and is never required to finish this hands-on.
