@@ -1,123 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>HO2 · Ask-Me AI Assistant — Forgemind AI Course</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HO2 — Ask-Me AI Assistant · ForgeMind AI</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
 <style>
   :root{
-    --ink:#191c24; --paper:#f2f3f6; --card:#ffffff; --muted:#5c6070; --hair:#e0e2ea;
-    --accent:#2748c6;
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
-    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    --mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",Menlo,monospace;
+    --pageBg:#F7F7F3; --headerBg:#0F0F10; --headerText:#F5F5F2; --headerMuted:#A1A1AA;
+    --headerBorder:rgba(255,255,255,.12); --cardBg:#fff; --border:#E5E5E0;
+    --text:#111; --textSec:#6B7280; --textMuted:#999; --primary:#dc2626; --primaryHover:#b91c1c;
+    --hover:#EFEEE6; --green:#0F6E56; --purple:#534AB7; --amber:#854F0B;
+    --shadowSm:0 1px 2px rgba(0,0,0,.08); --shadowMd:0 8px 24px rgba(0,0,0,.06);
+    --font:'DM Sans',system-ui,sans-serif; --mono:'DM Mono',monospace;
   }
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px;}
-  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{font-family:var(--font);background:var(--pageBg);color:var(--text);}
   a{color:inherit;text-decoration:none;}
-  .label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
-
-  header{padding:64px 0 40px;}
-  .kicker{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--accent);border:1px solid #cdd6f6;background:#e7ebfb;border-radius:2px;padding:4px 9px;margin-bottom:22px;}
-  header h1{font-family:var(--serif);font-weight:600;font-size:clamp(38px,7vw,58px);line-height:1.03;letter-spacing:-.01em;text-wrap:balance;}
-  header p{font-size:19px;color:var(--muted);max-width:40em;margin-top:16px;line-height:1.5;}
-
-  .callout{background:var(--card);border:1px solid var(--hair);border-left:3px solid var(--accent);
-    border-radius:6px;padding:16px 20px;margin:8px 0 40px;font-size:14.5px;color:#33384a;line-height:1.6;}
-  .callout b{color:var(--accent);}
-
-  .grid{display:grid;gap:16px;grid-template-columns:1fr;padding-bottom:24px;}
-  @media(min-width:620px){.grid{grid-template-columns:1fr 1fr;}}
-  .card{display:block;background:var(--card);border:1px solid var(--hair);border-radius:8px;padding:22px 22px 20px;
-    border-top:3px solid var(--a);transition:transform .15s,box-shadow .15s;}
-  .card:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(20,25,45,.08);}
-  .card .n{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--a);}
-  .card h3{font-family:var(--serif);font-weight:600;font-size:21px;margin:8px 0 6px;letter-spacing:-.01em;}
-  .card p{font-size:14.5px;color:var(--muted);line-height:1.55;}
-  .card .go{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:12.5px;color:var(--a);letter-spacing:.02em;}
-
-  .how{border-top:1px solid var(--hair);margin-top:24px;padding:36px 0 16px;}
-  .how h2{font-family:var(--serif);font-weight:600;font-size:24px;margin-bottom:14px;}
-  .how ol{margin:0 0 0 1.1em;padding:0;}
-  .how li{font-size:15px;margin-bottom:8px;line-height:1.55;max-width:44em;}
-  .how code{font-family:var(--mono);font-size:12.5px;background:#e7eaf1;padding:1px 5px;border-radius:3px;}
-  .note{font-size:13.5px;color:var(--muted);background:#fff6e5;border:1px solid #f0d59a;border-radius:6px;
-    padding:12px 15px;margin-top:18px;line-height:1.55;}
-  .note b{color:#9a5b00;}
-
-  footer{border-top:1px solid var(--hair);padding:28px 0 60px;color:var(--muted);font-size:13px;margin-top:24px;}
+  /* dark header */
+  header{height:56px;background:var(--headerBg);color:var(--headerText);display:flex;align-items:center;
+    padding:0 20px;position:sticky;top:0;z-index:10;border-bottom:1px solid var(--headerBorder);}
+  .wordmark{font-weight:900;font-size:16px;letter-spacing:.02em;display:flex;align-items:center;gap:2px;}
+  .wordmark .badge{background:var(--primary);color:#fff;padding:1px 6px;border-radius:5px;margin-left:2px;font-weight:800;}
+  .header-right{margin-left:auto;color:var(--headerMuted);font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;}
+  .header-right .dot{width:6px;height:6px;border-radius:99px;background:var(--green);}
+  /* layout */
+  .wrap{max-width:960px;margin:0 auto;padding:32px 24px 64px;}
+  /* hero */
+  .eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);}
+  h1{font-size:30px;font-weight:700;margin:8px 0 14px;letter-spacing:-.01em;}
+  .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+  .pill{font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;font-family:var(--mono);}
+  .pill.wk{background:#E7F0FE;color:#1877F2;} .pill.mod{background:#EEEDFE;color:#3C3489;}
+  .pill.fmt{background:#E1F5EE;color:#0F6E56;} .pill.kind{background:#FAEEDA;color:#854F0B;}
+  .lead{font-size:16px;color:var(--textSec);line-height:1.55;max-width:44em;margin:0 0 4px;}
+  /* card */
+  .card{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);padding:20px;}
+  .done{display:flex;align-items:flex-start;gap:12px;margin:22px 0 28px;}
+  .done .ic{width:34px;height:34px;border-radius:8px;background:#FCEBEB;color:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .done .cap{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--textMuted);}
+  .done .val{font-size:15px;font-weight:600;margin-top:3px;}
+  .section-h{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:600;margin:34px 0 14px;}
+  .section-h svg{color:var(--primary);}
+  .sub{font-size:13px;color:var(--textSec);margin:-8px 0 16px;}
+  /* sample grid */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .sample{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);
+    padding:16px;display:flex;flex-direction:column;gap:8px;transition:box-shadow .15s,transform .15s;}
+  a.sample:hover{box-shadow:var(--shadowMd);transform:translateY(-1px);}
+  .sample .num{font-family:var(--mono);font-size:11px;font-weight:500;color:#fff;background:var(--primary);
+    width:22px;height:22px;border-radius:99px;display:flex;align-items:center;justify-content:center;}
+  .sample .k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--textMuted);}
+  .sample h3{font-size:16px;font-weight:600;margin:0;}
+  .sample p{font-size:13px;line-height:1.5;color:var(--textSec);margin:0;}
+  .sample .go{font-family:var(--mono);font-size:12px;color:var(--primary);margin-top:2px;display:inline-flex;align-items:center;gap:5px;}
+  /* steps */
+  .steps{counter-reset:s;display:flex;flex-direction:column;gap:10px;}
+  .step{display:flex;gap:12px;align-items:flex-start;}
+  .step .n{counter-increment:s;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--primary);
+    border:1.5px solid var(--border);border-radius:99px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .step .n::before{content:counter(s);}
+  .step p{font-size:13.5px;line-height:1.5;margin:2px 0;}
+  /* tip / note */
+  .tip{background:#FDF6F6;border:1px solid #F3C6C6;border-radius:8px;padding:16px 18px;margin-top:22px;}
+  .tip .th{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--primary);margin-bottom:6px;}
+  .tip ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--textSec);line-height:1.6;}
+  .note{background:#FDF7EC;border:1px solid #F0D59A;border-radius:8px;padding:14px 16px;margin-top:22px;font-size:13px;color:#6b4e12;line-height:1.55;}
+  .note b{color:var(--amber);}
+  code{font-family:var(--mono);font-size:12px;background:#F1F0EA;padding:1px 5px;border-radius:4px;}
+  footer{border-top:1px solid var(--border);margin-top:40px;padding-top:18px;font-size:12px;color:var(--textMuted);font-family:var(--mono);text-align:center;}
+  @media(max-width:680px){.grid{grid-template-columns:1fr;} h1{font-size:24px;}}
 </style>
 </head>
 <body>
-<div class="wrap">
-
   <header>
-    <span class="kicker">HO2 · Forgemind AI Course</span>
-    <h1>Ask-Me AI Assistant</h1>
-    <p>A shareable Claude Artifact that answers questions about <em>you</em> — live, grounded only in your real experience, with no code and no API key. Five worked examples below.</p>
+    <span class="wordmark">FORGE<span class="badge">COURSE</span></span>
+    <span class="header-right"><span class="dot"></span>ForgeMind AI · Hands-On Portfolio</span>
   </header>
 
-  <div class="callout">
-    <b>Honest by design.</b> These pages answer live using Claude, running on the
-    <b>viewer's own Claude account</b> — anyone with a Claude account can ask, and they sign in first.
-    They are not anonymous public bots. Each artifact is grounded in real, hardcoded material, so it
-    answers from fact and won't invent experience.
-  </div>
-
-  <div class="grid">
-    <a class="card" href="./samples/sample-01/" style="--a:#2748c6">
-      <span class="n">Sample 01 · Job seeker</span>
-      <h3>Ask My CV</h3>
-      <p>A recruiter-facing page grounded in your experience, skills and projects — so anyone can ask "have you led a team?" and get a true answer.</p>
-      <span class="go">Open sample →</span>
-    </a>
-    <a class="card" href="./samples/sample-02/" style="--a:#d2513c">
-      <span class="n">Sample 02 · Portfolio</span>
-      <h3>Project concierge</h3>
-      <p>One link that tells the real story behind each project — the problem, the decisions, the result — grounded only in your own write-ups.</p>
-      <span class="go">Open sample →</span>
-    </a>
-    <a class="card" href="./samples/sample-03/" style="--a:#1e7a5e">
-      <span class="n">Sample 03 · Freelance leads</span>
-      <h3>First-contact answers</h3>
-      <p>Answers a prospect's questions about your services, pricing and process instantly — so leads don't go cold waiting for a reply.</p>
-      <span class="go">Open sample →</span>
-    </a>
-    <a class="card" href="./samples/sample-04/" style="--a:#7a3e9d">
-      <span class="n">Sample 04 · Speaker</span>
-      <h3>Booking bot</h3>
-      <p>Lets event organisers ask what you speak about and whether you fit their event — grounded in your talks, topics and background.</p>
-      <span class="go">Open sample →</span>
-    </a>
-    <a class="card" href="./samples/sample-05/" style="--a:#b5761f">
-      <span class="n">Sample 05 · Career changer</span>
-      <h3>Reframe my experience</h3>
-      <p>Reframes your past roles toward the job you want, answering "why are you qualified for this?" — honestly, from what you actually did.</p>
-      <span class="go">Open sample →</span>
-    </a>
-    <div class="card" style="--a:#5c6070;cursor:default">
-      <span class="n">The pattern</span>
-      <h3>How every sample works</h3>
-      <p>Each is a single-file artifact that hardcodes your real material and calls <code style="font-family:var(--mono);font-size:12px">window.claude.complete()</code> to answer live — no server, no key.</p>
+  <div class="wrap">
+    <div class="eyebrow">Hands-On 2 · Week 2 · Module M5 — AI Assistants · Starter</div>
+    <h1>Ask-Me AI Assistant</h1>
+    <div class="pills">
+      <span class="pill wk">Week 2</span>
+      <span class="pill mod">M5 · AI Assistants</span>
+      <span class="pill fmt">Solo</span>
+      <span class="pill kind">Copy &amp; use</span>
     </div>
-  </div>
+    <p class="lead">A shareable Claude Artifact that answers questions about <em>you</em> — live, grounded only in your real experience, with no code and no API key. Five finished templates below.</p>
 
-  <div class="how">
-    <h2>Build your own in Claude</h2>
-    <ol>
-      <li>In Claude.ai, turn on <b>Settings → Feature preview → "Create AI-powered artifacts"</b> (one time).</li>
-      <li>Open any sample's README, copy its example prompt, and paste it into a new Claude chat with your own details filled in.</li>
-      <li>Claude builds the page as an <b>Artifact</b>. Refine it in the chat until it sounds like you.</li>
-      <li>Click <b>Publish</b> to get a shareable link. Paste that link into the sample README where it says <code>[paste your published artifact share link here]</code>.</li>
-      <li>Anyone with a Claude account can now open the link and ask your page questions live.</li>
-    </ol>
+    <div class="tip">
+      <div class="th"><i data-lucide="copy"></i> You're on the starter branch</div>
+      <ul>
+        <li>Every sample here is a <b>finished, working template</b> with example grounding already filled in — don't start from a blank page.</li>
+        <li>Pick the one closest to you, swap in your real details where the script says <b>EDIT HERE</b> (or paste the sample's example prompt into Claude), and publish.</li>
+      </ul>
+    </div>
+
+    <div class="done card">
+      <div class="ic"><i data-lucide="target"></i></div>
+      <div>
+        <div class="cap">Done when</div>
+        <div class="val">You have a shareable AI-powered Claude Artifact that answers questions about you live, grounded in your real information — not a page of pre-written answers.</div>
+      </div>
+    </div>
+
+    <div class="section-h"><i data-lucide="bot"></i> What you build</div>
+    <div class="sub">A single-file Claude <b>Artifact</b> that hardcodes your real About / projects / skills as grounding, then calls Claude at runtime with the built-in <code>window.claude.complete(prompt)</code> API to answer visitor questions <b>from that material only</b> — no API key, no server, no code you host. Build it by prompting Claude, then click <b>Publish</b> to get a shareable link.</div>
+
+    <div class="tip">
+      <div class="th"><i data-lucide="shield-check"></i> Honest by design</div>
+      <ul>
+        <li>These pages answer live using Claude, running on the <b>viewer's own Claude account</b> — anyone with a Claude account can ask, and they sign in first.</li>
+        <li>They are <b>not</b> anonymous public bots. The honest framing is "anyone with a Claude account can ask it live," not "a recruiter just asks and gets an answer."</li>
+        <li>Each artifact is grounded in real, hardcoded material, so it answers from fact and won't invent experience.</li>
+      </ul>
+    </div>
+
+    <div class="section-h"><i data-lucide="list-checks"></i> Pick a problem statement</div>
+    <div class="sub">Choose one — each maps to a fully-built example in <code>samples/</code> you can open and copy.</div>
+    <div class="grid">
+      <a class="sample" href="./samples/sample-01/">
+        <span class="num">1</span>
+        <span class="k">Job seeker</span>
+        <h3>Ask My CV</h3>
+        <p>A recruiter-facing page grounded in your experience, skills and projects — so anyone can ask "have you led a team?" and get a true answer.</p>
+        <span class="go">Open sample <i data-lucide="arrow-right" style="width:14px;height:14px"></i></span>
+      </a>
+      <a class="sample" href="./samples/sample-02/">
+        <span class="num">2</span>
+        <span class="k">Portfolio</span>
+        <h3>Project concierge</h3>
+        <p>One link that tells the real story behind each project — the problem, the decisions, the result — grounded only in your own write-ups.</p>
+        <span class="go">Open sample <i data-lucide="arrow-right" style="width:14px;height:14px"></i></span>
+      </a>
+      <a class="sample" href="./samples/sample-03/">
+        <span class="num">3</span>
+        <span class="k">Freelance leads</span>
+        <h3>First-contact answers</h3>
+        <p>Answers a prospect's questions about your services, pricing and process instantly — so leads don't go cold waiting for a reply.</p>
+        <span class="go">Open sample <i data-lucide="arrow-right" style="width:14px;height:14px"></i></span>
+      </a>
+      <a class="sample" href="./samples/sample-04/">
+        <span class="num">4</span>
+        <span class="k">Speaker</span>
+        <h3>Booking bot</h3>
+        <p>Lets event organisers ask what you speak about and whether you fit their event — grounded in your talks, topics and background.</p>
+        <span class="go">Open sample <i data-lucide="arrow-right" style="width:14px;height:14px"></i></span>
+      </a>
+      <a class="sample" href="./samples/sample-05/">
+        <span class="num">5</span>
+        <span class="k">Career changer</span>
+        <h3>Reframe my experience</h3>
+        <p>Reframes your past roles toward the job you want, answering "why are you qualified for this?" — honestly, from what you actually did.</p>
+        <span class="go">Open sample <i data-lucide="arrow-right" style="width:14px;height:14px"></i></span>
+      </a>
+      <div class="sample" style="cursor:default">
+        <span class="k" style="color:var(--primary)">The pattern</span>
+        <h3>How every sample works</h3>
+        <p>Each is a single-file artifact that hardcodes your real material and calls <code>window.claude.complete()</code> to answer live — no server, no key.</p>
+      </div>
+    </div>
+
+    <div class="section-h"><i data-lucide="git-branch"></i> Make one yours — two ways</div>
+    <div class="steps card">
+      <div class="step"><span class="n"></span><p>In Claude.ai, turn on <b>Settings → Feature preview → "Create AI-powered artifacts"</b> (one time).</p></div>
+      <div class="step"><span class="n"></span><p><b>Prompt Claude:</b> paste a sample's example prompt into a new chat with <i>your</i> details — Claude rebuilds the page as an Artifact you refine in the chat.</p></div>
+      <div class="step"><span class="n"></span><p><b>Or edit the file:</b> open a sample's <code>index.html</code>, find the <b>EDIT HERE</b> banner in the script, and replace the <code>PROFILE</code> text (and the visible About / cards) with your own.</p></div>
+      <div class="step"><span class="n"></span><p>Click <b>Publish</b> to get a shareable link. Paste that link into the sample README where it says <code>[paste your published artifact share link here]</code>.</p></div>
+      <div class="step"><span class="n"></span><p>Anyone with a Claude account can now open the link and ask your page questions live.</p></div>
+    </div>
+
     <div class="note"><b>Good to know:</b> Anthropic changed how <code>window.claude.complete</code> behaves on 2025-07-31. If live answers stop working, open your artifact inside claude.ai and confirm the current way to call Claude — the feature may have shifted since these examples were written. No API key is ever required for the course.</div>
+
+    <div class="tip">
+      <div class="th"><i data-lucide="battery-charging"></i> Use your Claude.ai Pro plan wisely</div>
+      <ul>
+        <li>Use the example prompt in each sample's README — it's already written and tested. Don't reinvent it.</li>
+        <li>One clear prompt beats lots of vague back-and-forth.</li>
+        <li>Start a new chat when you switch tasks — long chats use your limit faster.</li>
+        <li>Don't paste big files over and over. Paste once, then refer back to it.</li>
+      </ul>
+    </div>
+
+    <footer>HO2 · Solo · ForgeMind AI — AI Productivity Essentials · Module M5 (Week 2)</footer>
   </div>
-
-  <footer>Forgemind AI · AI Productivity Essentials · HO2 · github.com/Forgemind-git/ho2-askme-assistant</footer>
-
-</div>
+  <script>lucide.createIcons();</script>
 </body>
 </html>

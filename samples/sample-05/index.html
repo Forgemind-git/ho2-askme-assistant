@@ -3,197 +3,174 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ask Sofia Reyes — Science Teacher → UX Researcher</title>
+<title>Ask Sofia Reyes — Science Teacher → UX Researcher · ForgeMind AI</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
 <style>
-  /* ── Sample 05 · Career changer · accent: ochre ─────────────────────── */
   :root{
-    --ink:#221a10;          /* near-black, warm */
-    --paper:#f6f1e8;        /* warm paper, biased toward amber */
-    --card:#ffffff;
-    --muted:#6a5f4e;
-    --hair:#e7ddca;
-    --accent:#b5761f;       /* ochre / amber */
-    --accent-soft:#f5e6c9;
-    --good:#1e7a5e;
-    --warn:#9a5b00;
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
-    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    --mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",Menlo,monospace;
+    --pageBg:#F7F7F3; --headerBg:#0F0F10; --headerText:#F5F5F2; --headerMuted:#A1A1AA;
+    --headerBorder:rgba(255,255,255,.12); --cardBg:#fff; --border:#E5E5E0;
+    --text:#111; --textSec:#6B7280; --textMuted:#999; --primary:#dc2626; --primaryHover:#b91c1c;
+    --hover:#EFEEE6; --green:#0F6E56; --purple:#534AB7; --amber:#854F0B;
+    --shadowSm:0 1px 2px rgba(0,0,0,.08); --shadowMd:0 8px 24px rgba(0,0,0,.06);
+    --font:'DM Sans',system-ui,sans-serif; --mono:'DM Mono',monospace;
   }
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-  html{-webkit-text-size-adjust:100%;}
-  body{
-    font-family:var(--sans);background:var(--paper);color:var(--ink);
-    line-height:1.6;font-size:16px;
-    background-image:linear-gradient(180deg,var(--accent-soft) 0%,var(--paper) 340px);
-  }
-  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
-  a{color:var(--accent);}
-  .label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
-
-  /* ── Masthead ───────────────────────────────────────────────────────── */
-  header{padding:56px 0 40px;}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;}
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(30,122,94,.15);}
-  header h1{font-family:var(--serif);font-weight:600;font-size:clamp(38px,7vw,62px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance;}
-  .role{font-size:17px;color:var(--accent);font-weight:600;margin-top:12px;}
-  .thesis{font-size:19px;color:var(--muted);max-width:34em;margin-top:14px;line-height:1.5;}
-
-  /* ── Record ─────────────────────────────────────────────────────────── */
-  section{padding:40px 0;border-top:1px solid var(--hair);}
-  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;}
-  .sec-head h2{font-family:var(--serif);font-weight:600;font-size:26px;letter-spacing:-.01em;}
-  .about{font-size:18px;max-width:38em;line-height:1.62;}
-  .about strong{font-weight:600;}
-
-  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
-  .chip{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);
-    border:1px solid var(--hair);border-radius:2px;padding:6px 11px;}
-
-  .work{display:grid;gap:16px;margin-top:8px;}
-  @media(min-width:680px){.work{grid-template-columns:1fr 1fr;}}
-  .proj{background:var(--card);border:1px solid var(--hair);border-radius:6px;padding:20px 22px;}
-  .proj .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
-  .proj h3{font-size:17px;font-weight:650;margin:6px 0 8px;}
-  .proj p{font-size:14.5px;color:var(--muted);line-height:1.55;}
-  .proj .res{margin-top:10px;font-size:13.5px;color:var(--ink);}
-  .proj .res b{color:var(--accent);font-weight:600;}
-
-  .facts{display:flex;flex-wrap:wrap;gap:28px;margin-top:6px;}
-  .fact .n{font-family:var(--serif);font-size:30px;font-weight:600;font-variant-numeric:tabular-nums;}
-  .fact .l{font-size:13px;color:var(--muted);}
-
-  /* ── Ask me ─────────────────────────────────────────────────────────── */
-  #ask{border-top:2px solid var(--ink);}
-  .ask-note{background:var(--accent-soft);border:1px solid #e6cf9c;border-radius:6px;
-    padding:12px 15px;font-size:13.5px;color:#6b4a10;margin-bottom:18px;line-height:1.5;}
-  .ask-note b{color:var(--accent);}
-  .setup{display:none;background:#fff6e5;border:1px solid #f0d59a;color:#6b4e12;
-    border-radius:6px;padding:12px 15px;font-size:13.5px;margin-bottom:18px;line-height:1.5;}
-  .setup b{color:var(--warn);}
-
-  .panel{background:var(--card);border:1px solid var(--hair);border-radius:8px;overflow:hidden;
-    box-shadow:0 1px 2px rgba(45,35,20,.04),0 8px 30px rgba(45,35,20,.05);}
-  .transcript{padding:8px 18px 4px;display:flex;flex-direction:column;gap:14px;max-height:440px;overflow-y:auto;}
-  .msg{max-width:82%;font-size:14.5px;line-height:1.55;}
-  .msg .who{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{font-family:var(--font);background:var(--pageBg);color:var(--text);}
+  a{color:inherit;}
+  header{height:56px;background:var(--headerBg);color:var(--headerText);display:flex;align-items:center;
+    padding:0 20px;position:sticky;top:0;z-index:10;border-bottom:1px solid var(--headerBorder);}
+  .wordmark{font-weight:900;font-size:16px;letter-spacing:.02em;display:flex;align-items:center;gap:2px;}
+  .wordmark .badge{background:var(--primary);color:#fff;padding:1px 6px;border-radius:5px;margin-left:2px;font-weight:800;}
+  .header-right{margin-left:auto;color:var(--headerMuted);font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;}
+  .header-right .dot{width:6px;height:6px;border-radius:99px;background:var(--green);}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 24px 64px;}
+  .eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);}
+  h1{font-size:34px;font-weight:700;margin:8px 0 12px;letter-spacing:-.01em;}
+  .role{font-size:16px;color:var(--primary);font-weight:600;margin:0 0 12px;}
+  .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+  .pill{font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;font-family:var(--mono);display:inline-flex;align-items:center;gap:6px;}
+  .pill.live{background:#E1F5EE;color:#0F6E56;} .pill.role{background:#FCEBEB;color:#dc2626;}
+  .pill.live .d{width:6px;height:6px;border-radius:99px;background:var(--green);}
+  .lead{font-size:16px;color:var(--textSec);line-height:1.55;max-width:38em;margin:0;}
+  .card{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);padding:20px 22px;}
+  .section-h{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:600;margin:36px 0 14px;}
+  .section-h svg{color:var(--primary);}
+  .about-p{font-size:14.5px;line-height:1.62;margin:0 0 12px;color:var(--text);}
+  .about-p:last-of-type{margin-bottom:0;}
+  .about-p strong{font-weight:600;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .chip{font-family:var(--mono);font-size:12px;color:var(--text);background:var(--pageBg);
+    border:1px solid var(--border);border-radius:6px;padding:5px 10px;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .proj{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);padding:16px 18px;}
+  .proj .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);}
+  .proj h3{font-size:16px;font-weight:600;margin:6px 0 8px;}
+  .proj p{font-size:13.5px;color:var(--textSec);line-height:1.55;margin:0;}
+  .proj .res{margin-top:10px;font-size:13px;color:var(--text);}
+  .proj .res b{color:var(--green);font-weight:600;}
+  .facts{display:flex;flex-wrap:wrap;gap:32px;margin-top:18px;}
+  .fact .n{font-family:var(--mono);font-size:26px;font-weight:500;color:var(--text);}
+  .fact .l{font-size:12px;color:var(--textSec);}
+  .ask-note{background:#FDF6F6;border:1px solid #F3C6C6;border-radius:8px;padding:12px 15px;font-size:13px;color:#7a2f2f;margin-bottom:14px;line-height:1.5;}
+  .ask-note b{color:var(--primary);}
+  .setup{display:none;background:#FDF7EC;border:1px solid #F0D59A;color:#6b4e12;border-radius:8px;padding:12px 15px;font-size:13px;margin-bottom:14px;line-height:1.5;}
+  .setup b{color:var(--amber);}
+  .panel{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:var(--shadowMd);}
+  .transcript{padding:14px 18px 6px;display:flex;flex-direction:column;gap:14px;max-height:440px;overflow-y:auto;}
+  .msg{max-width:82%;font-size:14px;line-height:1.55;}
+  .msg .who{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--textMuted);margin-bottom:3px;}
   .msg.you{align-self:flex-end;text-align:right;}
-  .msg.you .b{display:inline-block;background:var(--accent);color:#fff;border-radius:12px 12px 3px 12px;padding:9px 14px;text-align:left;}
-  .msg.me .b{display:inline-block;background:#f4efe4;border:1px solid var(--hair);border-radius:12px 12px 12px 3px;padding:9px 14px;white-space:pre-wrap;}
-  .msg.me .who{color:var(--accent);}
-
+  .msg.you .b{display:inline-block;background:var(--primary);color:#fff;border-radius:12px 12px 3px 12px;padding:9px 14px;text-align:left;}
+  .msg.me .b{display:inline-block;background:var(--pageBg);border:1px solid var(--border);border-radius:12px 12px 12px 3px;padding:9px 14px;white-space:pre-wrap;}
+  .msg.me .who{color:var(--primary);}
   .dots{display:inline-flex;gap:4px;padding:10px 14px;}
-  .dots span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:b 1.1s infinite ease-in-out;}
+  .dots span{width:6px;height:6px;border-radius:50%;background:var(--textMuted);animation:b 1.1s infinite ease-in-out;}
   .dots span:nth-child(2){animation-delay:.18s;}.dots span:nth-child(3){animation-delay:.36s;}
   @keyframes b{0%,80%,100%{transform:scale(.7);opacity:.4;}40%{transform:scale(1.1);opacity:1;}}
-
-  .suggest{display:flex;flex-wrap:wrap;gap:7px;padding:10px 18px 14px;border-top:1px solid var(--hair);}
-  .sug{font-family:var(--mono);font-size:12px;color:var(--accent);background:var(--accent-soft);
-    border:1px solid #e6cf9c;border-radius:20px;padding:5px 12px;cursor:pointer;transition:background .15s;}
-  .sug:hover{background:#efdcb3;}
-  .composer{display:flex;gap:8px;padding:14px 16px;border-top:1px solid var(--hair);background:#fbf8f1;}
-  .composer input{flex:1;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--card);
-    border:1px solid var(--hair);border-radius:6px;padding:11px 14px;outline:none;}
-  .composer input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);}
-  .composer button{font-family:var(--sans);font-weight:600;font-size:14px;color:#fff;background:var(--accent);
-    border:none;border-radius:6px;padding:0 18px;cursor:pointer;transition:opacity .15s;}
-  .composer button:hover:not(:disabled){opacity:.9;}
+  .suggest{display:flex;flex-wrap:wrap;gap:7px;padding:10px 18px 14px;border-top:1px solid var(--border);}
+  .sug{font-family:var(--mono);font-size:12px;color:var(--primary);background:#FCEBEB;border:1px solid #F3C6C6;border-radius:20px;padding:5px 12px;cursor:pointer;transition:background .15s;}
+  .sug:hover{background:#f8dada;}
+  .composer{display:flex;gap:8px;padding:14px 16px;border-top:1px solid var(--border);background:#FAFAF7;}
+  .composer input{flex:1;font-family:var(--font);font-size:15px;color:var(--text);background:var(--cardBg);border:1px solid var(--border);border-radius:6px;padding:11px 14px;outline:none;}
+  .composer input:focus{border-color:var(--primary);box-shadow:0 0 0 3px #FCEBEB;}
+  .composer button{font-family:var(--font);font-weight:600;font-size:14px;color:#fff;background:var(--primary);border:none;border-radius:6px;padding:0 18px;cursor:pointer;transition:background .15s;}
+  .composer button:hover:not(:disabled){background:var(--primaryHover);}
   .composer button:disabled{opacity:.45;cursor:not-allowed;}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
-
-  footer{border-top:1px solid var(--hair);padding:34px 0 60px;color:var(--muted);font-size:13.5px;line-height:1.6;}
-  footer .label{display:block;margin-bottom:8px;}
-  footer code{font-family:var(--mono);font-size:12.5px;background:#efe8d8;padding:1px 5px;border-radius:3px;}
+  :focus-visible{outline:2px solid var(--primary);outline-offset:2px;}
+  code{font-family:var(--mono);font-size:12px;background:#F1F0EA;padding:1px 5px;border-radius:4px;}
+  footer{border-top:1px solid var(--border);margin-top:40px;padding-top:18px;font-size:12px;color:var(--textMuted);font-family:var(--mono);text-align:center;line-height:1.7;}
+  @media(max-width:680px){.grid{grid-template-columns:1fr;} h1{font-size:26px;}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;}}
 </style>
 </head>
 <body>
-<div class="wrap">
-
   <header>
-    <div class="eyebrow"><span class="dot"></span><span class="label">Career change in progress · answers live</span></div>
-    <h1>Sofia Reyes</h1>
-    <p class="role">Science teacher → UX Researcher</p>
-    <p class="thesis">My old job titles don't say "UX" — but the work does. Ask my page why I'm qualified, and it answers by reframing what I actually did in the classroom.</p>
+    <span class="wordmark">FORGE<span class="badge">COURSE</span></span>
+    <span class="header-right"><span class="dot"></span>ForgeMind AI · Hands-On Portfolio</span>
   </header>
 
+<div class="wrap">
+
+  <div class="eyebrow">HO2 · Sample 05 · Career changer</div>
+  <h1>Sofia Reyes</h1>
+  <p class="role">Science teacher → UX Researcher</p>
+  <div class="pills">
+    <span class="pill role">Career change in progress</span>
+    <span class="pill live"><span class="d"></span>Answers live</span>
+  </div>
+  <p class="lead">My old job titles don't say "UX" — but the work does. Ask my page why I'm qualified, and it answers by reframing what I actually did in the classroom.</p>
+
   <!-- ═══ GROUNDING (the human-readable record — also fed to the assistant) ═══ -->
-  <section id="about">
-    <div class="sec-head"><span class="label">01</span><h2>About</h2></div>
-    <p class="about">I spent <strong>7 years</strong> as a secondary school science teacher, and I'm now moving into <strong>UX research</strong>. Here's the honest bridge: teaching is really the daily practice of watching real people struggle with something, finding where they get stuck, and redesigning until it clicks. That's user research. I've since completed a UX research course and run three volunteer projects to prove it in the field. I'm still building my quantitative and analytics depth — and I'd rather say that plainly than pretend otherwise.</p>
+  <div class="section-h"><i data-lucide="user"></i> About</div>
+  <div class="card">
+    <p class="about-p">I spent <strong>7 years</strong> as a secondary school science teacher, and I'm now moving into <strong>UX research</strong>. Here's the honest bridge: teaching is really the daily practice of watching real people struggle with something, finding where they get stuck, and redesigning until it clicks. That's user research. I've since completed a UX research course and run three volunteer projects to prove it in the field. I'm still building my quantitative and analytics depth — and I'd rather say that plainly than pretend otherwise.</p>
     <div class="chips">
       <span class="chip">User interviews</span><span class="chip">Affinity mapping</span><span class="chip">Usability testing</span>
       <span class="chip">Surveys</span><span class="chip">Research synthesis</span><span class="chip">Figma basics</span>
       <span class="chip">Stakeholder facilitation</span><span class="chip">7 yrs teaching</span><span class="chip">Building: quant / analytics</span>
     </div>
-  </section>
+  </div>
 
-  <section id="work">
-    <div class="sec-head"><span class="label">02</span><h2>Experience, reframed</h2></div>
-    <div class="work">
-      <div class="proj">
-        <span class="k">Classroom</span>
-        <h3>Understanding real users</h3>
-        <p>Spent 7 years watching how ~150 students a year actually understood — and misunderstood — material, adjusting my explanations to whatever genuinely worked for them.</p>
-        <p class="res">Reads as: <b>qualitative user research &amp; usability observation.</b></p>
-      </div>
-      <div class="proj">
-        <span class="k">Assessment design</span>
-        <h3>Turning behaviour into insight</h3>
-        <p>Built and analysed assessments to find exactly where students got stuck, then redesigned lessons around what the data showed.</p>
-        <p class="res">Reads as: <b>research synthesis &amp; findings-to-action.</b></p>
-      </div>
-      <div class="proj">
-        <span class="k">Curriculum projects</span>
-        <h3>Stakeholder-driven redesign</h3>
-        <p>Led a department curriculum overhaul with input from staff, parents and students, delivered under a fixed deadline.</p>
-        <p class="res">Reads as: <b>stakeholder interviews &amp; project delivery.</b></p>
-      </div>
-      <div class="proj">
-        <span class="k">Retraining</span>
-        <h3>Deliberate UX transition</h3>
-        <p>Completed a UX research course and ran 3 volunteer research projects — interviews, affinity mapping and a usability test — for a local nonprofit.</p>
-        <p class="res">Reads as: <b>applied UX research portfolio.</b></p>
-      </div>
+  <div class="section-h"><i data-lucide="repeat"></i> Experience, reframed</div>
+  <div class="grid">
+    <div class="proj">
+      <span class="k">Classroom</span>
+      <h3>Understanding real users</h3>
+      <p>Spent 7 years watching how ~150 students a year actually understood — and misunderstood — material, adjusting my explanations to whatever genuinely worked for them.</p>
+      <p class="res">Reads as: <b>qualitative user research &amp; usability observation.</b></p>
     </div>
-    <div class="facts" style="margin-top:22px">
-      <div class="fact"><div class="n">7</div><div class="l">yrs teaching</div></div>
-      <div class="fact"><div class="n">3</div><div class="l">volunteer UX projects</div></div>
-      <div class="fact"><div class="n">150+</div><div class="l">"users" a year</div></div>
+    <div class="proj">
+      <span class="k">Assessment design</span>
+      <h3>Turning behaviour into insight</h3>
+      <p>Built and analysed assessments to find exactly where students got stuck, then redesigned lessons around what the data showed.</p>
+      <p class="res">Reads as: <b>research synthesis &amp; findings-to-action.</b></p>
     </div>
-  </section>
+    <div class="proj">
+      <span class="k">Curriculum projects</span>
+      <h3>Stakeholder-driven redesign</h3>
+      <p>Led a department curriculum overhaul with input from staff, parents and students, delivered under a fixed deadline.</p>
+      <p class="res">Reads as: <b>stakeholder interviews &amp; project delivery.</b></p>
+    </div>
+    <div class="proj">
+      <span class="k">Retraining</span>
+      <h3>Deliberate UX transition</h3>
+      <p>Completed a UX research course and ran 3 volunteer research projects — interviews, affinity mapping and a usability test — for a local nonprofit.</p>
+      <p class="res">Reads as: <b>applied UX research portfolio.</b></p>
+    </div>
+  </div>
+  <div class="facts">
+    <div class="fact"><div class="n">7</div><div class="l">yrs teaching</div></div>
+    <div class="fact"><div class="n">3</div><div class="l">volunteer UX projects</div></div>
+    <div class="fact"><div class="n">150+</div><div class="l">"users" a year</div></div>
+  </div>
 
   <!-- ═══ ASK ME (live, grounded in the record above) ═══ -->
-  <section id="ask">
-    <div class="sec-head"><span class="label">Ask me anything</span><h2>Put a hiring question to my page</h2></div>
-    <div class="ask-note">This answers <b>live</b> using Claude, grounded only in the real material above — it reframes my genuine teaching experience toward UX research, and it won't invent UX job titles I don't have. Anyone with a Claude account can ask it; when you send a question you'll be asked to sign in to your own Claude account first.</div>
-    <div class="setup" id="setup"><b>Almost there.</b> Live answers only work when this page runs as a <b>Claude Artifact</b>. Open it inside a Claude chat (with "Create AI-powered artifacts" turned on in Settings → Feature preview) and sign in. The profile above still reads fine on its own.</div>
+  <div class="section-h"><i data-lucide="message-circle"></i> Put a hiring question to my page</div>
+  <div class="ask-note">This answers <b>live</b> using Claude, grounded only in the real material above — it reframes my genuine teaching experience toward UX research, and it won't invent UX job titles I don't have. Anyone with a Claude account can ask it; when you send a question you'll be asked to sign in to your own Claude account first.</div>
+  <div class="setup" id="setup"><b>Almost there.</b> Live answers only work when this page runs as a <b>Claude Artifact</b>. Open it inside a Claude chat (with "Create AI-powered artifacts" turned on in Settings → Feature preview) and sign in. The profile above still reads fine on its own.</div>
 
-    <div class="panel">
-      <div class="transcript" id="transcript">
-        <div class="msg me"><div class="who">Sofia's assistant</div><div class="b">Hi — I'm Sofia's Ask-Me assistant. Ask me anything about how her teaching experience transfers to UX research and I'll answer from her real record, reframing what she actually did — never inventing. Try a question below.</div></div>
-      </div>
-      <div class="suggest" id="suggest">
-        <button class="sug">Why are you qualified for a UX research role?</button>
-        <button class="sug">How does teaching transfer to UX?</button>
-        <button class="sug">Have you done real user research?</button>
-      </div>
-      <form class="composer" id="composer" autocomplete="off">
-        <input id="q" type="text" placeholder="e.g. What's a gap you're still working on?" aria-label="Your question" />
-        <button type="submit" id="send">Ask</button>
-      </form>
+  <div class="panel">
+    <div class="transcript" id="transcript">
+      <div class="msg me"><div class="who">Sofia's assistant</div><div class="b">Hi — I'm Sofia's Ask-Me assistant. Ask me anything about how her teaching experience transfers to UX research and I'll answer from her real record, reframing what she actually did — never inventing. Try a question below.</div></div>
     </div>
-  </section>
+    <div class="suggest" id="suggest">
+      <button class="sug">Why are you qualified for a UX research role?</button>
+      <button class="sug">How does teaching transfer to UX?</button>
+      <button class="sug">Have you done real user research?</button>
+    </div>
+    <form class="composer" id="composer" autocomplete="off">
+      <input id="q" type="text" placeholder="e.g. What's a gap you're still working on?" aria-label="Your question" />
+      <button type="submit" id="send">Ask</button>
+    </form>
+  </div>
 
-  <footer>
-    <span class="label">About this page</span>
-    A published Claude Artifact that answers grounded in Sofia's real experience — reframing teaching toward UX research, not fabricating it. Built by prompting Claude —
-    no code, no API key; live answers run on the visitor's own Claude account.
-    Live link: <code>[paste your published artifact share link here]</code>
-  </footer>
+  <footer>A published Claude Artifact that answers grounded in Sofia's real experience — reframing teaching toward UX research, not fabricating it. No code, no API key; live answers run on the visitor's own Claude account.<br>Live link: <code>[paste your published artifact share link here]</code><br>HO2 · Solo · ForgeMind AI — AI Productivity Essentials · Module M5 (Week 2)</footer>
 
 </div>
 
+<script>lucide.createIcons();</script>
 <script>
   /* ── The grounding: the ONLY facts the assistant may use ─────────────── */
   /* ╔══════════════════════════════════════════════════════════════════╗
