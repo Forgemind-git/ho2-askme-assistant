@@ -1,386 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Digital Marketer AI Page</title>
-  <style>
-    /* ── Design tokens ───────────────────────────────────────── */
-    :root {
-      --c-bg:        #0f1117;
-      --c-surface:   #1a1d27;
-      --c-border:    #2a2d3e;
-      --c-accent:    #6c63ff;
-      --c-accent-lt: #8b84ff;
-      --c-text:      #e8eaf0;
-      --c-muted:     #8a8fa8;
-      --c-user-bg:   #6c63ff;
-      --c-ai-bg:     #222638;
-      --radius:      12px;
-      --radius-sm:   8px;
-      --font:        'Segoe UI', system-ui, -apple-system, sans-serif;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ask Maya Chen — Frontend Developer</title>
+<style>
+  /* ── Sample 01 · Job Seeker · accent: cobalt ────────────────────────── */
+  :root{
+    --ink:#191c24;          /* near-black, cool */
+    --paper:#f3f4f8;        /* cool paper, biased toward cobalt */
+    --card:#ffffff;
+    --muted:#5c6070;
+    --hair:#e0e2ea;
+    --accent:#2748c6;       /* cobalt */
+    --accent-soft:#e7ebfb;
+    --good:#1e7a5e;
+    --warn:#9a5b00;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",Menlo,monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    font-family:var(--sans);background:var(--paper);color:var(--ink);
+    line-height:1.6;font-size:16px;
+    background-image:linear-gradient(180deg,var(--accent-soft) 0%,var(--paper) 340px);
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+  a{color:var(--accent);}
+  .label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
 
-    /* ── Reset ───────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font);
-      background: var(--c-bg);
-      color: var(--c-text);
-      line-height: 1.6;
-    }
+  /* ── Masthead ───────────────────────────────────────────────────────── */
+  header{padding:56px 0 40px;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(30,122,94,.15);}
+  header h1{font-family:var(--serif);font-weight:600;font-size:clamp(38px,7vw,62px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance;}
+  .role{font-size:17px;color:var(--accent);font-weight:600;margin-top:12px;}
+  .thesis{font-size:19px;color:var(--muted);max-width:34em;margin-top:14px;line-height:1.5;}
 
-    /* ── Nav ─────────────────────────────────────────────────── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(15, 17, 23, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--c-border);
-      padding: 0 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
-    }
-    .nav-brand { font-weight: 700; color: var(--c-accent-lt); font-size: 1rem; letter-spacing: -0.02em; }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a {
-      color: var(--c-muted); text-decoration: none; font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--c-text); }
+  /* ── Record ─────────────────────────────────────────────────────────── */
+  section{padding:40px 0;border-top:1px solid var(--hair);}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;}
+  .sec-head h2{font-family:var(--serif);font-weight:600;font-size:26px;letter-spacing:-.01em;}
+  .about{font-size:18px;max-width:38em;line-height:1.62;}
+  .about strong{font-weight:600;}
 
-    /* ── Hero ────────────────────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 4rem 2rem;
-      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(108,99,255,0.18) 0%, transparent 70%);
-    }
-    .hero-inner { max-width: 680px; }
-    .avatar {
-      width: 96px; height: 96px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--c-accent), #a78bfa);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.4rem; margin: 0 auto 1.5rem;
-      box-shadow: 0 0 0 4px rgba(108,99,255,0.2);
-    }
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 800; letter-spacing: -0.03em;
-      background: linear-gradient(135deg, var(--c-text) 40%, var(--c-accent-lt));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 0.5rem;
-    }
-    .hero .role {
-      font-size: 1.05rem; color: var(--c-accent-lt);
-      font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.01em;
-    }
-    .hero .tagline { font-size: 1.1rem; color: var(--c-muted); max-width: 520px; margin: 0 auto 2rem; }
-    .btn-primary {
-      display: inline-block;
-      background: var(--c-accent); color: #fff;
-      padding: 0.75rem 2rem; border-radius: 40px;
-      font-weight: 600; text-decoration: none; font-size: 0.95rem;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(108,99,255,0.35);
-    }
-    .btn-primary:hover { background: var(--c-accent-lt); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(108,99,255,0.45); }
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+  .chip{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);
+    border:1px solid var(--hair);border-radius:2px;padding:6px 11px;}
 
-    /* ── Section wrapper ─────────────────────────────────────── */
-    section { padding: 5rem 2rem; }
-    .container { max-width: 800px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--c-accent-lt);
-      margin-bottom: 0.75rem;
-    }
-    h2 {
-      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-      font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1.25rem;
-    }
-    .divider { border: none; border-top: 1px solid var(--c-border); margin: 0; }
+  .work{display:grid;gap:16px;margin-top:8px;}
+  @media(min-width:680px){.work{grid-template-columns:1fr 1fr;}}
+  .proj{background:var(--card);border:1px solid var(--hair);border-radius:6px;padding:20px 22px;}
+  .proj .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
+  .proj h3{font-size:17px;font-weight:650;margin:6px 0 8px;}
+  .proj p{font-size:14.5px;color:var(--muted);line-height:1.55;}
+  .proj .res{margin-top:10px;font-size:13.5px;color:var(--ink);}
+  .proj .res b{color:var(--good);font-weight:600;}
 
-    /* ── About ───────────────────────────────────────────────── */
-    #about { background: var(--c-surface); }
-    .about-grid { display: grid; gap: 1.25rem; margin-top: 2rem; }
-    .about-card {
-      background: var(--c-bg); border: 1px solid var(--c-border);
-      border-radius: var(--radius); padding: 1.25rem 1.5rem;
-      display: flex; gap: 1rem; align-items: flex-start;
-      transition: border-color 0.2s;
-    }
-    .about-card:hover { border-color: var(--c-accent); }
-    .about-icon {
-      width: 40px; height: 40px; border-radius: var(--radius-sm);
-      background: rgba(108,99,255,0.15); color: var(--c-accent-lt);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.25rem; flex-shrink: 0;
-    }
-    .about-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .about-card p { font-size: 0.9rem; color: var(--c-muted); }
+  .facts{display:flex;flex-wrap:wrap;gap:28px;margin-top:6px;}
+  .fact .n{font-family:var(--serif);font-size:30px;font-weight:600;font-variant-numeric:tabular-nums;}
+  .fact .l{font-size:13px;color:var(--muted);}
 
-    /* ── Ask Me ──────────────────────────────────────────────── */
-    #askme { background: var(--c-bg); }
-    .chat-box {
-      background: var(--c-surface); border: 1px solid var(--c-border);
-      border-radius: var(--radius); overflow: hidden;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
-    }
-    .chat-header {
-      padding: 1rem 1.25rem; border-bottom: 1px solid var(--c-border);
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    .chat-header-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: #34d399; box-shadow: 0 0 6px #34d399;
-    }
-    .chat-header-title { font-weight: 700; font-size: 0.95rem; }
-    .chat-header-sub { font-size: 0.8rem; color: var(--c-muted); margin-left: auto; }
+  /* ── Ask me ─────────────────────────────────────────────────────────── */
+  #ask{border-top:2px solid var(--ink);}
+  .ask-note{background:var(--accent-soft);border:1px solid #cdd6f6;border-radius:6px;
+    padding:12px 15px;font-size:13.5px;color:#2a3557;margin-bottom:18px;line-height:1.5;}
+  .ask-note b{color:var(--accent);}
+  .setup{display:none;background:#fff6e5;border:1px solid #f0d59a;color:#6b4e12;
+    border-radius:6px;padding:12px 15px;font-size:13.5px;margin-bottom:18px;line-height:1.5;}
+  .setup b{color:var(--warn);}
 
-    .chat-messages {
-      height: 360px; overflow-y: auto; padding: 1.25rem;
-      display: flex; flex-direction: column; gap: 0.875rem;
-    }
-    .chat-messages::-webkit-scrollbar { width: 4px; }
-    .chat-messages::-webkit-scrollbar-track { background: transparent; }
-    .chat-messages::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 2px; }
+  .panel{background:var(--card);border:1px solid var(--hair);border-radius:8px;overflow:hidden;
+    box-shadow:0 1px 2px rgba(20,25,45,.04),0 8px 30px rgba(20,25,45,.05);}
+  .transcript{padding:8px 18px 4px;display:flex;flex-direction:column;gap:14px;max-height:440px;overflow-y:auto;}
+  .msg{max-width:82%;font-size:14.5px;line-height:1.55;}
+  .msg .who{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+  .msg.you{align-self:flex-end;text-align:right;}
+  .msg.you .b{display:inline-block;background:var(--accent);color:#fff;border-radius:12px 12px 3px 12px;padding:9px 14px;text-align:left;}
+  .msg.me .b{display:inline-block;background:#f1f2f6;border:1px solid var(--hair);border-radius:12px 12px 12px 3px;padding:9px 14px;white-space:pre-wrap;}
+  .msg.me .who{color:var(--accent);}
 
-    .msg {
-      max-width: 80%; padding: 0.7rem 1rem;
-      border-radius: var(--radius); font-size: 0.9rem; line-height: 1.55;
-      animation: fadeUp 0.25s ease;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(6px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .msg-ai   { background: var(--c-ai-bg); border: 1px solid var(--c-border); align-self: flex-start; border-bottom-left-radius: 4px; }
-    .msg-user { background: var(--c-user-bg); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
-    .msg-label { font-size: 0.7rem; color: var(--c-muted); margin-bottom: 0.2rem; font-weight: 600; letter-spacing: 0.04em; }
-    .msg-ai .msg-label { color: var(--c-accent-lt); }
+  .dots{display:inline-flex;gap:4px;padding:10px 14px;}
+  .dots span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:b 1.1s infinite ease-in-out;}
+  .dots span:nth-child(2){animation-delay:.18s;}.dots span:nth-child(3){animation-delay:.36s;}
+  @keyframes b{0%,80%,100%{transform:scale(.7);opacity:.4;}40%{transform:scale(1.1);opacity:1;}}
 
-    .typing-indicator { display: flex; gap: 5px; padding: 0.7rem 1rem; align-items: center; }
-    .typing-indicator span {
-      width: 7px; height: 7px; border-radius: 50%; background: var(--c-muted);
-      animation: bounce 1.2s infinite ease-in-out;
-    }
-    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes bounce {
-      0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
-      40%            { transform: scale(1.2); opacity: 1; }
-    }
+  .suggest{display:flex;flex-wrap:wrap;gap:7px;padding:10px 18px 14px;border-top:1px solid var(--hair);}
+  .sug{font-family:var(--mono);font-size:12px;color:var(--accent);background:var(--accent-soft);
+    border:1px solid #d4dcf7;border-radius:20px;padding:5px 12px;cursor:pointer;transition:background .15s;}
+  .sug:hover{background:#dae1fa;}
+  .composer{display:flex;gap:8px;padding:14px 16px;border-top:1px solid var(--hair);background:#fafbfd;}
+  .composer input{flex:1;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--card);
+    border:1px solid var(--hair);border-radius:6px;padding:11px 14px;outline:none;}
+  .composer input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);}
+  .composer button{font-family:var(--sans);font-weight:600;font-size:14px;color:#fff;background:var(--accent);
+    border:none;border-radius:6px;padding:0 18px;cursor:pointer;transition:opacity .15s;}
+  .composer button:hover:not(:disabled){opacity:.9;}
+  .composer button:disabled{opacity:.45;cursor:not-allowed;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
 
-    .chat-composer {
-      display: flex; gap: 0.5rem; padding: 1rem; border-top: 1px solid var(--c-border);
-    }
-    .chat-input {
-      flex: 1; background: var(--c-bg); border: 1px solid var(--c-border);
-      border-radius: var(--radius-sm); padding: 0.65rem 1rem;
-      color: var(--c-text); font-family: var(--font); font-size: 0.9rem;
-      outline: none; transition: border-color 0.2s;
-      resize: none; min-height: 42px; max-height: 120px;
-    }
-    .chat-input:focus { border-color: var(--c-accent); }
-    .chat-input::placeholder { color: var(--c-muted); }
-    .send-btn {
-      background: var(--c-accent); color: #fff; border: none;
-      border-radius: var(--radius-sm); padding: 0 1.1rem;
-      font-weight: 600; font-size: 0.9rem; cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-      display: flex; align-items: center; gap: 0.4rem;
-    }
-    .send-btn:hover:not(:disabled) { background: var(--c-accent-lt); transform: translateY(-1px); }
-    .send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    .starter-chips {
-      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem;
-    }
-    .chip {
-      background: var(--c-surface); border: 1px solid var(--c-border);
-      border-radius: 20px; padding: 0.4rem 0.9rem;
-      font-size: 0.8rem; color: var(--c-muted); cursor: pointer;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .chip:hover { border-color: var(--c-accent); color: var(--c-text); }
-
-    .api-notice {
-      background: rgba(108,99,255,0.08); border: 1px solid rgba(108,99,255,0.2);
-      border-radius: var(--radius-sm); padding: 0.7rem 1rem;
-      font-size: 0.8rem; color: var(--c-muted); margin-top: 1rem;
-    }
-    .api-notice strong { color: var(--c-accent-lt); }
-
-    /* ── Footer ──────────────────────────────────────────────── */
-    footer {
-      background: var(--c-surface); border-top: 1px solid var(--c-border);
-      text-align: center; padding: 2rem;
-      font-size: 0.8rem; color: var(--c-muted);
-    }
-
-    @media (max-width: 600px) {
-      nav { padding: 0 1rem; }
-      .nav-links { gap: 1rem; }
-      section { padding: 3.5rem 1.25rem; }
-    }
-  </style>
+  footer{border-top:1px solid var(--hair);padding:34px 0 60px;color:var(--muted);font-size:13.5px;line-height:1.6;}
+  footer .label{display:block;margin-bottom:8px;}
+  footer code{font-family:var(--mono);font-size:12.5px;background:#eceef4;padding:1px 5px;border-radius:3px;}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;}}
+</style>
 </head>
 <body>
+<div class="wrap">
 
-<!-- ── Nav ─────────────────────────────────────────────────── -->
-<nav>
-  <span class="nav-brand">Alex Rivera</span>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#askme">Ask Me</a></li>
-  </ul>
-</nav>
+  <header>
+    <div class="eyebrow"><span class="dot"></span><span class="label">Open to frontend roles · answers live</span></div>
+    <h1>Maya Chen</h1>
+    <p class="role">Frontend Developer — React, TypeScript, design systems</p>
+    <p class="thesis">Instead of hoping you read to the bottom of my CV, ask my page directly. It answers from my real work — nothing invented.</p>
+  </header>
 
-<!-- ── Hero ────────────────────────────────────────────────── -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="avatar">📢</div>
-    <h1>Alex Rivera</h1>
-    <p class="role">Digital Marketer · SaaS Growth</p>
-    <p class="tagline">
-      I turn data into campaigns and campaigns into pipeline — with a little help from AI.
-    </p>
-    <a href="#askme" class="btn-primary">Ask Me Anything →</a>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- ── About ───────────────────────────────────────────────── -->
-<section id="about">
-  <div class="container">
-    <p class="section-label">About Me</p>
-    <h2>How I use AI in my marketing work</h2>
-    <p style="color: var(--c-muted); font-size: 0.95rem;">
-      I'm a Digital Marketer at a B2B SaaS company, focused on demand generation, paid media, and content strategy.
-      AI — especially Claude — has become my daily co-pilot across the full campaign lifecycle.
-    </p>
-
-    <div class="about-grid">
-      <div class="about-card">
-        <div class="about-icon">✍️</div>
-        <div>
-          <h3>Ad Copy &amp; Creative Briefs</h3>
-          <p>I use Claude to generate 10+ headline and body copy variations in minutes, then A/B test the top performers. What used to take a copywriter half a day now takes me 20 minutes.</p>
-        </div>
-      </div>
-      <div class="about-card">
-        <div class="about-icon">📊</div>
-        <div>
-          <h3>Campaign Data Analysis</h3>
-          <p>I paste CSV exports from Google Ads, Meta, or LinkedIn into Claude and ask it to surface the key trends, anomalies, and optimisation opportunities — plain English, no analyst needed.</p>
-        </div>
-      </div>
-      <div class="about-card">
-        <div class="about-icon">♻️</div>
-        <div>
-          <h3>Content Repurposing</h3>
-          <p>A single blog post becomes a LinkedIn carousel, three email subject lines, a Twitter/X thread, and a short-form video script — all from one Claude prompt chain.</p>
-        </div>
-      </div>
-      <div class="about-card">
-        <div class="about-icon">🎯</div>
-        <div>
-          <h3>Audience &amp; Positioning Research</h3>
-          <p>I feed Claude our ICP attributes and competitor landing pages, then ask it to draft positioning hypotheses and messaging frameworks I can test with customers.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- ── Ask Me ──────────────────────────────────────────────── -->
-<section id="askme">
-  <div class="container">
-    <p class="section-label">Ask Me</p>
-    <h2>Your AI marketing strategy assistant</h2>
-    <p style="color: var(--c-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
-      Ask anything about marketing strategy, campaign ideas, ad copy, content, or growth tactics. Powered by Claude.
-    </p>
-
-    <div class="chat-box">
-      <div class="chat-header">
-        <div class="chat-header-dot"></div>
-        <span class="chat-header-title">Marketing AI Assistant</span>
-        <span class="chat-header-sub">Powered by Claude</span>
-      </div>
-
-            <div class="chat-messages" id="chatMessages">
-        <div class="msg msg-ai">
-          <div class="msg-label">ASSISTANT</div>
-          Hi! I'm Alex's AI assistant, specialised in marketing strategy and campaign ideas. Below are sample responses — visit claude.ai to chat live.
-        </div>
-        <div style="font-size:0.75rem;color:var(--c-muted);padding:4px 0 8px;text-align:center;letter-spacing:.04em;font-weight:600;">— SAMPLE RESPONSES — OPEN CLAUDE.AI TO CHAT LIVE →</div>
-
-        <div class="msg msg-user">
-          <div class="msg-label">YOU</div>
-          <div>How do I improve my Google Ads CTR?</div>
-        </div>
-        <div class="msg msg-ai">
-          <div class="msg-label">ASSISTANT</div>
-          <div style="white-space:pre-wrap">Great question! Here are the top levers:
-• Headlines: Test 3–5 variations per ad group. Include the keyword in headline 1.
-• Description: Lead with the benefit, end with a CTA ("Start free", "Get quote today").
-• Ad strength: Aim for "Excellent" — Google rewards variety.
-• Negative keywords: Audit your search terms weekly to cut irrelevant spend.
-• Extensions: Add sitelinks, callouts, and structured snippets — they expand your ad real estate for free.</div>
-        </div>
-        <div class="msg msg-user">
-          <div class="msg-label">YOU</div>
-          <div>Write me a LinkedIn ad for a SaaS free trial</div>
-        </div>
-        <div class="msg msg-ai">
-          <div class="msg-label">ASSISTANT</div>
-          <div style="white-space:pre-wrap">Here are two variations:
-
-▸ Variation A
-Headline: Stop juggling spreadsheets.
-Body: [Product] gives ops teams one place to track, assign, and close tasks — in under 5 minutes to set up. Start your free 14-day trial.
-CTA: Start Free Trial
-
-▸ Variation B
-Headline: Your team is ready. Is your tooling?
-Body: Join 2,000+ ops leads who replaced 4 tools with [Product]. No credit card. No setup call.
-CTA: Try It Free</div>
-        </div>
-        <div class="msg msg-user">
-          <div class="msg-label">YOU</div>
-          <div>What's a good content repurposing workflow?</div>
-        </div>
-        <div class="msg msg-ai">
-          <div class="msg-label">ASSISTANT</div>
-          <div style="white-space:pre-wrap">Here's the workflow I recommend:
-1. Publish the long-form asset (blog post, webinar, report)
-2. Feed it to Claude with the prompt: "Extract 5 key insights and rewrite each as a standalone LinkedIn post"
-3. Ask for a Twitter/X thread from the same source
-4. Request 3 email subject line options for a nurture sequence
-5. Ask for a short-form video script (60–90 sec) for Reels/Shorts
-One piece of content → 10+ assets in about 30 minutes.</div>
-        </div>
-      </div>
-
-      <div class="chat-composer" style="justify-content:center;padding:1.25rem;">
-        <a href="https://claude.ai" target="_blank" rel="noopener" class="send-btn" style="text-decoration:none;padding:0.7rem 1.5rem;border-radius:8px;">
-          Open claude.ai to chat live →
-        </a>
-      </div>
-
-    <div style="background:rgba(8,145,178,0.08);border:1px solid rgba(8,145,178,0.25);border-radius:8px;padding:0.75rem 1rem;font-size:0.82rem;color:var(--c-muted);margin-top:1rem;">
-      <strong style="color:var(--c-accent-lt);">Claude.ai subscription required</strong> — No API key needed. Open <a href="https://claude.ai" target="_blank" style="color:var(--c-accent-lt);">claude.ai</a> in a browser to use this assistant live. Edit the About section and Q&amp;A pairs to match your own role.
+  <!-- ═══ GROUNDING (the human-readable record — also fed to the assistant) ═══ -->
+  <section id="about">
+    <div class="sec-head"><span class="label">01</span><h2>About</h2></div>
+    <p class="about">I'm a frontend developer with <strong>4 years</strong> building production React apps — the last two at Loop, a 20-person logistics startup, where I owned the customer dashboard end to end. I care about accessible, fast interfaces and design systems that keep a small team shipping consistently. I've mentored two junior devs and run our weekly frontend review.</p>
+    <div class="chips">
+      <span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Next.js</span>
+      <span class="chip">Testing Library</span><span class="chip">Playwright</span><span class="chip">Storybook</span>
+      <span class="chip">Accessibility / WCAG</span><span class="chip">Design systems</span><span class="chip">Node basics</span>
     </div>
   </section>
 
-<footer>
-  Built with Claude AI · HO2: Ask-Me AI Assistant · Forgemind AI Course
-</footer>
+  <section id="work">
+    <div class="sec-head"><span class="label">02</span><h2>Selected work</h2></div>
+    <div class="work">
+      <div class="proj">
+        <span class="k">Loop · Dashboard</span>
+        <h3>Customer shipment dashboard</h3>
+        <p>Rebuilt a slow, cluttered dashboard into a component-driven React app with a shared design system, so non-technical customers could track shipments without support.</p>
+        <p class="res">Result: <b>support tickets down ~30%</b>, first paint under 1.5s.</p>
+      </div>
+      <div class="proj">
+        <span class="k">Loop · Design system</span>
+        <h3>Storybook component library</h3>
+        <p>Set up a 40-component Storybook library with accessibility checks in CI so three product squads stopped rebuilding the same buttons and forms.</p>
+        <p class="res">Result: <b>new screens shipped ~2× faster</b>, zero a11y regressions.</p>
+      </div>
+      <div class="proj">
+        <span class="k">Side project</span>
+        <h3>Split — expense splitter PWA</h3>
+        <p>A small offline-first PWA for splitting group expenses, built solo with Next.js and IndexedDB to learn state sync and installable web apps.</p>
+        <p class="res">Result: <b>600+ users</b>, featured in a frontend newsletter.</p>
+      </div>
+      <div class="proj">
+        <span class="k">Team</span>
+        <h3>Frontend mentoring &amp; review</h3>
+        <p>Ran the weekly frontend review and mentored two junior developers from first PR to shipping features independently.</p>
+        <p class="res">Result: <b>onboarding time halved</b> for the last two hires.</p>
+      </div>
+    </div>
+    <div class="facts" style="margin-top:22px">
+      <div class="fact"><div class="n">4</div><div class="l">years frontend</div></div>
+      <div class="fact"><div class="n">2</div><div class="l">juniors mentored</div></div>
+      <div class="fact"><div class="n">40+</div><div class="l">shared components</div></div>
+    </div>
+  </section>
 
+  <!-- ═══ ASK ME (live, grounded in the record above) ═══ -->
+  <section id="ask">
+    <div class="sec-head"><span class="label">Ask me anything</span><h2>Put a recruiter question to my page</h2></div>
+    <div class="ask-note">This answers <b>live</b> using Claude, grounded only in the real material above — it won't invent experience I don't have. Anyone with a Claude account can ask it; when you send a question you'll be asked to sign in to your own Claude account first.</div>
+    <div class="setup" id="setup"><b>Almost there.</b> Live answers only work when this page runs as a <b>Claude Artifact</b>. Open it inside a Claude chat (with "Create AI-powered artifacts" turned on in Settings → Feature preview) and sign in. The profile above still reads fine on its own.</div>
+
+    <div class="panel">
+      <div class="transcript" id="transcript">
+        <div class="msg me"><div class="who">Maya's assistant</div><div class="b">Hi — I'm Maya's Ask-Me assistant. Ask me anything about her experience, skills or projects and I'll answer from her real record. Try a question below.</div></div>
+      </div>
+      <div class="suggest" id="suggest">
+        <button class="sug">Have you led a team?</button>
+        <button class="sug">Do you know React and TypeScript?</button>
+        <button class="sug">What's a project you're proud of?</button>
+      </div>
+      <form class="composer" id="composer" autocomplete="off">
+        <input id="q" type="text" placeholder="e.g. Have you shipped anything on accessibility?" aria-label="Your question" />
+        <button type="submit" id="send">Ask</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <span class="label">About this page</span>
+    A published Claude Artifact that answers grounded in Maya's real experience. Built by prompting Claude —
+    no code, no API key; live answers run on the visitor's own Claude account.
+    Live link: <code>[paste your published artifact share link here]</code>
+  </footer>
+
+</div>
+
+<script>
+  /* ── The grounding: the ONLY facts the assistant may use ─────────────── */
+  const PROFILE = `
+Name: Maya Chen
+Target role: Frontend Developer (mid-level, open to senior)
+Experience: 4 years building production React apps. Last 2 years at Loop, a 20-person logistics startup, owning the customer dashboard end to end.
+Skills: React, TypeScript, Next.js, Testing Library, Playwright, Storybook, accessibility (WCAG), design systems, basic Node.
+Leadership: Mentored 2 junior developers; runs the weekly frontend review. Halved onboarding time for the last two hires.
+Project — Customer shipment dashboard (Loop): rebuilt a slow, cluttered dashboard into a component-driven React app with a shared design system. Result: support tickets down ~30%, first paint under 1.5s.
+Project — Storybook component library (Loop): 40-component library with accessibility checks in CI, used by 3 product squads. Result: new screens shipped ~2x faster, zero accessibility regressions.
+Project — Split (side project): offline-first PWA for splitting group expenses, built solo with Next.js and IndexedDB. Result: 600+ users, featured in a frontend newsletter.
+Looking for: a product-minded team that values accessibility and design systems.
+`.trim();
+
+  const transcript = document.getElementById('transcript');
+  const form = document.getElementById('composer');
+  const input = document.getElementById('q');
+  const sendBtn = document.getElementById('send');
+  const liveOK = !!(window.claude && typeof window.claude.complete === 'function');
+  if(!liveOK){ document.getElementById('setup').style.display='block'; }
+
+  function bubble(kind, who, text){
+    const el = document.createElement('div');
+    el.className = 'msg ' + kind;
+    el.innerHTML = '<div class="who"></div><div class="b"></div>';
+    el.querySelector('.who').textContent = who;
+    el.querySelector('.b').textContent = text;
+    transcript.appendChild(el);
+    transcript.scrollTop = transcript.scrollHeight;
+    return el;
+  }
+  function thinking(){
+    const el = document.createElement('div');
+    el.className = 'msg me';
+    el.innerHTML = '<div class="who">Maya’s assistant</div><div class="dots"><span></span><span></span><span></span></div>';
+    transcript.appendChild(el);
+    transcript.scrollTop = transcript.scrollHeight;
+    return el;
+  }
+
+  async function ask(question){
+    bubble('you','You',question);
+    input.value=''; sendBtn.disabled=true;
+    const wait = thinking();
+
+    if(!liveOK){
+      wait.remove();
+      bubble('me','Maya’s assistant','To answer live, open this page as a Claude Artifact inside claude.ai and sign in — then ask me again. (This is running as a plain web page right now, so I can’t reach Claude.)');
+      sendBtn.disabled=false; input.focus(); return;
+    }
+    /* window.claude.complete(prompt: string) -> Promise<string>.
+       Anthropic changed this method's behaviour on 2025-07-31 — if it stops
+       working, confirm the current call inside claude.ai and adjust here. */
+    const prompt =
+      'You are the personal "Ask-Me" assistant for Maya Chen, speaking in the first person as Maya. '+
+      'Answer the visitor\'s question using ONLY the facts in the PROFILE below. '+
+      'Be warm, specific and concise (2–4 sentences). Never invent experience, employers, dates or skills that are not in the PROFILE. '+
+      'If the answer is not in the PROFILE, say you don\'t have that detail rather than guessing.\n\n'+
+      'PROFILE:\n'+PROFILE+'\n\nVisitor question: '+question+'\n\nAnswer as Maya:';
+    try{
+      const reply = await window.claude.complete(prompt);
+      wait.remove();
+      bubble('me','Maya’s assistant',(reply||'').trim() || 'Sorry, I didn\'t catch that — try asking another way.');
+    }catch(err){
+      wait.remove();
+      bubble('me','Maya’s assistant','Something went wrong reaching Claude just now. Please try again in a moment.');
+    }
+    sendBtn.disabled=false; input.focus();
+  }
+
+  form.addEventListener('submit', e=>{ e.preventDefault(); const q=input.value.trim(); if(q) ask(q); });
+  document.getElementById('suggest').addEventListener('click', e=>{
+    if(e.target.classList.contains('sug')) ask(e.target.textContent);
+  });
+</script>
 </body>
 </html>

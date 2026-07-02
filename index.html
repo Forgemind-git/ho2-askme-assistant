@@ -1,105 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HO2: Ask-Me AI Assistant — Forgemind AI Course</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#F8F9FA; color:#1a1a2e; }
-    :root { --color: #0891B2; }
-    header { background: var(--color); color:#fff; padding:40px 32px 32px; }
-    header .badge { font-size:13px; font-weight:700; letter-spacing:.08em; opacity:.8; text-transform:uppercase; margin-bottom:8px; }
-    header h1 { font-size:28px; font-weight:800; margin-bottom:8px; }
-    header p { font-size:15px; opacity:.85; max-width:640px; line-height:1.6; }
-    .sub-bar { background:#fff; border-left:4px solid var(--color); padding:14px 20px; margin:24px 32px; border-radius:4px; font-size:14px; color:#374151; line-height:1.6; box-shadow:0 1px 4px rgba(0,0,0,.07); }
-    .sub-bar strong { color:var(--color); }
-    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; padding:0 32px 40px; }
-    .card { background:#fff; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,.08); overflow:hidden; }
-    .card:hover { box-shadow:0 4px 16px rgba(0,0,0,.13); }
-    .card-top { background:var(--color); padding:14px 18px; display:flex; align-items:center; gap:10px; }
-    .card-num { background:rgba(255,255,255,.25); color:#fff; font-weight:800; font-size:12px; border-radius:20px; padding:2px 9px; }
-    .card-top h3 { color:#fff; font-size:14.5px; font-weight:700; }
-    .card-body { padding:16px 18px; }
-    .card-body p { font-size:13px; color:#4B5563; line-height:1.6; margin-bottom:14px; }
-    .btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; background:var(--color); color:#fff; text-decoration:none; border-radius:6px; font-size:13px; font-weight:600; }
-    .btn:hover { opacity:.88; }
-    footer { text-align:center; padding:24px; color:#9CA3AF; font-size:13px; border-top:1px solid #E5E7EB; margin-top:8px; }
-    @media(max-width:580px){ .grid{ grid-template-columns:1fr; padding:0 14px 28px; } header{ padding:24px 16px; } .sub-bar{ margin:14px 14px; } }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HO2 · Ask-Me AI Assistant — Forgemind AI Course</title>
+<style>
+  :root{
+    --ink:#191c24; --paper:#f2f3f6; --card:#ffffff; --muted:#5c6070; --hair:#e0e2ea;
+    --accent:#2748c6;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",Menlo,monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
+  a{color:inherit;text-decoration:none;}
+  .label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+
+  header{padding:64px 0 40px;}
+  .kicker{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);border:1px solid #cdd6f6;background:#e7ebfb;border-radius:2px;padding:4px 9px;margin-bottom:22px;}
+  header h1{font-family:var(--serif);font-weight:600;font-size:clamp(38px,7vw,58px);line-height:1.03;letter-spacing:-.01em;text-wrap:balance;}
+  header p{font-size:19px;color:var(--muted);max-width:40em;margin-top:16px;line-height:1.5;}
+
+  .callout{background:var(--card);border:1px solid var(--hair);border-left:3px solid var(--accent);
+    border-radius:6px;padding:16px 20px;margin:8px 0 40px;font-size:14.5px;color:#33384a;line-height:1.6;}
+  .callout b{color:var(--accent);}
+
+  .grid{display:grid;gap:16px;grid-template-columns:1fr;padding-bottom:24px;}
+  @media(min-width:620px){.grid{grid-template-columns:1fr 1fr;}}
+  .card{display:block;background:var(--card);border:1px solid var(--hair);border-radius:8px;padding:22px 22px 20px;
+    border-top:3px solid var(--a);transition:transform .15s,box-shadow .15s;}
+  .card:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(20,25,45,.08);}
+  .card .n{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--a);}
+  .card h3{font-family:var(--serif);font-weight:600;font-size:21px;margin:8px 0 6px;letter-spacing:-.01em;}
+  .card p{font-size:14.5px;color:var(--muted);line-height:1.55;}
+  .card .go{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:12.5px;color:var(--a);letter-spacing:.02em;}
+
+  .how{border-top:1px solid var(--hair);margin-top:24px;padding:36px 0 16px;}
+  .how h2{font-family:var(--serif);font-weight:600;font-size:24px;margin-bottom:14px;}
+  .how ol{margin:0 0 0 1.1em;padding:0;}
+  .how li{font-size:15px;margin-bottom:8px;line-height:1.55;max-width:44em;}
+  .how code{font-family:var(--mono);font-size:12.5px;background:#e7eaf1;padding:1px 5px;border-radius:3px;}
+  .note{font-size:13.5px;color:var(--muted);background:#fff6e5;border:1px solid #f0d59a;border-radius:6px;
+    padding:12px 15px;margin-top:18px;line-height:1.55;}
+  .note b{color:#9a5b00;}
+
+  footer{border-top:1px solid var(--hair);padding:28px 0 60px;color:var(--muted);font-size:13px;margin-top:24px;}
+</style>
 </head>
 <body>
+<div class="wrap">
 
-<header>
-  <div class="badge">HO2</div>
-  <h1>Ask-Me AI Assistant</h1>
-  <p>A hosted personal page that shows your role, how you use AI, and a live "Ask Me" demo — hosted free on GitHub Pages.</p>
-</header>
+  <header>
+    <span class="kicker">HO2 · Forgemind AI Course</span>
+    <h1>Ask-Me AI Assistant</h1>
+    <p>A shareable Claude Artifact that answers questions about <em>you</em> — live, grounded only in your real experience, with no code and no API key. Five worked examples below.</p>
+  </header>
 
-<div class="sub-bar">
-  <strong>Claude.ai subscription required</strong> — No API key needed. Open index.html in a browser (or view on GitHub Pages). Edit the About section and pre-written Q&amp;A pairs to match your role.
+  <div class="callout">
+    <b>Honest by design.</b> These pages answer live using Claude, running on the
+    <b>viewer's own Claude account</b> — anyone with a Claude account can ask, and they sign in first.
+    They are not anonymous public bots. Each artifact is grounded in real, hardcoded material, so it
+    answers from fact and won't invent experience.
+  </div>
+
+  <div class="grid">
+    <a class="card" href="./samples/sample-01/" style="--a:#2748c6">
+      <span class="n">Sample 01 · Job seeker</span>
+      <h3>Ask My CV</h3>
+      <p>A recruiter-facing page grounded in your experience, skills and projects — so anyone can ask "have you led a team?" and get a true answer.</p>
+      <span class="go">Open sample →</span>
+    </a>
+    <a class="card" href="./samples/sample-02/" style="--a:#d2513c">
+      <span class="n">Sample 02 · Portfolio</span>
+      <h3>Project concierge</h3>
+      <p>One link that tells the real story behind each project — the problem, the decisions, the result — grounded only in your own write-ups.</p>
+      <span class="go">Open sample →</span>
+    </a>
+    <a class="card" href="./samples/sample-03/" style="--a:#1e7a5e">
+      <span class="n">Sample 03 · Freelance leads</span>
+      <h3>First-contact answers</h3>
+      <p>Answers a prospect's questions about your services, pricing and process instantly — so leads don't go cold waiting for a reply.</p>
+      <span class="go">Open sample →</span>
+    </a>
+    <a class="card" href="./samples/sample-04/" style="--a:#7a3e9d">
+      <span class="n">Sample 04 · Speaker</span>
+      <h3>Booking bot</h3>
+      <p>Lets event organisers ask what you speak about and whether you fit their event — grounded in your talks, topics and background.</p>
+      <span class="go">Open sample →</span>
+    </a>
+    <a class="card" href="./samples/sample-05/" style="--a:#b5761f">
+      <span class="n">Sample 05 · Career changer</span>
+      <h3>Reframe my experience</h3>
+      <p>Reframes your past roles toward the job you want, answering "why are you qualified for this?" — honestly, from what you actually did.</p>
+      <span class="go">Open sample →</span>
+    </a>
+    <div class="card" style="--a:#5c6070;cursor:default">
+      <span class="n">The pattern</span>
+      <h3>How every sample works</h3>
+      <p>Each is a single-file artifact that hardcodes your real material and calls <code style="font-family:var(--mono);font-size:12px">window.claude.complete()</code> to answer live — no server, no key.</p>
+    </div>
+  </div>
+
+  <div class="how">
+    <h2>Build your own in Claude</h2>
+    <ol>
+      <li>In Claude.ai, turn on <b>Settings → Feature preview → "Create AI-powered artifacts"</b> (one time).</li>
+      <li>Open any sample's README, copy its example prompt, and paste it into a new Claude chat with your own details filled in.</li>
+      <li>Claude builds the page as an <b>Artifact</b>. Refine it in the chat until it sounds like you.</li>
+      <li>Click <b>Publish</b> to get a shareable link. Paste that link into the sample README where it says <code>[paste your published artifact share link here]</code>.</li>
+      <li>Anyone with a Claude account can now open the link and ask your page questions live.</li>
+    </ol>
+    <div class="note"><b>Good to know:</b> Anthropic changed how <code>window.claude.complete</code> behaves on 2025-07-31. If live answers stop working, open your artifact inside claude.ai and confirm the current way to call Claude — the feature may have shifted since these examples were written. No API key is ever required for the course.</div>
+  </div>
+
+  <footer>Forgemind AI · AI Productivity Essentials · HO2 · github.com/Forgemind-git/ho2-askme-assistant</footer>
+
 </div>
-
-<div class="grid">
-
-  <div class="card">
-    <div class="card-top">
-      <span class="card-num">01</span>
-      <h3>Digital Marketer AI Page</h3>
-    </div>
-    <div class="card-body">
-      <p>A personal AI page for a B2B SaaS digital marketer — covering ad copy, campaign analysis, content repurposing, and demand gen strategy.</p>
-      <a class="btn" href="./samples/sample-01/">View Sample →</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <span class="card-num">02</span>
-      <h3>Data Analyst AI Page</h3>
-    </div>
-    <div class="card-body">
-      <p>A personal AI page for an e-commerce data analyst — covering SQL generation, KPI interpretation, exec summaries, and anomaly investigation.</p>
-      <a class="btn" href="./samples/sample-02/">View Sample →</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <span class="card-num">03</span>
-      <h3>Teacher AI Page</h3>
-    </div>
-    <div class="card-body">
-      <p>A personal AI page for a secondary school science teacher — covering lesson planning, differentiation, student explanations, and starter activities.</p>
-      <a class="btn" href="./samples/sample-03/">View Sample →</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <span class="card-num">04</span>
-      <h3>HR Professional AI Page</h3>
-    </div>
-    <div class="card-body">
-      <p>A personal AI page for an HR Business Partner — covering performance plans, onboarding best practices, and inclusive job description writing.</p>
-      <a class="btn" href="./samples/sample-04/">View Sample →</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <span class="card-num">05</span>
-      <h3>Product Manager AI Page</h3>
-    </div>
-    <div class="card-body">
-      <p>A personal AI page for a fintech Product Manager — covering backlog prioritisation, PRD writing, and feature success measurement.</p>
-      <a class="btn" href="./samples/sample-05/">View Sample →</a>
-    </div>
-  </div>
-
-</div>
-
-<footer>Forgemind AI · Claude Course · HO2 · github.com/Forgemind-git/ho2-askme-assistant</footer>
-
 </body>
 </html>

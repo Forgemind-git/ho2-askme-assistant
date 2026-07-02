@@ -1,56 +1,77 @@
-# HO2 Sample 3 — Teacher AI Page
+# HO2 Sample 3 — Freelancer: "Ask About Working With Me"
 
 ## What you'll build
-A polished personal "Ask Me" page for a teacher (the example is Ms. Priya Sharma, a
-secondary-school science teacher). It shows her teaching approach, how she uses AI to plan
-lessons and support different learners, and an **Ask Me** section with worked example answers
-for students, parents and fellow educators — plus a button that opens Claude.ai for live
-chat. It's a single self-contained `index.html`: HTML, CSS, and a little JavaScript, no build
-step.
+An **AI-powered Claude Artifact** that stops leads going cold while they wait for a reply. It's a
+freelancer first-contact page grounded in your real **services, pricing and process**, with an
+**Ask Me** box that answers prospect questions **live** — "how much is a landing page?", "what's
+your process?", "do you offer retainers?" — from your actual details, never invented. You build it
+by chatting with Claude, then publish it and share the link. This folder's `index.html` is a
+finished, working example (Priya Nair, a freelance conversion copywriter) you can open, read, and copy.
+
+**Who can use it live:** anyone with a Claude account. It is **not** an anonymous public bot —
+when a visitor sends a question they're prompted to sign in to their **own** Claude account, and
+the usage counts against *their* account. Replace "a prospect just asks and gets an answer"
+in your head with "anyone with a Claude account can ask it live."
 
 ## Use it with your Claude.ai subscription
-No API key needed. This page runs entirely in the browser and uses your normal Claude.ai
-login for the "chat live" part.
+No API key needed. This runs on your normal Claude.ai login.
 
-1. Open **`index.html`** in your browser to see the finished page and its example answers.
-2. Open **Claude.ai** in another tab (your subscription — no API key, no billing, no terminal).
-3. Paste **the example prompt below** into Claude.ai and fill in your own details. Claude
-   will write your About section and a set of strong sample answers.
-4. Open `index.html` in a text editor and replace the example name, About cards, and Q&A
-   pairs with what Claude gave you. Save.
-5. Refresh the browser to see your version. The "Open claude.ai to chat live" button already
-   points visitors to your subscription.
+1. In Claude.ai, turn on **Settings → Feature preview → "Create AI-powered artifacts"** (one-time).
+2. Start a new chat and paste **the example prompt below**, filled in with your real services and prices.
+3. Claude builds the page as an **Artifact** on the right. Ask it in the chat to tweak wording,
+   colours or which questions show — until it feels like your business.
+4. Click **Publish** on the artifact to get a shareable link. Put that link in your bio, proposals,
+   or wherever leads first find you.
+5. Anyone with a Claude account who opens the link can ask your page questions live (they sign
+   in to their own account first).
+
+> **One caveat to know:** Anthropic changed how `window.claude.complete` behaves on 2025-07-31.
+> If live answers ever stop working, open the artifact inside claude.ai and confirm the current
+> way to call Claude from an artifact — the feature may have shifted since this was written.
 
 ## The example prompt
 Copy this into Claude.ai and fill in the parts in CAPITALS:
 
 ```
-I'm building a personal "Ask Me" web page that shows how I use AI as a teacher. Help me write the content.
+Build me a single-file HTML "Ask-Me" Claude Artifact that answers questions from prospects
+so leads don't go cold waiting for my reply.
 
-About me:
+It should be a clean personal page with: my name and what I do, a short About with a "how I
+work" note, a Services section (2–4 cards, each with what's included and a "From: PRICE" line),
+a small facts row about my process, and an "Ask Me" box.
+
+The Ask Me box must answer LIVE using window.claude.complete(prompt) — no API key. Hardcode
+my real services, prices and process into the page as the grounding, and instruct the assistant
+to answer ONLY from that grounding, in the first person as me, warm and specific, 2–4 sentences,
+quoting my real prices and process steps, and to say "I don't have that detail — happy to confirm
+on a call" instead of inventing anything. If window.claude.complete isn't available, show a
+friendly note telling the visitor to open it as a Claude Artifact and sign in. Do NOT add any
+contact or email-capture form — just answer questions honestly.
+
+My details:
 - Name: YOUR NAME
-- Role: e.g. Secondary School Science Teacher, Years 7–13
-- Subjects/curriculum: e.g. UK GCSE Biology, Chemistry, Physics
-- The main ways I use AI: e.g. lesson plans, quiz questions, plain-English explainers, differentiation ideas
+- What I do: e.g. freelance conversion copywriter for SaaS & e-commerce
+- Services (name → what's included → From price), 2–4 of them: DESCRIBE EACH
+- My process, step by step: e.g. discovery call, proposal in 2 days, 50% deposit, draft in a week
+- Availability: e.g. usually booking ~2 weeks out
+- Who I'm a good fit for (and who I'm not): DESCRIBE
 
-Please give me:
-1. A two-sentence intro for the "About Me" section.
-2. Four short "how I use AI" cards (a title + two sentences each).
-3. Clear, friendly sample answers to these three visitor questions:
-   - "Can you explain photosynthesis simply?"
-   - "How do I differentiate for mixed-ability classes?"
-   - "Give me a starter activity for Year 9 chemistry."
-
-Keep it warm and practical, written for students, parents and fellow teachers.
+Give me three good starter questions a prospect would ask, as clickable chips.
 ```
 
 ## Make it your own
-- Change the subject specialism (Physics vs Biology), year groups and curriculum (GCSE, IB, AP).
-- Replace the sample answers with explanations from topics you actually teach.
-- Swap the green palette via the CSS variables at the top of `<style>`.
+- Swap the grounding: everything in the `PROFILE` string (and the visible About/Services) is
+  yours to edit. Keep it truthful — the assistant can only be as honest as the material.
+- Change the accent colour via `--accent` at the top of the `<style>` block.
+- Edit the three suggested questions to match what prospects actually ask you.
+
+## How it works (30-second version)
+The page hardcodes your real services, prices and process and calls `window.claude.complete(prompt)`
+at runtime. That API is provided by Claude to published artifacts — it runs on the **viewer's**
+Claude subscription, so there's no key and no server. Grounding = your details pasted into the
+prompt with a firm "answer only from this" instruction, so quoted prices stay accurate.
 
 ## Optional — automate it with the API (advanced)
-You do **not** need this for the course. The page works fully on your Claude.ai subscription.
-If you later want the Ask Me box to answer live from your own server, you could add a small
-backend that calls the Anthropic API with a key kept server-side. That's an advanced extra,
-never required to finish this hands-on.
+You do **not** need this for the course. If you later want the page to answer without the
+viewer needing a Claude account, you'd host it yourself and call the Anthropic API with a key
+kept server-side. That's a separate, paid path and is never required to finish this hands-on.
