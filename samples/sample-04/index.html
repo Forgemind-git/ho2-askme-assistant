@@ -80,6 +80,26 @@
   .composer button:disabled{opacity:.45;cursor:not-allowed;}
   :focus-visible{outline:2px solid var(--primary);outline-offset:2px;}
   code{font-family:var(--mono);font-size:12px;background:#F1F0EA;padding:1px 5px;border-radius:4px;}
+  .steps ol{margin:0;padding-left:0;list-style:none;counter-reset:s;}
+  .steps li{position:relative;padding:0 0 22px 46px;}
+  .steps li:last-child{padding-bottom:0;}
+  .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:99px;background:var(--primary);color:#fff;font-family:var(--mono);font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center;}
+  .steps li:not(:last-child)::after{content:"";position:absolute;left:14px;top:34px;bottom:8px;width:2px;background:var(--border);}
+  .steps h4{font-size:15px;font-weight:600;margin:4px 0 6px;}
+  .steps p{font-size:14px;line-height:1.62;color:var(--textSec);margin:0 0 10px;}
+  .steps p:last-child{margin-bottom:0;}
+  .steps b{color:var(--text);font-weight:600;}
+  .pre{position:relative;background:#0F0F10;border-radius:8px;margin:10px 0;}
+  .pre pre{margin:0;padding:16px 16px 15px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.62;color:#E8E8E6;white-space:pre-wrap;word-break:break-word;}
+  .pre .copy{position:absolute;top:8px;right:8px;font-family:var(--mono);font-size:11px;color:#E8E8E6;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:5px;padding:4px 9px;cursor:pointer;transition:background .15s;}
+  .pre .copy:hover{background:rgba(255,255,255,.2);}
+  .fill{background:#FDF7EC;border:1px solid #F0D59A;border-radius:6px;padding:9px 12px;font-size:12.5px;color:#6b4e12;margin:8px 0 2px;line-height:1.5;}
+  .example-divider{display:flex;align-items:center;gap:12px;margin:46px 0 4px;}
+  .example-divider .line{flex:1;height:1px;background:var(--border);}
+  .example-divider .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--textMuted);white-space:nowrap;}
+  .tip{background:#E1F5EE;border:1px solid #A8DDCC;border-radius:8px;padding:14px 16px;font-size:13.5px;color:#0F5A46;line-height:1.6;margin-top:24px;display:flex;gap:10px;}
+  .tip svg{color:var(--green);flex-shrink:0;margin-top:1px;width:18px;height:18px;}
+  .tip b{color:#0F6E56;}
   footer{border-top:1px solid var(--border);margin-top:40px;padding-top:18px;font-size:12px;color:var(--textMuted);font-family:var(--mono);text-align:center;line-height:1.7;}
   @media(max-width:680px){.grid{grid-template-columns:1fr;} h1{font-size:26px;}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;}}
@@ -101,6 +121,66 @@
     <span class="pill live"><span class="d"></span>Answers live</span>
   </div>
   <p class="lead">Event organisers ask me the same booking questions over and over. Instead of a back-and-forth, ask my page — it answers what I speak about and whether I fit your event, live, from my real material.</p>
+
+  <!-- ═══ BUILD GUIDE (comes first — this is the recipe to follow) ═══ -->
+  <div class="section-h"><i data-lucide="target"></i> What you'll build</div>
+  <div class="card">
+    <p class="about-p">An <strong>AI-powered Claude Artifact</strong> — a small chat page that answers as <em>you</em>, grounded only in facts you give it. You build it by chatting with Claude in plain English: <strong>no code, no API key</strong>. Then you publish it as a shareable link. Anyone with a Claude account can open that link and ask questions, and Claude answers live from your material.</p>
+    <p class="about-p">The finished example lower down plays <strong>Marcus Bell, a keynote speaker</strong>, answering event-organiser questions. Follow the steps below with <strong>your own facts</strong> to make your own.</p>
+  </div>
+
+  <div class="section-h"><i data-lucide="list-checks"></i> Build it in Claude chat — step by step</div>
+  <div class="card steps">
+    <ol>
+      <li>
+        <h4>Turn on AI-powered artifacts</h4>
+        <p>In claude.ai, open <b>Settings → Feature preview</b> and switch on <b>“Create AI-powered artifacts”</b>. This lets an artifact call Claude at runtime (that's what makes the answers live). You only do this once.</p>
+      </li>
+      <li>
+        <h4>Start a new chat and paste the build prompt</h4>
+        <p>Open a fresh chat and paste the prompt below. It tells Claude to build the chat UI <em>and</em> pins it to your facts so it can't make things up.</p>
+        <div class="pre"><button class="copy">Copy</button><pre>Build an AI-powered artifact: a chat "Ask-Me" assistant that answers
+as me, in the first person, using ONLY the facts below. Keep answers
+warm, specific and 2-4 sentences. Never invent talks, events, claims
+or fees that aren't in the facts. For fee questions, say fees depend
+on format and travel and invite them to ask for a quote - never state
+a number. If something isn't in the facts, say you don't have that
+detail rather than guessing. Give it a clean chat UI with a few
+suggested questions and a message box.
+
+Facts about me:
+- Name: Marcus Bell - keynote speaker & workshop host on practical
+  AI adoption for non-technical teams.
+- 9 years in operations before going full-time speaking; 60+ events
+  across 12 countries; audiences from 30-person workshops up to
+  1,500-seat keynotes. Grounded, no-hype, always live demos.
+- Talks: "AI Without the Hype" (keynote, 45 min);
+  "Your First AI Workflow" (workshop, 3 hrs);
+  "The Human Skills AI Can't Replace" (fireside, 30 min);
+  "Adopting AI Responsibly" (panel, 60 min).
+- Format needs: confidence monitor + stable wifi for live demos;
+  can also present remotely. Travels from London. English.
+- Fees: not published - depend on format and travel.</pre></div>
+        <p class="fill"><b>Make it yours:</b> replace every line under “Facts about me” with your own name, background, talks/projects, needs and anything you're happy to answer about. The more concrete the facts, the better the answers.</p>
+      </li>
+      <li>
+        <h4>Watch Claude render it as a live Artifact, and test it</h4>
+        <p>Claude builds the chat and it appears in the <b>Artifact panel</b> on the right — already interactive. Ask it three real questions, e.g. the ones below, and check every answer is true to your facts and never invented.</p>
+        <div class="pre"><button class="copy">Copy</button><pre>What do you speak about?
+Are you a fit for a fintech conference?
+What do you need on stage?</pre></div>
+        <p>If an answer drifts or invents detail, tell Claude in the same chat — e.g. <em>“don't mention any fee number”</em> or <em>“keep answers to 3 sentences”</em> — and it rebuilds the artifact.</p>
+      </li>
+      <li>
+        <h4>Publish and share it</h4>
+        <p>Use the artifact's <b>Publish / Share</b> control to get a public link, then drop that link on your CV, site or email. Two things to know: viewers <b>need their own Claude account</b> (answers run on their account, so it isn't an anonymous public bot), and the live answers <b>only work inside claude.ai</b> — the same file opened as a plain web page can't reach Claude.</p>
+      </li>
+    </ol>
+  </div>
+
+  <div class="tip"><i data-lucide="sparkles"></i><span><b>Subscription tip:</b> everything here runs on a normal Claude subscription — no API key, no billing setup. “Create AI-powered artifacts” calls Claude for you at runtime, and each viewer's questions run on their own Claude plan.</span></div>
+
+  <div class="example-divider"><span class="line"></span><span class="lbl">Example — this artifact runs inside claude.ai</span><span class="line"></span></div>
 
   <!-- ═══ GROUNDING (the human-readable record — also fed to the assistant) ═══ -->
   <div class="section-h"><i data-lucide="user"></i> About</div>
@@ -250,6 +330,17 @@ Not a fit for: deep-technical machine-learning research conferences.
   form.addEventListener('submit', e=>{ e.preventDefault(); const q=input.value.trim(); if(q) ask(q); });
   document.getElementById('suggest').addEventListener('click', e=>{
     if(e.target.classList.contains('sug')) ask(e.target.textContent);
+  });
+
+  /* ── Copy buttons on the build-guide prompt blocks ───────────────────── */
+  document.addEventListener('click', e=>{
+    const btn = e.target.closest('.copy');
+    if(!btn) return;
+    const pre = btn.parentElement.querySelector('pre');
+    navigator.clipboard.writeText(pre.textContent).then(()=>{
+      const t = btn.textContent; btn.textContent = 'Copied';
+      setTimeout(()=>{ btn.textContent = t; }, 1400);
+    });
   });
 </script>
 </body>
