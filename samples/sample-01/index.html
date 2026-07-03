@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ask Maya Chen — Frontend Developer · ForgeMind AI</title>
+<title>Build an Ask-Me AI Assistant — example: Maya Chen — Frontend Developer · ForgeMind AI</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
@@ -84,6 +84,30 @@
   .composer button:disabled{opacity:.45;cursor:not-allowed;}
   :focus-visible{outline:2px solid var(--primary);outline-offset:2px;}
   code{font-family:var(--mono);font-size:12px;background:#F1F0EA;padding:1px 5px;border-radius:4px;}
+  /* build-guide additions */
+  .lead2{font-size:16px;color:var(--textSec);line-height:1.55;max-width:46em;margin:0;}
+  .lead2 b{color:var(--text);font-weight:600;}
+  .what{font-size:14.5px;line-height:1.62;margin:0 0 10px;color:var(--text);}
+  .what:last-child{margin-bottom:0;} .what b{font-weight:600;}
+  .steps{list-style:none;counter-reset:s;margin:0;padding:0;}
+  .steps>li{counter-increment:s;position:relative;padding:0 0 24px 46px;}
+  .steps>li:last-child{padding-bottom:0;}
+  .steps>li::before{content:counter(s);position:absolute;left:0;top:-2px;width:30px;height:30px;border-radius:99px;background:var(--primary);color:#fff;font-family:var(--mono);font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center;}
+  .steps>li::after{content:"";position:absolute;left:14px;top:32px;bottom:4px;width:1px;background:var(--border);}
+  .steps>li:last-child::after{display:none;}
+  .steps h4{font-size:15px;font-weight:600;margin:4px 0 6px;}
+  .steps p{font-size:13.5px;line-height:1.58;color:var(--textSec);margin:0 0 8px;}
+  .steps p:last-child{margin-bottom:0;} .steps b{color:var(--text);font-weight:600;}
+  .pre{position:relative;background:#17171A;border:1px solid #2A2A2E;border-radius:8px;margin:8px 0;}
+  .pre pre{margin:0;padding:14px 44px 14px 16px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.6;color:#E6E6E6;white-space:pre-wrap;}
+  .pre .copy{position:absolute;top:8px;right:8px;font-family:var(--font);font-size:11px;font-weight:600;color:#E6E6E6;background:#2A2A2E;border:1px solid #3A3A40;border-radius:5px;padding:4px 9px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;}
+  .pre .copy:hover{background:#3A3A40;} .pre .copy svg{width:13px;height:13px;}
+  .pre .copy.done{color:#7EE0C0;border-color:var(--green);}
+  .persona-name{font-size:20px;font-weight:700;margin:14px 0 2px;letter-spacing:-.01em;}
+  .example-head{border-top:2px solid var(--border);margin-top:46px;padding-top:28px;}
+  .tip{background:#E1F5EE;border:1px solid #A9DECB;border-radius:8px;padding:14px 16px;font-size:13.5px;color:#0d5a47;line-height:1.55;margin-top:30px;display:flex;gap:10px;}
+  .tip svg{color:var(--green);flex-shrink:0;margin-top:1px;width:18px;height:18px;}
+  .tip b{color:#0d5a47;font-weight:600;}
   footer{border-top:1px solid var(--border);margin-top:40px;padding-top:18px;font-size:12px;color:var(--textMuted);font-family:var(--mono);text-align:center;line-height:1.7;}
   @media(max-width:680px){.grid{grid-template-columns:1fr;} h1{font-size:26px;}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;}}
@@ -98,13 +122,73 @@
 <div class="wrap">
 
   <div class="eyebrow">HO2 · Sample 01 · Job seeker</div>
-  <h1>Maya Chen</h1>
+  <h1>Build an AI-powered “Ask-Me” assistant</h1>
+  <p class="lead2">A chat that answers questions from <b>your own info</b> — published as a shareable Claude Artifact. No code and no API key: you build it by describing it in a Claude chat, and it runs live on your Claude subscription.</p>
+
+  <div class="section-h"><i data-lucide="target"></i> What you’ll build</div>
+  <div class="card">
+    <p class="what">An <b>“Ask-Me” assistant</b>: a small chat, grounded only in the facts you give it, that answers as you in the first person and never invents anything you didn’t tell it. Anyone with a Claude account can open the shared link and put real questions to it.</p>
+    <p class="what">Follow the steps below to build your own. Scroll to the bottom to see a finished <b>example</b> — Maya Chen’s recruiter-facing assistant — running live inside claude.ai.</p>
+  </div>
+
+  <div class="section-h"><i data-lucide="wrench"></i> Build it in Claude chat — step by step</div>
+  <div class="card">
+    <ol class="steps">
+      <li>
+        <h4>Turn on AI-powered artifacts</h4>
+        <p>In claude.ai, open <b>Settings → Feature preview</b> and switch on <b>“Create AI-powered artifacts.”</b> This lets an artifact call Claude while it runs — that’s what makes your assistant answer live.</p>
+      </li>
+      <li>
+        <h4>Start a new chat and paste this build prompt</h4>
+        <p>Open a new chat and paste the prompt below. It tells Claude exactly what to build and how it must behave.</p>
+        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>Build an AI-powered artifact: an "Ask-Me" chat assistant for my job search.
+
+It should speak in the first person as me, a frontend developer, and answer a
+recruiter's questions using ONLY the FACTS below. Rules:
+- Warm, specific and concise — 2 to 4 sentences.
+- Never invent employers, dates, skills or results that aren't in the FACTS.
+- If something isn't in the FACTS, say you don't have that detail instead of guessing.
+
+Show it as a clean chat with 3 suggested starter questions and an input box.
+
+FACTS:
+&lt;paste your info — see the next step&gt;</pre></div>
+      </li>
+      <li>
+        <h4>Swap in your own info</h4>
+        <p>Replace the <code>FACTS</code> block with your real details — this is the <b>only</b> material your assistant may use, so keep it short and true.</p>
+        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>Name: &lt;your name&gt;
+Target role: &lt;e.g. Frontend Developer, mid to senior&gt;
+Experience: &lt;years + where you've worked, one line&gt;
+Skills: &lt;the tools and areas you actually know&gt;
+Leadership: &lt;any mentoring / leading — or delete this line&gt;
+Project 1: &lt;what you built&gt; — Result: &lt;the number or outcome&gt;
+Project 2: &lt;what you built&gt; — Result: &lt;the number or outcome&gt;
+Looking for: &lt;the kind of team / role you want&gt;</pre></div>
+      </li>
+      <li>
+        <h4>Test it live</h4>
+        <p>Claude renders a live chat Artifact on the right. Sign in if asked, then try three real questions:</p>
+        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>Have you led a team?
+Do you know React and TypeScript?
+What's a project you're proud of?</pre></div>
+        <p>Every answer should stay true to your facts. If one drifts, just reply in the chat: <code>Only use the FACTS — don't invent anything</code> and Claude rebuilds it.</p>
+      </li>
+      <li>
+        <h4>Publish and share</h4>
+        <p>Open the artifact’s <b>Share</b> menu, publish it, and copy the link. Note: it only runs <b>inside claude.ai</b>, and each visitor needs their own Claude account to ask it live — it won’t answer if you host the plain HTML on a normal website.</p>
+      </li>
+    </ol>
+  </div>
+
+  <div class="section-h example-head"><i data-lucide="sparkles"></i> Example — this artifact runs inside claude.ai</div>
+  <p class="lead" style="max-width:46em;">Here’s a finished assistant built with exactly these steps. Ask it a recruiter question and it answers from Maya’s real record — nothing invented.</p>
+  <div class="persona-name">Maya Chen</div>
   <p class="role">Frontend Developer — React, TypeScript, design systems</p>
   <div class="pills">
     <span class="pill role">Open to frontend roles</span>
     <span class="pill live"><span class="d"></span>Answers live</span>
   </div>
-  <p class="lead">Instead of hoping you read to the bottom of my CV, ask my page directly. It answers from my real work — nothing invented.</p>
 
   <!-- ═══ GROUNDING (the human-readable record — also fed to the assistant) ═══ -->
   <div class="section-h"><i data-lucide="user"></i> About</div>
@@ -170,11 +254,23 @@
     </form>
   </div>
 
+  <div class="tip"><i data-lucide="badge-check"></i><div><b>Subscription tip:</b> this whole build runs on your <b>Claude subscription</b> — no API key, no billing setup. You describe the assistant in a chat, Claude builds and hosts it as an Artifact, and it answers live on each visitor’s own Claude plan. It’s the fastest, cheapest way to ship an AI tool people can actually use.</div></div>
+
   <footer>A published Claude Artifact that answers grounded in Maya's real experience — no code, no API key; live answers run on the visitor's own Claude account.<br>Live link: <code>[paste your published artifact share link here]</code><br>HO2 · Solo · ForgeMind AI — AI Productivity Essentials · Module M5 (Week 2)</footer>
 
 </div>
 
-<script>lucide.createIcons();</script>
+<script>
+  function copyPre(btn){
+    const pre = btn.parentElement.querySelector('pre');
+    navigator.clipboard.writeText(pre.innerText).then(function(){
+      btn.classList.add('done');
+      const s = btn.querySelector('span'); const old = s.textContent;
+      s.textContent = 'Copied'; setTimeout(function(){ btn.classList.remove('done'); s.textContent = old; }, 1600);
+    });
+  }
+  lucide.createIcons();
+</script>
 <script>
   /* ── The grounding: the ONLY facts the assistant may use ─────────────── */
   /* ╔══════════════════════════════════════════════════════════════════╗
