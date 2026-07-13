@@ -315,9 +315,35 @@ Leave everything else exactly as it is.</pre></div>
 
         <div class="steps" style="margin-top:16px;">
           <div class="step"><span class="n"></span><p>In claude.ai, open your artifact’s <b>“···” menu</b> and copy or download its code. Save it as <code>index.html</code>.</p></div>
-          <div class="step"><span class="n"></span><p>Save the exact material you grounded it in as <code>grounding.md</code>. This is what makes your work checkable — the assistant may only say what is in this file.</p></div>
-          <div class="step"><span class="n"></span><p>Write the <b>README</b> from the template below and paste in your <b>published artifact link</b>.</p></div>
+          <div class="step"><span class="n"></span><p><b>Staying in the same chat</b>, paste the prompt below. Claude writes the other three files for you — <code>grounding.md</code>, <code>README.md</code> and <code>.gitignore</code>.</p></div>
+          <div class="step"><span class="n"></span><p>Paste your <b>published artifact link</b> into the README where it says so, and check it against the shape further down.</p></div>
           <div class="step"><span class="n"></span><p>Create an empty repo called <code>ho2-askme-assistant</code> on GitHub, then run the commands below. <code>git branch -M main</code> matters — older Git still calls the first branch <code>master</code>, and the push would fail.</p></div>
+        </div>
+
+        <div class="pcard" style="margin-top:12px;">
+          <div class="plabel"><i data-lucide="files"></i> Ask Claude for the other three files</div>
+          <div class="psub">Paste this into the <b>same chat</b> where you built the artifact — don’t start a new one.</div>
+          <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>The artifact works. Now write the three supporting files for my GitHub repo.
+Give me each one as its own code block I can copy straight out.
+
+1. grounding.md — the FACTS exactly as I gave them to you. Do not add,
+   improve or invent anything. This file is the record of what the
+   assistant is allowed to say.
+
+2. README.md — with:
+   - a title and a one-line description
+   - "Published artifact: &lt;paste your link here&gt;" as a placeholder near the top
+   - what it is: a Claude Artifact that answers live, grounded only in grounding.md,
+     with no API key and no server
+   - who can use it live: anyone with a Claude account — they sign in to their OWN
+     account and the usage counts against theirs. It is not an anonymous public bot.
+   - what it refuses to do: it never invents &lt;prices / dates / claims&gt;, and says so
+     when the answer is not in the grounding
+
+3. .gitignore — for a plain single-page HTML project.
+
+Do NOT rebuild or re-print the artifact.</pre></div>
+          <div class="pwhy"><b>Why this is nearly free:</b> Claude already has your FACTS and your artifact in this chat’s context — asking in a new chat would mean pasting it all again. And the last line earns its keep: without <b>“do not rebuild the artifact”</b>, Claude will helpfully re-print the whole page, which is the single most expensive thing you can ask it for.</div>
         </div>
 
         <div class="pcard" style="margin-top:12px;">
@@ -331,7 +357,8 @@ git push -u origin main</pre></div>
         </div>
 
         <div class="pcard">
-          <div class="plabel"><i data-lucide="file-text"></i> README template</div>
+          <div class="plabel"><i data-lucide="file-text"></i> What a good README looks like</div>
+          <div class="psub">Claude writes this for you from the prompt above — check what it gives you against this shape.</div>
           <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre># Ask-Me Assistant — &lt;what it answers questions about&gt;
 
 **Published artifact:** &lt;paste your claude.ai share link here&gt;
