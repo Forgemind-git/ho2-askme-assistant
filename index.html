@@ -49,7 +49,8 @@
     border-top:1px solid var(--border);}
   /* main — full width */
   main{flex:1;min-width:0;overflow-y:auto;padding:34px 44px 72px;}
-  .maxw{max-width:1180px;}
+  .maxw{max-width:none;}
+  .maxw > section:first-child .section-h{margin-top:6px;}
   .eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);}
   h1{font-size:32px;font-weight:700;margin:8px 0 14px;letter-spacing:-.01em;}
   .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px;}
@@ -66,7 +67,7 @@
   .done .val{font-size:16px;font-weight:600;margin-top:4px;line-height:1.45;}
   .section-h{display:flex;align-items:center;gap:9px;font-size:20px;font-weight:600;margin:40px 0 14px;}
   .section-h svg{width:20px;height:20px;color:var(--primary);}
-  .lead{font-size:14px;color:var(--textSec);line-height:1.75;max-width:900px;}
+  .lead{font-size:14px;color:var(--textSec);line-height:1.75;max-width:none;}
   .lead b{color:var(--text);}
   code{font-family:var(--mono);font-size:12px;background:#F1F0EA;padding:1px 5px;border-radius:4px;}
   /* sample grid — fills the width */
@@ -80,21 +81,25 @@
   .sample .st{font-size:15px;font-weight:600;}
   .sample p{font-size:13px;line-height:1.55;color:var(--textSec);margin:0;flex:1;}
   .sample .succ{font-size:12px;color:var(--green);font-weight:500;line-height:1.4;}
-  .sample .open{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;margin-top:2px;
-    background:#FCEBEB;color:var(--primary);font-size:12px;font-weight:600;font-family:var(--mono);
-    padding:7px 13px;border-radius:7px;transition:background .12s;}
-  .sample .open:hover{background:var(--primary);color:#fff;}
-  .sample .open svg{width:14px;height:14px;}
+  .sample .scenario{font-size:13px;line-height:1.6;color:var(--textSec);margin:0;}
+  .sample .scenario b{color:var(--text);font-weight:600;}
+  .sample .task .tlabel{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--textMuted);margin-bottom:7px;}
+  .sample .task ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:1.5;color:var(--text);}
+  .sample .task li{padding-left:3px;}
+  .sample .task li b{font-weight:600;}
+  .sample .foot{margin-top:auto;display:flex;flex-direction:column;gap:8px;padding-top:6px;}
+  .sample .hint{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--textMuted);}
+  .sample .hint svg{width:13px;height:13px;color:var(--primary);}
   /* steps */
   .steps{counter-reset:s;display:flex;flex-direction:column;gap:12px;background:var(--cardBg);border:1px solid var(--border);
-    border-radius:8px;box-shadow:var(--shadowSm);padding:20px 22px;max-width:900px;}
+    border-radius:8px;box-shadow:var(--shadowSm);padding:20px 22px;max-width:none;}
   .step{display:flex;gap:13px;align-items:flex-start;}
   .step .n{counter-increment:s;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--primary);
     border:1.5px solid var(--border);border-radius:99px;width:27px;height:27px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
   .step .n::before{content:counter(s);}
   .step p{font-size:13.5px;line-height:1.55;margin:3px 0;}
   /* tip */
-  .tip{background:#FDF6F6;border:1px solid #F3C6C6;border-radius:8px;padding:16px 20px;margin-top:8px;max-width:900px;}
+  .tip{background:#FDF6F6;border:1px solid #F3C6C6;border-radius:8px;padding:16px 20px;margin-top:8px;max-width:none;}
   .tip .th{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--primary);margin-bottom:6px;}
   .tip .th svg{width:16px;height:16px;}
   .tip ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--textSec);line-height:1.65;}
@@ -112,97 +117,103 @@
       <a class="side-back" href="https://course.srv879786.hstgr.cloud/"><i data-lucide="grid-2x2"></i> All Hands-On</a>
       <div class="side-label">On this page</div>
       <nav class="nav">
-        <a href="#overview" class="active"><i data-lucide="target"></i> Overview</a>
-        <a href="#build"><i data-lucide="cpu"></i> What you build</a>
+        <a href="#build" class="active"><i data-lucide="cpu"></i> What this is</a>
         <a href="#samples"><i data-lucide="list-checks"></i> Problem statements</a>
-        <a href="#howto"><i data-lucide="git-branch"></i> How to use</a>
-        <a href="#tips"><i data-lucide="battery-charging"></i> Pro-plan tips</a>
+        <a href="#howto"><i data-lucide="play"></i> How it works</a>
       </nav>
       <div class="side-foot">ForgeMind AI<br>AI Productivity Essentials<br>HO2 · Module M5 · Week 2</div>
     </aside>
 
     <main>
      <div class="maxw">
-      <section id="overview">
-        <div class="eyebrow">Hands-On 2 · Week 2 · Module M5 — Claude Chat — Start Building</div>
-        <h1>"Ask-Me" AI Assistant</h1>
-        <div class="pills">
-          <span class="pill wk">Week 2</span>
-          <span class="pill mod">M5 · Claude Chat — Start Building</span>
-          <span class="pill fmt">Solo</span>
-          <span class="pill kind">Artifact</span>
-        </div>
-        <div class="done">
-          <div class="ic"><i data-lucide="target"></i></div>
-          <div>
-            <div class="cap">Done when</div>
-            <div class="val">A shareable AI-powered Claude Artifact that answers live, grounded in your info.</div>
-          </div>
-        </div>
-      </section>
-
       <section id="build">
-        <div class="section-h"><i data-lucide="cpu"></i> What you build</div>
-        <p class="lead">This is your <b>Week-2 Claude Artifact</b>. You build a single-file <b>"Ask-Me" chat</b> — grounded in your own real material (CV, projects, services, talks) — that calls <code>window.claude.complete()</code> to answer live. No server, no API key: it runs on the visitor's own Claude.ai login. The deliverable is the artifact code, the <b>published share link</b>, and a README covering what it is and who can use it live. Anyone with a Claude account can open your link and ask real questions — and get accurate answers drawn only from your content.</p>
+        <div class="section-h"><i data-lucide="cpu"></i> What this is</div>
+        <p class="lead">Build an <b>“Ask-Me” chat</b> — a <b>Claude Artifact</b> grounded in your own real material (CV, projects, services, talks) that answers questions <b>live</b>. No code editor, no server, no API key: Claude builds it inside the chat, and it runs on the viewer’s own Claude login. Pick one of the five tasks below, ground it in <b>your real information</b>, publish it, and prove it by asking it <b>three real questions</b>.</p>
       </section>
 
       <section id="samples">
         <div class="section-h"><i data-lucide="list-checks"></i> Pick a problem statement</div>
-        <p class="lead" style="margin-bottom:16px;">Each sample is a real, hosted artifact — the material, the prompt and a live-answering chat all wired up. Open one live, or bring your own "Ask-Me" idea (get it approved first).</p>
+        <p class="lead" style="margin-bottom:16px;">Each one below is a ready-to-run task — a real scenario, clear steps, and the questions it has to answer. These five are just starting points: <b>feel free to use any other problem statement of your own</b>. To see the finished shape, open its sample using the link on each card. <b>Note:</b> a sample shows the interface and its material, but it only <b>answers live</b> once it is opened as an artifact inside claude.ai — that is where Claude is reachable.</p>
         <div class="grid">
           <div class="sample">
             <div class="top"><span class="num">1</span><span class="st">Ask My CV</span></div>
-            <p>You are job-hunting and tired of recruiters skimming past your CV. Build an AI-powered Claude Artifact — an "Ask-Me" chat grounded in your experience, projects and skills — so anyone with a Claude account can ask "have you led a team?" or "do you know React?" and get an accurate answer from your real material.</p>
-            <span class="succ">✓ a published artifact where three sample questions answer correctly, live</span>
-            <a class="open" href="https://course.srv879786.hstgr.cloud/samples/ho2-askme-assistant/sample-01/" target="_blank"><i data-lucide="external-link"></i> Open live sample</a>
+            <div class="scenario">You are job-hunting and recruiters <b>skim straight past your CV</b>. You want anyone with a Claude account to be able to <b>ask it questions instead</b> — and get answers from your real experience.</div>
+            <div class="task"><div class="tlabel">Your task</div><ol>
+              <li>Gather <b>your experience, projects and skills</b> as plain text — this is all the assistant is allowed to say.</li>
+              <li>In Claude, turn on <b>“Create AI-powered artifacts”</b> (Settings → Feature preview).</li>
+              <li>Ask Claude to build an <b>“Ask-Me” chat artifact</b> grounded <b>only</b> in that material.</li>
+              <li><b>Publish it</b> and test “have you led a team?”, “do you know React?” — each must answer correctly from your own text, with nothing invented.</li>
+            </ol></div>
+            <div class="foot">
+              <a class="hint" href="samples/sample-01/"><i data-lucide="arrow-up-right"></i> Open Sample 1</a>
+            </div>
           </div>
           <div class="sample">
             <div class="top"><span class="num">2</span><span class="st">Project concierge</span></div>
-            <p>As a freelancer with a scattered portfolio, you want one link that sells your work. Build an AI-powered Claude Artifact that explains each project, the problem it solved and the decisions behind it, grounded only in your own write-ups.</p>
-            <span class="succ">✓ a Claude-using visitor can ask about any project and get the real story</span>
-            <a class="open" href="https://course.srv879786.hstgr.cloud/samples/ho2-askme-assistant/sample-02/" target="_blank"><i data-lucide="external-link"></i> Open live sample</a>
+            <div class="scenario">You freelance and your portfolio is <b>scattered across links</b>. You want <b>one link that sells the work</b> — explaining each project, the problem it solved and the decisions behind it.</div>
+            <div class="task"><div class="tlabel">Your task</div><ol>
+              <li>Gather <b>a write-up of each project — the problem, what you did, the decisions, the result</b> as plain text — this is all the assistant is allowed to say.</li>
+              <li>In Claude, turn on <b>“Create AI-powered artifacts”</b> (Settings → Feature preview).</li>
+              <li>Ask Claude to build an <b>“Ask-Me” chat artifact</b> grounded <b>only</b> in that material.</li>
+              <li><b>Publish it</b> and test three questions about different projects — each must answer correctly from your own text, with nothing invented.</li>
+            </ol></div>
+            <div class="foot">
+              <a class="hint" href="samples/sample-02/"><i data-lucide="arrow-up-right"></i> Open Sample 2</a>
+            </div>
           </div>
           <div class="sample">
             <div class="top"><span class="num">3</span><span class="st">First-contact answers</span></div>
-            <p>You freelance and lose leads to slow replies. Build an AI-powered Claude Artifact grounded in your services, pricing and process that answers a prospect's questions about working with you, instantly.</p>
-            <span class="succ">✓ test questions about your pricing and process answer accurately from your content</span>
-            <a class="open" href="https://course.srv879786.hstgr.cloud/samples/ho2-askme-assistant/sample-03/" target="_blank"><i data-lucide="external-link"></i> Open live sample</a>
+            <div class="scenario">You freelance and <b>lose leads to slow replies</b>. You want a prospect to get instant, accurate answers about your <b>services, pricing and process</b>.</div>
+            <div class="task"><div class="tlabel">Your task</div><ol>
+              <li>Gather <b>your services, pricing and process</b> as plain text — this is all the assistant is allowed to say.</li>
+              <li>In Claude, turn on <b>“Create AI-powered artifacts”</b> (Settings → Feature preview).</li>
+              <li>Ask Claude to build an <b>“Ask-Me” chat artifact</b> grounded <b>only</b> in that material.</li>
+              <li><b>Publish it</b> and test “what do you charge?”, “how do you work?” — each must answer correctly from your own text, with nothing invented.</li>
+            </ol></div>
+            <div class="foot">
+              <a class="hint" href="samples/sample-03/"><i data-lucide="arrow-up-right"></i> Open Sample 3</a>
+            </div>
           </div>
           <div class="sample">
             <div class="top"><span class="num">4</span><span class="st">Booking bot</span></div>
-            <p>You are a speaker and creator fielding the same booking questions over and over. Build an AI-powered Claude Artifact grounded in your talks, topics and background so event organisers can ask what you speak about and whether you fit their event.</p>
-            <span class="succ">✓ a shared artifact that answers three organiser questions from your real material</span>
-            <a class="open" href="https://course.srv879786.hstgr.cloud/samples/ho2-askme-assistant/sample-04/" target="_blank"><i data-lucide="external-link"></i> Open live sample</a>
+            <div class="scenario">You are a speaker fielding <b>the same booking questions over and over</b>. You want organisers to ask what you speak about and whether you <b>fit their event</b>.</div>
+            <div class="task"><div class="tlabel">Your task</div><ol>
+              <li>Gather <b>your talks, topics and background</b> as plain text — this is all the assistant is allowed to say.</li>
+              <li>In Claude, turn on <b>“Create AI-powered artifacts”</b> (Settings → Feature preview).</li>
+              <li>Ask Claude to build an <b>“Ask-Me” chat artifact</b> grounded <b>only</b> in that material.</li>
+              <li><b>Publish it</b> and test three organiser questions — each must answer correctly from your own text, with nothing invented.</li>
+            </ol></div>
+            <div class="foot">
+              <a class="hint" href="samples/sample-04/"><i data-lucide="arrow-up-right"></i> Open Sample 4</a>
+            </div>
           </div>
           <div class="sample">
             <div class="top"><span class="num">5</span><span class="st">Reframe my experience</span></div>
-            <p>You are switching careers and your old titles do not signal your new target role. Build an AI-powered Claude Artifact grounded in your past experience that reframes it toward the role you want, answering "why are you qualified for this?".</p>
-            <span class="succ">✓ a published artifact that convincingly reframes three past roles toward the target</span>
-            <a class="open" href="https://course.srv879786.hstgr.cloud/samples/ho2-askme-assistant/sample-05/" target="_blank"><i data-lucide="external-link"></i> Open live sample</a>
+            <div class="scenario">You are <b>switching careers</b> and your old job titles do not signal the role you want. You want your past experience explained <b>toward the target role</b>.</div>
+            <div class="task"><div class="tlabel">Your task</div><ol>
+              <li>Gather <b>your past roles, what you actually did, and the role you are targeting</b> as plain text — this is all the assistant is allowed to say.</li>
+              <li>In Claude, turn on <b>“Create AI-powered artifacts”</b> (Settings → Feature preview).</li>
+              <li>Ask Claude to build an <b>“Ask-Me” chat artifact</b> grounded <b>only</b> in that material.</li>
+              <li><b>Publish it</b> and test “why are you qualified for this?” on three past roles — each must answer correctly from your own text, with nothing invented.</li>
+            </ol></div>
+            <div class="foot">
+              <a class="hint" href="samples/sample-05/"><i data-lucide="arrow-up-right"></i> Open Sample 5</a>
+            </div>
           </div>
         </div>
       </section>
 
       <section id="howto">
-        <div class="section-h"><i data-lucide="git-branch"></i> How to use this repo</div>
+        <div class="section-h"><i data-lucide="play"></i> How it works</div>
         <div class="steps">
-          <div class="step"><span class="n"></span><p>Click <b>Use this template</b> to create your own copy.</p></div>
-          <div class="step"><span class="n"></span><p>Open a live sample above, then swap in <b>your own real material</b> and publish the artifact from Claude to get your share link.</p></div>
-          <div class="step"><span class="n"></span><p>Replace this README with what you built: the <b>published share link</b>, what it is and who can use it live.</p></div>
+          <div class="step"><span class="n"></span><p>Pick a task and open its sample (linked on each card) to see the shape of the finished thing. Or bring your own idea.</p></div>
+          <div class="step"><span class="n"></span><p>Gather <b>your own real material</b> as plain text — that is the only thing your assistant is allowed to say.</p></div>
+          <div class="step"><span class="n"></span><p>In Claude, turn on <b>“Create AI-powered artifacts”</b> (Settings → Feature preview), then ask Claude to build the Ask-Me chat <b>grounded only in your material</b>.</p></div>
+          <div class="step"><span class="n"></span><p><b>Publish the artifact</b> and test <b>three real questions</b> — each must answer correctly from your own material. Anyone opening the link needs their own Claude account for it to answer live.</p></div>
+          <div class="step"><span class="n"></span><p>Push your <b>artifact code</b>, the <b>published share link</b> and a short <b>README</b> (what it is · who can use it live) to <code>ho2-askme-assistant</code> — that is your deliverable.</p></div>
         </div>
       </section>
 
-      <section id="tips">
-        <div class="section-h"><i data-lucide="battery-charging"></i> Use your Claude.ai Pro plan wisely</div>
-        <div class="tip">
-          <div class="th"><i data-lucide="badge-check"></i> Subscription-first — no API key</div>
-          <ul>
-            <li>The artifact calls <code>window.claude.complete()</code> at runtime on the viewer's own Claude.ai login — no server, no API key.</li>
-            <li>Anyone who opens your share link needs their own Claude account for it to answer live.</li>
-            <li>Hardcode your real material into the artifact and test three questions before you share.</li>
-          </ul>
-        </div>
-      </section>
      </div>
     </main>
   </div>
