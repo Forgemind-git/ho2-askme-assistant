@@ -33,8 +33,21 @@ You build it by prompting Claude, then click **Publish** to get a link you can s
 
 ## What to ship
 
-The artifact code (a single `index.html`) + your grounding filled in + this README with your
-**published share link** pasted in.
+A repo with four files, plus your **published artifact link**:
+
+```
+ho2-askme-assistant/
+├─ index.html      ← the artifact code, exactly as Claude built it
+├─ grounding.md    ← the FACTS you gave it — the material it is allowed to say
+├─ README.md       ← what it is · your published link · who can use it live
+└─ .gitignore
+```
+
+`grounding.md` is what makes the work checkable: the assistant may only say what is in it.
+
+> Note: you can switch on **GitHub Pages** and the page will load — but the chat **will not answer
+> there**. `window.claude.complete()` only exists inside claude.ai. Pages shows the interface; the
+> **published artifact link** is the thing that actually answers. Put it at the top of your README.
 
 ## Pick a problem statement
 

@@ -103,7 +103,26 @@
   .tip .th{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--primary);margin-bottom:6px;}
   .tip .th svg{width:16px;height:16px;}
   .tip ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--textSec);line-height:1.65;}
-  @media(max-width:820px){.sidebar{display:none;} main{padding:26px 22px 60px;} h1{font-size:26px;}}
+  /* copy-paste prompt / code blocks. NB: the copied state is .copied, not .done —
+     a bare .done rule above styles a card and would swallow the button. */
+  .pre{position:relative;background:#17171A;border:1px solid #2A2A2E;border-radius:8px;margin:8px 0 4px;}
+  /* padding-right must clear the absolutely-positioned Copy button (65px + 8px offset), or
+     the first line of a narrow block wraps underneath it. */
+  .pre pre{margin:0;padding:14px 80px 14px 16px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.6;color:#E6E6E6;white-space:pre-wrap;}
+  .pre.nocopy pre{padding-right:16px;}
+  .pre .copy{position:absolute;top:8px;right:8px;font-family:var(--font);font-size:11px;font-weight:600;color:#E6E6E6;background:#2A2A2E;border:1px solid #3A3A40;border-radius:5px;padding:4px 9px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;}
+  .pre .copy:hover{background:#3A3A40;}
+  .pre .copy.copied{color:#7EE0C0;border-color:var(--green);}
+  .pre .copy svg{width:12px;height:12px;}
+  /* a prompt with its label + why-it-saves-tokens note */
+  .pcard{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);padding:16px 18px;margin-bottom:12px;}
+  .pcard .plabel{font-size:14px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:7px;}
+  .pcard .plabel svg{width:15px;height:15px;color:var(--primary);}
+  .pcard .psub{font-size:13px;color:var(--textSec);line-height:1.55;margin-top:3px;}
+  .pcard .pwhy{font-size:12.5px;color:var(--textSec);line-height:1.55;margin-top:6px;border-left:2px solid var(--border);padding-left:10px;}
+  .pcard .pwhy b{color:var(--text);font-weight:600;}
+  .short{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;}
+  @media(max-width:820px){.sidebar{display:none;} main{padding:26px 22px 60px;} h1{font-size:26px;} .short{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -120,6 +139,8 @@
         <a href="#build" class="active"><i data-lucide="cpu"></i> What this is</a>
         <a href="#samples"><i data-lucide="list-checks"></i> Problem statements</a>
         <a href="#howto"><i data-lucide="play"></i> How it works</a>
+        <a href="#prompts"><i data-lucide="zap"></i> Fewer tokens</a>
+        <a href="#ship"><i data-lucide="git-branch"></i> Ship to GitHub</a>
       </nav>
       <div class="side-foot">ForgeMind AI<br>AI Productivity Essentials<br>HO2 · Module M5 · Week 2</div>
     </aside>
@@ -214,11 +235,143 @@
         </div>
       </section>
 
+      <section id="prompts">
+        <div class="section-h"><i data-lucide="zap"></i> Build it in fewer tokens</div>
+        <p class="lead" style="margin-bottom:16px;">Your Claude plan has a usage limit that resets every few hours, and the fastest way to burn it is twenty small vague messages. <b>One complete prompt beats twenty small ones</b> — it tells Claude the persona, the rules, the layout and the grounding in a single message, so it has nothing to ask you back. Copy the prompt below, fill in the parts in <code>&lt;angle brackets&gt;</code>, and paste it into a <b>new chat</b>.</p>
+
+        <div class="pcard">
+          <div class="plabel"><i data-lucide="wand-2"></i> The one-shot build prompt</div>
+          <div class="psub">Works for any of the five problem statements — and for your own. Fill in the four bracketed parts and send it once.</div>
+          <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>Build a single-file HTML "Ask-Me" Claude Artifact.
+
+WHO IT SPEAKS FOR: &lt;one line — e.g. the campaign and offer desk for Rally Sportswear&gt;
+WHO ASKS IT: &lt;one line — e.g. our sales, support and social teams&gt;
+
+Behaviour rules:
+- Answer ONLY from the FACTS below. Never invent anything that is not in them.
+- Warm, specific and concise — 2 to 4 sentences.
+- Quote names, numbers, dates and terms EXACTLY as written in the FACTS.
+- If the answer is not in the FACTS, say "&lt;your fallback line&gt;" instead of guessing.
+
+Layout: a clean page with a title, a short About, the FACTS shown as readable
+sections a human can scan, and a chat box with 3 suggested starter questions.
+
+Answer live with window.claude.complete(prompt) — no API key. If that is not
+available, show a friendly note telling the visitor to open this inside claude.ai
+and sign in.
+
+FACTS:
+&lt;paste your material here — this is the ONLY thing it is allowed to say&gt;</pre></div>
+          <div class="pwhy"><b>Why this is cheap:</b> Claude gets the persona, the rules, the layout and the grounding in one message. There is no back-and-forth to pay for, and the first artifact it produces is usually the one you keep.</div>
+        </div>
+
+        <div class="short">
+          <div class="pcard">
+            <div class="plabel"><i data-lucide="target"></i> When it answers something wrong</div>
+            <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>It got &lt;question&gt; wrong. Add this to the FACTS:
+&lt;the missing fact&gt;
+Change nothing else.</pre></div>
+            <div class="pwhy">A wrong answer is almost always a <b>gap in the FACTS</b>, not a bad model. Patch the grounding, not the prompt.</div>
+          </div>
+
+          <div class="pcard">
+            <div class="plabel"><i data-lucide="shield"></i> When it guesses</div>
+            <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>It guessed when it did not know. Make it refuse:
+if the answer is not in the FACTS, reply exactly
+"&lt;your fallback line&gt;" and nothing else.</pre></div>
+            <div class="pwhy">Refusing well is the whole point of the exercise. An assistant that invents a price is worse than no assistant.</div>
+          </div>
+
+          <div class="pcard">
+            <div class="plabel"><i data-lucide="palette"></i> When you just want it to look different</div>
+            <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>Change the accent colour to &lt;hex&gt; and the starter
+questions to:
+1. &lt;q&gt;  2. &lt;q&gt;  3. &lt;q&gt;
+Leave everything else exactly as it is.</pre></div>
+            <div class="pwhy"><b>Tweak, never regenerate.</b> "Change only X" costs a fraction of "build it again, but…".</div>
+          </div>
+        </div>
+
+        <div class="tip">
+          <div class="th"><i data-lucide="battery-charging"></i> Four habits that make your plan last</div>
+          <ul>
+            <li><b>One artifact, one chat.</b> Every turn in a long chat re-reads everything above it — a chat you have been in all afternoon is the most expensive place to ask a small question.</li>
+            <li><b>Paste your FACTS once.</b> After that just say “the FACTS” — Claude can already see them.</li>
+            <li><b>Tweak, don’t regenerate.</b> “Change only the accent colour” is cheap. “Build it again but nicer” pays for the whole page a second time.</li>
+            <li><b>When it works, publish it.</b> Get the link, then go experiment in a fresh chat — don’t risk the version that already works.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="ship">
+        <div class="section-h"><i data-lucide="git-branch"></i> Ship it to GitHub</div>
+        <p class="lead" style="margin-bottom:16px;">Your deliverable is a <b>repo</b> plus a <b>published artifact link</b>. Keep the repo small and honest — four files is all this needs.</p>
+
+        <div class="pre nocopy"><pre>ho2-askme-assistant/
+├─ index.html      ← the artifact code, exactly as Claude built it
+├─ grounding.md    ← the FACTS you gave it — the material it is allowed to say
+├─ README.md       ← what it is · your published link · who can use it live
+└─ .gitignore</pre></div>
+
+        <div class="steps" style="margin-top:16px;">
+          <div class="step"><span class="n"></span><p>In claude.ai, open your artifact’s <b>“···” menu</b> and copy or download its code. Save it as <code>index.html</code>.</p></div>
+          <div class="step"><span class="n"></span><p>Save the exact material you grounded it in as <code>grounding.md</code>. This is what makes your work checkable — the assistant may only say what is in this file.</p></div>
+          <div class="step"><span class="n"></span><p>Write the <b>README</b> from the template below and paste in your <b>published artifact link</b>.</p></div>
+          <div class="step"><span class="n"></span><p>Create an empty repo called <code>ho2-askme-assistant</code> on GitHub, then run the commands below. <code>git branch -M main</code> matters — older Git still calls the first branch <code>master</code>, and the push would fail.</p></div>
+        </div>
+
+        <div class="pcard" style="margin-top:12px;">
+          <div class="plabel"><i data-lucide="terminal"></i> Push it</div>
+          <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>git init
+git add .
+git commit -m "HO2: Ask-Me assistant"
+git branch -M main
+git remote add origin https://github.com/&lt;your-username&gt;/ho2-askme-assistant.git
+git push -u origin main</pre></div>
+        </div>
+
+        <div class="pcard">
+          <div class="plabel"><i data-lucide="file-text"></i> README template</div>
+          <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre># Ask-Me Assistant — &lt;what it answers questions about&gt;
+
+**Published artifact:** &lt;paste your claude.ai share link here&gt;
+
+## What it is
+A Claude Artifact that answers questions about &lt;subject&gt;, grounded only in
+`grounding.md`. It answers live by calling Claude at runtime — no API key,
+no server.
+
+## Who can use it live
+Anyone with a Claude account. When someone asks it a question they sign in to
+their **own** Claude account and the usage counts against theirs. It is not an
+anonymous public bot.
+
+## What it will not do
+It never invents &lt;prices / dates / claims&gt;. If the answer is not in the
+grounding, it says so instead of guessing.</pre></div>
+        </div>
+
+        <div class="tip">
+          <div class="th"><i data-lucide="alert-triangle"></i> One thing that surprises everybody</div>
+          <ul>
+            <li>You can switch on <b>GitHub Pages</b> (repo <b>Settings → Pages → Deploy from branch → main</b>) and your page will load — but the chat <b>will not answer there</b>. <code>window.claude.complete()</code> only exists <b>inside claude.ai</b>. GitHub Pages shows the interface; the <b>published artifact link</b> is the thing that actually answers. Put that link at the top of your README.</li>
+          </ul>
+        </div>
+      </section>
+
      </div>
     </main>
   </div>
 
   <script>
+    function copyPre(btn){
+      const pre = btn.parentElement.querySelector('pre');
+      navigator.clipboard.writeText(pre.innerText).then(function(){
+        btn.classList.add('copied');
+        const s = btn.querySelector('span'); const old = s.textContent;
+        s.textContent = 'Copied'; setTimeout(function(){ btn.classList.remove('copied'); s.textContent = old; }, 1600);
+      });
+    }
     lucide.createIcons();
     // scroll-spy: highlight the sidebar link for the section in view
     const links = [...document.querySelectorAll('.nav a')];
