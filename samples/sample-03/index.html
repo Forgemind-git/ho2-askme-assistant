@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Build an Ask-Me AI Assistant — example: Priya Nair — Conversion Copywriter · ForgeMind AI</title>
+<title>Build an Ask-Me AI Assistant — example: Northwind Analytics — pre-sales FAQ · ForgeMind AI</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
@@ -117,14 +117,14 @@
 
 <div class="wrap">
 
-  <div class="eyebrow">HO2 · Sample 03 · Freelance leads</div>
+  <div class="eyebrow">HO2 · Sample 03 · Pre-sales</div>
   <h1>Build an AI-powered “Ask-Me” assistant</h1>
   <p class="lead2">A chat that answers questions from <b>your own info</b> — published as a shareable Claude Artifact. No code and no API key: you build it by describing it in a Claude chat, and it runs live on your Claude subscription.</p>
 
   <div class="section-h"><i data-lucide="target"></i> What you’ll build</div>
   <div class="card">
     <p class="what">An <b>“Ask-Me” assistant</b>: a small chat, grounded only in the facts you give it, that answers as you in the first person and never invents anything you didn’t tell it. Anyone with a Claude account can open the shared link and put real questions to it.</p>
-    <p class="what">Follow the steps below to build your own. Scroll to the bottom to see a finished <b>example</b> — Priya Nair’s services assistant — running live inside claude.ai.</p>
+    <p class="what">Follow the steps below to build your own. Scroll to the bottom to see a finished <b>example</b> — Northwind’s pre-sales assistant — running live inside claude.ai.</p>
   </div>
 
   <div class="section-h"><i data-lucide="wrench"></i> Build it in Claude chat — step by step</div>
@@ -137,13 +137,13 @@
       <li>
         <h4>Start a new chat and paste this build prompt</h4>
         <p>Open a new chat and paste the prompt below. It tells Claude exactly what to build and how it must behave.</p>
-        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>Build an AI-powered artifact: an "Ask-Me" chat for my freelance service.
+        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>Build an AI-powered artifact: an "Ask-Me" chat for my product's pre-sales questions.
 
-It should speak in the first person as me, a freelance copywriter, and answer a
-prospect's questions about working with me using ONLY the FACTS below. Rules:
+It should speak as the pre-sales assistant for Northwind Analytics, a product-analytics tool, and answer
+a prospect's questions about the product using ONLY the FACTS below. Rules:
 - Warm, specific and concise — 2 to 4 sentences.
-- Be exact about services, prices and process — quote the real numbers.
-- Never invent services, prices or terms that aren't in the FACTS.
+- Be exact about pricing, integrations and policies — quote the real numbers.
+- Never invent a feature, price, integration or policy that isn't in the FACTS.
 - If something isn't in the FACTS, say you don't have that detail instead of guessing.
 
 Show it as a clean chat with 3 suggested starter questions and an input box.
@@ -180,82 +180,52 @@ Do you offer retainers?</pre></div>
   </div>
 
   <div class="section-h example-head"><i data-lucide="sparkles"></i> Example — this artifact runs inside claude.ai</div>
-  <p class="lead" style="max-width:46em;">Here’s a finished assistant built with exactly these steps. Ask about pricing or process and it answers instantly from Priya’s real details.</p>
-  <div class="persona-name">Priya Nair</div>
-  <p class="role">Freelance conversion copywriter — SaaS & e-commerce</p>
+  <p class="lead" style="max-width:46em;">Ask about pricing, integrations or policy — it answers only from what Northwind actually publishes.</p>
+  <div class="persona-name">Northwind Analytics</div>
+  <p class="role">Product analytics for small e-commerce teams</p>
   <div class="pills">
-    <span class="pill role">Taking new projects</span>
+    <span class="pill role">Taking new customers</span>
     <span class="pill live"><span class="d"></span>Answers live</span>
   </div>
 
   <!-- ═══ GROUNDING (the human-readable record — also fed to the assistant) ═══ -->
   <div class="section-h"><i data-lucide="user"></i> About</div>
   <div class="card">
-    <p class="about-p">I'm a <strong>conversion copywriter</strong> for SaaS and e-commerce brands — landing pages, email sequences and messaging that read like a person and move the number that matters. I dig into research and real customer language first, then write, so the copy sounds like your best salesperson on a good day.</p>
-    <p class="about-p"><strong>How I work:</strong> a 30-minute discovery call, a written proposal within 2 working days, a 50% deposit to book the slot, a first draft within a week, and up to 2 revision rounds. I'm usually booking about 2 weeks out.</p>
-    <div class="chips">
-      <span class="chip">Landing pages</span><span class="chip">Email sequences</span><span class="chip">Messaging &amp; positioning</span>
-      <span class="chip">SaaS</span><span class="chip">DTC / e-commerce</span><span class="chip">Research-first</span>
-      <span class="chip">A/B variants</span><span class="chip">Retainers</span>
-    </div>
+    <p class="about-p">Northwind Analytics is a <strong>product-analytics tool for small e-commerce teams</strong> — funnels, retention and revenue per channel, without needing a data analyst.</p>
+    <p class="about-p"><strong>Who it's for:</strong> Shopify and WooCommerce stores doing £10k–£500k a month who have outgrown spreadsheets but cannot justify a full data hire.</p>
   </div>
 
-  <div class="section-h"><i data-lucide="briefcase"></i> Services</div>
-  <div class="grid">
-    <div class="proj">
-      <span class="k">Websites · Copy</span>
-      <h3>Landing page copy</h3>
-      <p>Research call plus a competitor teardown, then full page copy from hero to CTA, with one revision round included.</p>
-      <p class="res">From: <b>£850</b></p>
-    </div>
-    <div class="proj">
-      <span class="k">Email · Sequences</span>
-      <h3>Welcome / nurture sequence</h3>
-      <p>A 5-email sequence written to a defined goal, with subject lines and A/B variants for the openers.</p>
-      <p class="res">From: <b>£1,200</b></p>
-    </div>
-    <div class="proj">
-      <span class="k">Product · Messaging</span>
-      <h3>Messaging &amp; positioning</h3>
-      <p>A half-day workshop plus a one-page messaging framework your whole team can use across site and sales.</p>
-      <p class="res">From: <b>£1,500</b></p>
-    </div>
-    <div class="proj">
-      <span class="k">Ongoing · Retainer</span>
-      <h3>Monthly retainer</h3>
-      <p>A set number of copy tasks each month — ads, emails, pages — at a lower blended rate. Minimum 3 months.</p>
-      <p class="res">From: <b>£1,800/mo</b></p>
-    </div>
-  </div>
-  <div class="facts">
-    <div class="fact"><div class="n">2 wk</div><div class="l">lead time</div></div>
-    <div class="fact"><div class="n">2</div><div class="l">revision rounds</div></div>
-    <div class="fact"><div class="n">50%</div><div class="l">deposit to book</div></div>
+  <div class="section-h"><i data-lucide="briefcase"></i> Pricing &amp; policy</div>
+  <div class="card">
+    <p class="about-p"><strong>Starter — £39/mo:</strong> 1 store, 50k events/mo, 12-month history, email support.</p>
+    <p class="about-p"><strong>Growth — £119/mo:</strong> 3 stores, 500k events/mo, unlimited history, funnels + cohorts, Slack support.</p>
+    <p class="about-p"><strong>Scale — £349/mo:</strong> unlimited stores, 5m events/mo, SSO, custom dashboards, a named contact.</p>
+    <p class="about-p"><strong>Integrations:</strong> Shopify, WooCommerce, Stripe, Klaviyo, Google Ads, Meta Ads. <strong>Not</strong> Amazon Seller Central or eBay.</p>
+    <p class="about-p"><strong>Refunds:</strong> 30-day money-back, no questions. Cancel any time; no annual lock-in. <strong>Security:</strong> data in the EU, SSO on Scale only.</p>
   </div>
 
-  <!-- ═══ ASK ME (live, grounded in the record above) ═══ -->
-  <div class="section-h"><i data-lucide="message-circle"></i> Ask about working with me</div>
+  <div class="section-h"><i data-lucide="message-circle"></i> Ask it anything</div>
   <div class="ask-note">This answers <b>live</b> using Claude, grounded only in my real services, prices and process above — it won't invent anything I don't offer. Anyone with a Claude account can ask it; when you send a question you'll be asked to sign in to your own Claude account first.</div>
   <div class="setup" id="setup"><b>Almost there.</b> Live answers only work when this page runs as a <b>Claude Artifact</b>. Open it inside a Claude chat (with "Create AI-powered artifacts" turned on in Settings → Feature preview) and sign in. The services and pricing above still read fine on their own.</div>
 
   <div class="panel">
     <div class="transcript" id="transcript">
-      <div class="msg me"><div class="who">Priya's assistant</div><div class="b">Hi — I'm Priya's Ask-Me assistant. Ask me anything about her services, pricing or how a project runs, and I'll answer from her real details. Try a question below.</div></div>
+      <div class="msg me"><div class="who">Northwind's assistant</div><div class="b">Hi — I'm Northwind's assistant. Ask me about pricing, integrations, security, or how onboarding works.</div></div>
     </div>
     <div class="suggest" id="suggest">
-      <button class="sug">How much is a landing page?</button>
-      <button class="sug">What's your process?</button>
-      <button class="sug">Do you offer retainers?</button>
+      <button class="sug">How much is it?</button>
+      <button class="sug">Does it integrate with Shopify?</button>
+      <button class="sug">What's your refund policy?</button>
     </div>
     <form class="composer" id="composer" autocomplete="off">
-      <input id="q" type="text" placeholder="e.g. How soon could you start?" aria-label="Your question" />
+      <input id="q" type="text" placeholder="e.g. Do you support single sign-on?" aria-label="Your question" />
       <button type="submit" id="send">Ask</button>
     </form>
   </div>
 
   <div class="tip"><i data-lucide="badge-check"></i><div><b>Subscription tip:</b> this whole build runs on your <b>Claude subscription</b> — no API key, no billing setup. You describe the assistant in a chat, Claude builds and hosts it as an Artifact, and it answers live on each visitor’s own Claude plan. It’s the fastest, cheapest way to ship an AI tool people can actually use.</div></div>
 
-  <footer>A published Claude Artifact that answers grounded in Priya's real services, prices and process — no code, no API key; live answers run on the visitor's own Claude account.<br>Live link: <code>[paste your published artifact share link here]</code><br>HO2 · Solo · ForgeMind AI — AI Productivity Essentials · Module M5 (Week 2)</footer>
+  <footer>A published Claude Artifact that answers grounded in Northwind's real services, prices and process — no code, no API key; live answers run on the visitor's own Claude account.<br>Live link: <code>[paste your published artifact share link here]</code><br>HO2 · Solo · ForgeMind AI — AI Productivity Essentials · Module M5 (Week 2)</footer>
 
 </div>
 
@@ -273,7 +243,7 @@ Do you offer retainers?</pre></div>
 <script>
   /* ── The grounding: the ONLY facts the assistant may use ─────────────── */
   const PROFILE = `
-Name: Priya Nair
+Name: Northwind Analytics
 Role: Freelance conversion copywriter for SaaS and e-commerce (DTC) brands.
 What I do: landing pages, email sequences, and messaging/positioning that read like a person and move the number that matters. Research-first — I dig into real customer language before writing.
 
@@ -315,7 +285,7 @@ Not a fit: pure SEO content mills or high-volume, low-rate article writing — t
   function thinking(){
     const el = document.createElement('div');
     el.className = 'msg me';
-    el.innerHTML = '<div class="who">Priya’s assistant</div><div class="dots"><span></span><span></span><span></span></div>';
+    el.innerHTML = '<div class="who">Northwind’s assistant</div><div class="dots"><span></span><span></span><span></span></div>';
     transcript.appendChild(el);
     transcript.scrollTop = transcript.scrollHeight;
     return el;
@@ -328,26 +298,26 @@ Not a fit: pure SEO content mills or high-volume, low-rate article writing — t
 
     if(!liveOK){
       wait.remove();
-      bubble('me','Priya’s assistant','To answer live, open this page as a Claude Artifact inside claude.ai and sign in — then ask me again. (This is running as a plain web page right now, so I can’t reach Claude.)');
+      bubble('me','Northwind’s assistant','To answer live, open this page as a Claude Artifact inside claude.ai and sign in — then ask me again. (This is running as a plain web page right now, so I can’t reach Claude.)');
       sendBtn.disabled=false; input.focus(); return;
     }
     /* window.claude.complete(prompt: string) -> Promise<string>.
        Anthropic changed this method's behaviour on 2025-07-31 — if it stops
        working, confirm the current call inside claude.ai and adjust here. */
     const prompt =
-      'You are the personal "Ask-Me" assistant for Priya Nair, a freelance conversion copywriter, speaking in the first person as Priya. '+
+      'You are the personal "Ask-Me" assistant for Northwind Analytics, a freelance conversion copywriter, speaking in the first person as Northwind. '+
       'Answer the visitor\'s question using ONLY the facts in the PROFILE below. '+
       'Be warm, specific and concise (2–4 sentences). Quote her real prices and process steps exactly as written in the PROFILE. '+
       'Never invent services, prices, timelines or clients that are not in the PROFILE. '+
       'If the answer is not in the PROFILE, say "I don\'t have that detail — happy to confirm on a call" rather than guessing.\n\n'+
-      'PROFILE:\n'+PROFILE+'\n\nVisitor question: '+question+'\n\nAnswer as Priya:';
+      'PROFILE:\n'+PROFILE+'\n\nVisitor question: '+question+'\n\nAnswer as Northwind:';
     try{
       const reply = await window.claude.complete(prompt);
       wait.remove();
-      bubble('me','Priya’s assistant',(reply||'').trim() || 'Sorry, I didn\'t catch that — try asking another way.');
+      bubble('me','Northwind’s assistant',(reply||'').trim() || 'Sorry, I didn\'t catch that — try asking another way.');
     }catch(err){
       wait.remove();
-      bubble('me','Priya’s assistant','Something went wrong reaching Claude just now. Please try again in a moment.');
+      bubble('me','Northwind’s assistant','Something went wrong reaching Claude just now. Please try again in a moment.');
     }
     sendBtn.disabled=false; input.focus();
   }

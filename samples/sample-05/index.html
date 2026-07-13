@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ask Sofia Reyes — Science Teacher → UX Researcher · ForgeMind AI</title>
+<title>Build an Ask-Me AI Assistant — example: Fieldwork Studio — case-study concierge · ForgeMind AI</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
@@ -80,26 +80,30 @@
   .composer button:disabled{opacity:.45;cursor:not-allowed;}
   :focus-visible{outline:2px solid var(--primary);outline-offset:2px;}
   code{font-family:var(--mono);font-size:12px;background:#F1F0EA;padding:1px 5px;border-radius:4px;}
-  .steps ol{margin:0;padding-left:0;list-style:none;counter-reset:s;}
-  .steps li{position:relative;padding:0 0 22px 46px;}
-  .steps li:last-child{padding-bottom:0;}
-  .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:99px;background:var(--primary);color:#fff;font-family:var(--mono);font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center;}
-  .steps li:not(:last-child)::after{content:"";position:absolute;left:14px;top:34px;bottom:8px;width:2px;background:var(--border);}
+  /* build-guide additions */
+  .lead2{font-size:16px;color:var(--textSec);line-height:1.55;max-width:46em;margin:0;}
+  .lead2 b{color:var(--text);font-weight:600;}
+  .what{font-size:14.5px;line-height:1.62;margin:0 0 10px;color:var(--text);}
+  .what:last-child{margin-bottom:0;} .what b{font-weight:600;}
+  .steps{list-style:none;counter-reset:s;margin:0;padding:0;}
+  .steps>li{counter-increment:s;position:relative;padding:0 0 24px 46px;}
+  .steps>li:last-child{padding-bottom:0;}
+  .steps>li::before{content:counter(s);position:absolute;left:0;top:-2px;width:30px;height:30px;border-radius:99px;background:var(--primary);color:#fff;font-family:var(--mono);font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center;}
+  .steps>li::after{content:"";position:absolute;left:14px;top:32px;bottom:4px;width:1px;background:var(--border);}
+  .steps>li:last-child::after{display:none;}
   .steps h4{font-size:15px;font-weight:600;margin:4px 0 6px;}
-  .steps p{font-size:14px;line-height:1.62;color:var(--textSec);margin:0 0 10px;}
-  .steps p:last-child{margin-bottom:0;}
-  .steps b{color:var(--text);font-weight:600;}
-  .pre{position:relative;background:#0F0F10;border-radius:8px;margin:10px 0;}
-  .pre pre{margin:0;padding:16px 16px 15px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.62;color:#E8E8E6;white-space:pre-wrap;word-break:break-word;}
-  .pre .copy{position:absolute;top:8px;right:8px;font-family:var(--mono);font-size:11px;color:#E8E8E6;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:5px;padding:4px 9px;cursor:pointer;transition:background .15s;}
-  .pre .copy:hover{background:rgba(255,255,255,.2);}
-  .fill{background:#FDF7EC;border:1px solid #F0D59A;border-radius:6px;padding:9px 12px;font-size:12.5px;color:#6b4e12;margin:8px 0 2px;line-height:1.5;}
-  .example-divider{display:flex;align-items:center;gap:12px;margin:46px 0 4px;}
-  .example-divider .line{flex:1;height:1px;background:var(--border);}
-  .example-divider .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--textMuted);white-space:nowrap;}
-  .tip{background:#E1F5EE;border:1px solid #A8DDCC;border-radius:8px;padding:14px 16px;font-size:13.5px;color:#0F5A46;line-height:1.6;margin-top:24px;display:flex;gap:10px;}
+  .steps p{font-size:13.5px;line-height:1.58;color:var(--textSec);margin:0 0 8px;}
+  .steps p:last-child{margin-bottom:0;} .steps b{color:var(--text);font-weight:600;}
+  .pre{position:relative;background:#17171A;border:1px solid #2A2A2E;border-radius:8px;margin:8px 0;}
+  .pre pre{margin:0;padding:14px 44px 14px 16px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.6;color:#E6E6E6;white-space:pre-wrap;}
+  .pre .copy{position:absolute;top:8px;right:8px;font-family:var(--font);font-size:11px;font-weight:600;color:#E6E6E6;background:#2A2A2E;border:1px solid #3A3A40;border-radius:5px;padding:4px 9px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;}
+  .pre .copy:hover{background:#3A3A40;} .pre .copy svg{width:13px;height:13px;}
+  .pre .copy.done{color:#7EE0C0;border-color:var(--green);}
+  .persona-name{font-size:20px;font-weight:700;margin:14px 0 2px;letter-spacing:-.01em;}
+  .example-head{border-top:2px solid var(--border);margin-top:46px;padding-top:28px;}
+  .tip{background:#E1F5EE;border:1px solid #A9DECB;border-radius:8px;padding:14px 16px;font-size:13.5px;color:#0d5a47;line-height:1.55;margin-top:30px;display:flex;gap:10px;}
   .tip svg{color:var(--green);flex-shrink:0;margin-top:1px;width:18px;height:18px;}
-  .tip b{color:#0F6E56;}
+  .tip b{color:#0d5a47;font-weight:600;}
   footer{border-top:1px solid var(--border);margin-top:40px;padding-top:18px;font-size:12px;color:var(--textMuted);font-family:var(--mono);text-align:center;line-height:1.7;}
   @media(max-width:680px){.grid{grid-template-columns:1fr;} h1{font-size:26px;}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;}}
@@ -113,164 +117,151 @@
 
 <div class="wrap">
 
-  <div class="eyebrow">HO2 · Sample 05 · Career changer</div>
-  <h1>Sofia Reyes</h1>
-  <p class="role">Science teacher → UX Researcher</p>
-  <div class="pills">
-    <span class="pill role">Career change in progress</span>
-    <span class="pill live"><span class="d"></span>Answers live</span>
-  </div>
-  <p class="lead">My old job titles don't say "UX" — but the work does. Ask my page why I'm qualified, and it answers by reframing what I actually did in the classroom.</p>
+  <div class="eyebrow">HO2 · Sample 05 · Case studies</div>
+  <h1>Build an AI-powered “Ask-Me” assistant</h1>
+  <p class="lead2">A chat that answers questions from <b>your own info</b> — published as a shareable Claude Artifact. No code and no API key: you build it by describing it in a Claude chat, and it runs live on your Claude subscription.</p>
 
-  <!-- ═══ BUILD GUIDE (comes first — this is the recipe to follow) ═══ -->
-  <div class="section-h"><i data-lucide="target"></i> What you'll build</div>
+  <div class="section-h"><i data-lucide="target"></i> What you’ll build</div>
   <div class="card">
-    <p class="about-p">An <strong>AI-powered Claude Artifact</strong> — a small chat page that answers as <em>you</em>, grounded only in facts you give it. You build it by chatting with Claude in plain English: <strong>no code, no API key</strong>. Then you publish it as a shareable link. Anyone with a Claude account can open that link and ask questions, and Claude answers live from your material.</p>
-    <p class="about-p">The finished example lower down plays <strong>Sofia Reyes, a science teacher moving into UX research</strong>, reframing her real experience toward the role she wants. Follow the steps below with <strong>your own facts</strong> to make your own.</p>
+    <p class="what">An <b>“Ask-Me” assistant</b>: a small chat, grounded only in the facts you give it, that answers as you in the first person and never invents anything you didn’t tell it. Anyone with a Claude account can open the shared link and put real questions to it.</p>
+    <p class="what">Follow the steps below to build your own. Scroll to the bottom to see a finished <b>example</b> — Fieldwork’s case-study assistant — running live inside claude.ai.</p>
   </div>
 
-  <div class="section-h"><i data-lucide="list-checks"></i> Build it in Claude chat — step by step</div>
-  <div class="card steps">
-    <ol>
+  <div class="section-h"><i data-lucide="wrench"></i> Build it in Claude chat — step by step</div>
+  <div class="card">
+    <ol class="steps">
       <li>
         <h4>Turn on AI-powered artifacts</h4>
-        <p>In claude.ai, open <b>Settings → Feature preview</b> and switch on <b>“Create AI-powered artifacts”</b>. This lets an artifact call Claude at runtime (that's what makes the answers live). You only do this once.</p>
+        <p>In claude.ai, open <b>Settings → Feature preview</b> and switch on <b>“Create AI-powered artifacts.”</b> This lets an artifact call Claude while it runs — that’s what makes your assistant answer live.</p>
       </li>
       <li>
-        <h4>Start a new chat and paste the build prompt</h4>
-        <p>Open a fresh chat and paste the prompt below. It tells Claude to build the chat UI <em>and</em> pins it to your facts, so it reframes your real experience without ever inventing titles you don't have.</p>
-        <div class="pre"><button class="copy">Copy</button><pre>Build an AI-powered artifact: a chat "Ask-Me" assistant that answers
-as me, in the first person, using ONLY the facts below. Keep answers
-warm, specific and 2-4 sentences. When asked why I'm qualified,
-REFRAME my real experience toward the target role using only these
-facts - never fabricate job titles, employers, dates or experience I
-don't have. If asked about gaps, be honest. If something isn't in the
-facts, say you don't have that detail. Give it a clean chat UI with a
-few suggested questions and a message box.
+        <h4>Start a new chat and paste this build prompt</h4>
+        <p>Open a new chat and paste the prompt below. It tells Claude exactly what to build and how it must behave.</p>
+        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>Build an AI-powered artifact: an "Ask-Me" chat for my agency's case studies.
 
-Facts about me:
-- Name: Sofia Reyes. Old role: secondary school science teacher,
-  7 years. Target role: UX Researcher.
-- The honest bridge: teaching is really watching real people struggle
-  with something, finding where they get stuck, and redesigning until
-  it clicks - which is user research.
-- Classroom (reads as qualitative user research): 7 years watching how
-  ~150 students a year understood and misunderstood material.
-- Assessment design (reads as research synthesis): built and analysed
-  assessments to find where students got stuck, then redesigned.
-- Curriculum projects (reads as stakeholder interviews & delivery):
-  led a department overhaul with staff, parents and students, on a
-  fixed deadline.
-- Retraining (reads as applied UX portfolio): completed a UX research
-  course + 3 volunteer projects (interviews, affinity mapping,
-  usability test) for a nonprofit.
-- Honest gaps: still building quantitative/analytics depth; no prior
-  PAID UX job title yet.</pre></div>
-        <p class="fill"><b>Make it yours:</b> replace every line under “Facts about me” with your own past roles and the role you're targeting. Keep the “reads as” reframes honest — real work stated in the new field's language, never invented titles.</p>
+It should speak as the assistant for Fieldwork Studio, an independent product and growth agency, and answer
+a prospect's questions about our work, our clients and our results using ONLY the FACTS below. Rules:
+- Warm, specific and concise — 2 to 4 sentences.
+- Be exact about the results — quote the real numbers and the real timeframe.
+- Never invent a client, a sector or a result that isn't in the FACTS.
+- If something isn't in the FACTS, say you don't have that detail instead of guessing.
+
+Show it as a clean chat with 3 suggested starter questions and an input box.
+
+FACTS:
+&lt;paste your info — see the next step&gt;</pre></div>
       </li>
       <li>
-        <h4>Watch Claude render it as a live Artifact, and test it</h4>
-        <p>Claude builds the chat and it appears in the <b>Artifact panel</b> on the right — already interactive. Ask it three real questions, e.g. the ones below, and check every answer reframes your genuine experience and never invents a title or employer.</p>
-        <div class="pre"><button class="copy">Copy</button><pre>Why are you qualified for a UX research role?
-How does teaching transfer to UX?
-What's a gap you're still working on?</pre></div>
-        <p>If an answer overclaims or invents detail, tell Claude in the same chat — e.g. <em>“never say I held a UX job title”</em> or <em>“be honest about gaps”</em> — and it rebuilds the artifact.</p>
+        <h4>Swap in your own info</h4>
+        <p>Replace the <code>FACTS</code> block with your real details — this is the <b>only</b> material your assistant may use, so keep it short and true.</p>
+        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>Name: &lt;your name&gt;
+Role: &lt;what you do, one line&gt;
+Services and pricing:
+- &lt;service&gt; — From &lt;price&gt;. &lt;what's included&gt;
+- &lt;service&gt; — From &lt;price&gt;. &lt;what's included&gt;
+Process:
+1. &lt;first step&gt;  2. &lt;next step&gt;  3. &lt;next step&gt;
+Lead time: &lt;how far out you book&gt;
+Deposit / terms: &lt;e.g. 50% to book, up to 2 revision rounds&gt;</pre></div>
       </li>
       <li>
-        <h4>Publish and share it</h4>
-        <p>Use the artifact's <b>Publish / Share</b> control to get a public link, then drop that link on your CV, LinkedIn or job applications. Two things to know: viewers <b>need their own Claude account</b> (answers run on their account, so it isn't an anonymous public bot), and the live answers <b>only work inside claude.ai</b> — the same file opened as a plain web page can't reach Claude.</p>
+        <h4>Test it live</h4>
+        <p>Claude renders a live chat Artifact on the right. Sign in if asked, then try three real questions:</p>
+        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>How much is a landing page?
+What's your process?
+Do you offer retainers?</pre></div>
+        <p>Every answer should stay true to your facts. If one drifts, just reply in the chat: <code>Only use the FACTS — don't invent anything</code> and Claude rebuilds it.</p>
+      </li>
+      <li>
+        <h4>Publish and share</h4>
+        <p>Open the artifact’s <b>Share</b> menu, publish it, and copy the link. Note: it only runs <b>inside claude.ai</b>, and each visitor needs their own Claude account to ask it live — it won’t answer if you host the plain HTML on a normal website.</p>
       </li>
     </ol>
   </div>
 
-  <div class="tip"><i data-lucide="sparkles"></i><span><b>Subscription tip:</b> everything here runs on a normal Claude subscription — no API key, no billing setup. “Create AI-powered artifacts” calls Claude for you at runtime, and each viewer's questions run on their own Claude plan.</span></div>
-
-  <div class="example-divider"><span class="line"></span><span class="lbl">Example — this artifact runs inside claude.ai</span><span class="line"></span></div>
+  <div class="section-h example-head"><i data-lucide="sparkles"></i> Example — this artifact runs inside claude.ai</div>
+  <p class="lead" style="max-width:46em;">Ask what we have built, for whom, and what it actually did — it answers only from real case studies.</p>
+  <div class="persona-name">Fieldwork Studio</div>
+  <p class="role">Independent product &amp; growth agency — the proof, on demand</p>
+  <div class="pills">
+    <span class="pill role">Taking new clients</span>
+    <span class="pill live"><span class="d"></span>Answers live</span>
+  </div>
 
   <!-- ═══ GROUNDING (the human-readable record — also fed to the assistant) ═══ -->
   <div class="section-h"><i data-lucide="user"></i> About</div>
   <div class="card">
-    <p class="about-p">I spent <strong>7 years</strong> as a secondary school science teacher, and I'm now moving into <strong>UX research</strong>. Here's the honest bridge: teaching is really the daily practice of watching real people struggle with something, finding where they get stuck, and redesigning until it clicks. That's user research. I've since completed a UX research course and run three volunteer projects to prove it in the field. I'm still building my quantitative and analytics depth — and I'd rather say that plainly than pretend otherwise.</p>
-    <div class="chips">
-      <span class="chip">User interviews</span><span class="chip">Affinity mapping</span><span class="chip">Usability testing</span>
-      <span class="chip">Surveys</span><span class="chip">Research synthesis</span><span class="chip">Figma basics</span>
-      <span class="chip">Stakeholder facilitation</span><span class="chip">7 yrs teaching</span><span class="chip">Building: quant / analytics</span>
-    </div>
+    <p class="about-p">Fieldwork Studio is a <strong>six-person product &amp; growth agency</strong>. Prospects always ask the same thing before they will book a call: <em>have you done this before, and did it work?</em></p>
+    <p class="about-p"><strong>How we work:</strong> 6–12 week engagements, one team, fixed scope. We do not do retainers or staff augmentation.</p>
   </div>
 
-  <div class="section-h"><i data-lucide="repeat"></i> Experience, reframed</div>
-  <div class="grid">
-    <div class="proj">
-      <span class="k">Classroom</span>
-      <h3>Understanding real users</h3>
-      <p>Spent 7 years watching how ~150 students a year actually understood — and misunderstood — material, adjusting my explanations to whatever genuinely worked for them.</p>
-      <p class="res">Reads as: <b>qualitative user research &amp; usability observation.</b></p>
-    </div>
-    <div class="proj">
-      <span class="k">Assessment design</span>
-      <h3>Turning behaviour into insight</h3>
-      <p>Built and analysed assessments to find exactly where students got stuck, then redesigned lessons around what the data showed.</p>
-      <p class="res">Reads as: <b>research synthesis &amp; findings-to-action.</b></p>
-    </div>
-    <div class="proj">
-      <span class="k">Curriculum projects</span>
-      <h3>Stakeholder-driven redesign</h3>
-      <p>Led a department curriculum overhaul with input from staff, parents and students, delivered under a fixed deadline.</p>
-      <p class="res">Reads as: <b>stakeholder interviews &amp; project delivery.</b></p>
-    </div>
-    <div class="proj">
-      <span class="k">Retraining</span>
-      <h3>Deliberate UX transition</h3>
-      <p>Completed a UX research course and ran 3 volunteer research projects — interviews, affinity mapping and a usability test — for a local nonprofit.</p>
-      <p class="res">Reads as: <b>applied UX research portfolio.</b></p>
-    </div>
-  </div>
-  <div class="facts">
-    <div class="fact"><div class="n">7</div><div class="l">yrs teaching</div></div>
-    <div class="fact"><div class="n">3</div><div class="l">volunteer UX projects</div></div>
-    <div class="fact"><div class="n">150+</div><div class="l">"users" a year</div></div>
+  <div class="section-h"><i data-lucide="briefcase"></i> Selected work</div>
+  <div class="card">
+    <p class="about-p"><strong>Fintech · Marram (savings app):</strong> onboarding drop-off was 71%. We rebuilt the sign-up in 8 weeks — <strong>drop-off fell to 38%</strong>, activation up 2.1×.</p>
+    <p class="about-p"><strong>D2C · Harlow &amp; Co (coffee):</strong> repeat purchase stuck at 18%. New lifecycle email + subscription flow — <strong>repeat purchase 31%</strong> in one quarter.</p>
+    <p class="about-p"><strong>B2B SaaS · Tellus:</strong> trial-to-paid was 4%. We rewrote activation and pricing — <strong>trial-to-paid 11%</strong> over 10 weeks.</p>
+    <p class="about-p"><strong>Marketplace · Kiln:</strong> supply-side churn. Seller dashboard rebuild — <strong>90-day seller retention +26%</strong>.</p>
   </div>
 
-  <!-- ═══ ASK ME (live, grounded in the record above) ═══ -->
-  <div class="section-h"><i data-lucide="message-circle"></i> Put a hiring question to my page</div>
-  <div class="ask-note">This answers <b>live</b> using Claude, grounded only in the real material above — it reframes my genuine teaching experience toward UX research, and it won't invent UX job titles I don't have. Anyone with a Claude account can ask it; when you send a question you'll be asked to sign in to your own Claude account first.</div>
-  <div class="setup" id="setup"><b>Almost there.</b> Live answers only work when this page runs as a <b>Claude Artifact</b>. Open it inside a Claude chat (with "Create AI-powered artifacts" turned on in Settings → Feature preview) and sign in. The profile above still reads fine on its own.</div>
+  <div class="section-h"><i data-lucide="message-circle"></i> Ask it anything</div>
+  <div class="ask-note">This answers <b>live</b> using Claude, grounded only in my real services, prices and process above — it won't invent anything I don't offer. Anyone with a Claude account can ask it; when you send a question you'll be asked to sign in to your own Claude account first.</div>
+  <div class="setup" id="setup"><b>Almost there.</b> Live answers only work when this page runs as a <b>Claude Artifact</b>. Open it inside a Claude chat (with "Create AI-powered artifacts" turned on in Settings → Feature preview) and sign in. The services and pricing above still read fine on their own.</div>
 
   <div class="panel">
     <div class="transcript" id="transcript">
-      <div class="msg me"><div class="who">Sofia's assistant</div><div class="b">Hi — I'm Sofia's Ask-Me assistant. Ask me anything about how her teaching experience transfers to UX research and I'll answer from her real record, reframing what she actually did — never inventing. Try a question below.</div></div>
+      <div class="msg me"><div class="who">Fieldwork's assistant</div><div class="b">Hi — I'm Fieldwork's assistant. Ask me what we've built, who for, and what results it got.</div></div>
     </div>
     <div class="suggest" id="suggest">
-      <button class="sug">Why are you qualified for a UX research role?</button>
-      <button class="sug">How does teaching transfer to UX?</button>
-      <button class="sug">Have you done real user research?</button>
+      <button class="sug">Have you worked in fintech?</button>
+      <button class="sug">What results did you get for a D2C brand?</button>
+      <button class="sug">Who do you usually work with?</button>
     </div>
     <form class="composer" id="composer" autocomplete="off">
-      <input id="q" type="text" placeholder="e.g. What's a gap you're still working on?" aria-label="Your question" />
+      <input id="q" type="text" placeholder="e.g. Do you have a B2B SaaS case study?" aria-label="Your question" />
       <button type="submit" id="send">Ask</button>
     </form>
   </div>
 
-  <footer>A published Claude Artifact that answers grounded in Sofia's real experience — reframing teaching toward UX research, not fabricating it. No code, no API key; live answers run on the visitor's own Claude account.<br>Live link: <code>[paste your published artifact share link here]</code><br>HO2 · Solo · ForgeMind AI — AI Productivity Essentials · Module M5 (Week 2)</footer>
+  <div class="tip"><i data-lucide="badge-check"></i><div><b>Subscription tip:</b> this whole build runs on your <b>Claude subscription</b> — no API key, no billing setup. You describe the assistant in a chat, Claude builds and hosts it as an Artifact, and it answers live on each visitor’s own Claude plan. It’s the fastest, cheapest way to ship an AI tool people can actually use.</div></div>
+
+  <footer>A published Claude Artifact that answers grounded in Fieldwork's real services, prices and process — no code, no API key; live answers run on the visitor's own Claude account.<br>Live link: <code>[paste your published artifact share link here]</code><br>HO2 · Solo · ForgeMind AI — AI Productivity Essentials · Module M5 (Week 2)</footer>
 
 </div>
 
-<script>lucide.createIcons();</script>
+<script>
+  function copyPre(btn){
+    const pre = btn.parentElement.querySelector('pre');
+    navigator.clipboard.writeText(pre.innerText).then(function(){
+      btn.classList.add('done');
+      const s = btn.querySelector('span'); const old = s.textContent;
+      s.textContent = 'Copied'; setTimeout(function(){ btn.classList.remove('done'); s.textContent = old; }, 1600);
+    });
+  }
+  lucide.createIcons();
+</script>
 <script>
   /* ── The grounding: the ONLY facts the assistant may use ─────────────── */
   const PROFILE = `
-Name: Sofia Reyes
-Old role: Secondary school science teacher, 7 years.
-Target role: UX Researcher.
-The honest bridge: Sofia's old job titles don't signal UX, but her skills do. She is a career changer moving from teaching into UX research. Teaching, in practice, is watching real people struggle with material, finding where they get stuck, and redesigning until it works — which is user research.
-Transferable experience 1 — Classroom (reads as qualitative user research & usability observation): 7 years watching how ~150 students per year actually understood and misunderstood material, adjusting explanations to what genuinely worked.
-Transferable experience 2 — Assessment design (reads as research synthesis & findings-to-action): built and analysed assessments to pinpoint exactly where students got stuck, then redesigned lessons around the data.
-Transferable experience 3 — Curriculum projects (reads as stakeholder interviews & project delivery): led a department curriculum overhaul with input from staff, parents and students, under a fixed deadline.
-Transferable experience 4 — Retraining (reads as applied UX research portfolio): completed a UX research course and ran 3 volunteer research projects (user interviews, affinity mapping, and a usability test) for a local nonprofit.
-UX methods/tools she has learned: user interviews, affinity mapping, usability testing, surveys, research synthesis, Figma basics.
-Why she is qualified: she is fluent at pattern-matching people's real behaviour, translating findings into concrete changes, and working to deadlines with mixed stakeholders (staff, parents, students).
-Honest gaps: she is still building her quantitative and analytics depth. She does NOT have prior paid UX job titles — her UX experience is the course plus the 3 volunteer projects. Be honest about this if asked.
-Facts: 7 years teaching; 3 volunteer UX projects; 150+ "users" (students) a year.
+Name: Fieldwork Studio
+Role: Freelance conversion copywriter for SaaS and e-commerce (DTC) brands.
+What I do: landing pages, email sequences, and messaging/positioning that read like a person and move the number that matters. Research-first — I dig into real customer language before writing.
+
+Services and pricing:
+- Landing page copy — From £850. Research call + competitor teardown + full page copy (hero to CTA) + one revision round.
+- Welcome / nurture email sequence — From £1,200. A 5-email sequence written to a defined goal, with subject lines and A/B variants.
+- Messaging & positioning — From £1,500. A half-day workshop plus a one-page messaging framework the whole team can use.
+- Monthly retainer — From £1,800/mo. A set number of copy tasks each month (ads, emails, pages) at a lower blended rate; minimum 3 months.
+
+Process:
+1. 30-minute discovery call.
+2. Written proposal within 2 working days.
+3. 50% deposit to book the slot.
+4. First draft within 1 week.
+5. Up to 2 revision rounds.
+Availability: usually booking about 2 weeks out.
+
+Good fit: SaaS and DTC / e-commerce brands who want clearer, higher-converting copy and value a research-first approach.
+Not a fit: pure SEO content mills or high-volume, low-rate article writing — that's not the work I do.
 `.trim();
 
   const transcript = document.getElementById('transcript');
@@ -293,7 +284,7 @@ Facts: 7 years teaching; 3 volunteer UX projects; 150+ "users" (students) a year
   function thinking(){
     const el = document.createElement('div');
     el.className = 'msg me';
-    el.innerHTML = '<div class="who">Sofia’s assistant</div><div class="dots"><span></span><span></span><span></span></div>';
+    el.innerHTML = '<div class="who">Fieldwork’s assistant</div><div class="dots"><span></span><span></span><span></span></div>';
     transcript.appendChild(el);
     transcript.scrollTop = transcript.scrollHeight;
     return el;
@@ -306,28 +297,26 @@ Facts: 7 years teaching; 3 volunteer UX projects; 150+ "users" (students) a year
 
     if(!liveOK){
       wait.remove();
-      bubble('me','Sofia’s assistant','To answer live, open this page as a Claude Artifact inside claude.ai and sign in — then ask me again. (This is running as a plain web page right now, so I can’t reach Claude.)');
+      bubble('me','Fieldwork’s assistant','To answer live, open this page as a Claude Artifact inside claude.ai and sign in — then ask me again. (This is running as a plain web page right now, so I can’t reach Claude.)');
       sendBtn.disabled=false; input.focus(); return;
     }
     /* window.claude.complete(prompt: string) -> Promise<string>.
        Anthropic changed this method's behaviour on 2025-07-31 — if it stops
        working, confirm the current call inside claude.ai and adjust here. */
     const prompt =
-      'You are the personal "Ask-Me" assistant for Sofia Reyes, speaking in the first person as Sofia. '+
-      'Sofia is a career changer: a science teacher of 7 years moving into UX research. '+
+      'You are the personal "Ask-Me" assistant for Fieldwork Studio, a freelance conversion copywriter, speaking in the first person as Fieldwork. '+
       'Answer the visitor\'s question using ONLY the facts in the PROFILE below. '+
-      'Be warm, specific and concise (2–4 sentences). '+
-      'When asked why she is qualified, REFRAME her real teaching experience toward UX research using only facts in the PROFILE — never fabricate UX job titles, employers, dates or experience she does not have. '+
-      'If asked about gaps, be honest (she is still building quantitative/analytics depth and has no prior paid UX role). '+
-      'If the answer is not in the PROFILE, say you don\'t have that detail rather than guessing.\n\n'+
-      'PROFILE:\n'+PROFILE+'\n\nVisitor question: '+question+'\n\nAnswer as Sofia:';
+      'Be warm, specific and concise (2–4 sentences). Quote her real prices and process steps exactly as written in the PROFILE. '+
+      'Never invent services, prices, timelines or clients that are not in the PROFILE. '+
+      'If the answer is not in the PROFILE, say "I don\'t have that detail — happy to confirm on a call" rather than guessing.\n\n'+
+      'PROFILE:\n'+PROFILE+'\n\nVisitor question: '+question+'\n\nAnswer as Fieldwork:';
     try{
       const reply = await window.claude.complete(prompt);
       wait.remove();
-      bubble('me','Sofia’s assistant',(reply||'').trim() || 'Sorry, I didn\'t catch that — try asking another way.');
+      bubble('me','Fieldwork’s assistant',(reply||'').trim() || 'Sorry, I didn\'t catch that — try asking another way.');
     }catch(err){
       wait.remove();
-      bubble('me','Sofia’s assistant','Something went wrong reaching Claude just now. Please try again in a moment.');
+      bubble('me','Fieldwork’s assistant','Something went wrong reaching Claude just now. Please try again in a moment.');
     }
     sendBtn.disabled=false; input.focus();
   }
@@ -335,17 +324,6 @@ Facts: 7 years teaching; 3 volunteer UX projects; 150+ "users" (students) a year
   form.addEventListener('submit', e=>{ e.preventDefault(); const q=input.value.trim(); if(q) ask(q); });
   document.getElementById('suggest').addEventListener('click', e=>{
     if(e.target.classList.contains('sug')) ask(e.target.textContent);
-  });
-
-  /* ── Copy buttons on the build-guide prompt blocks ───────────────────── */
-  document.addEventListener('click', e=>{
-    const btn = e.target.closest('.copy');
-    if(!btn) return;
-    const pre = btn.parentElement.querySelector('pre');
-    navigator.clipboard.writeText(pre.textContent).then(()=>{
-      const t = btn.textContent; btn.textContent = 'Copied';
-      setTimeout(()=>{ btn.textContent = t; }, 1400);
-    });
   });
 </script>
 </body>
