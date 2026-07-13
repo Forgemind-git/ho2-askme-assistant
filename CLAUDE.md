@@ -8,7 +8,7 @@ Guidance for **Claude Code / Claude Cowork** when working in this repo. The stud
 A personal 'Ask-Me' AI assistant, built as an **AI-powered Claude Artifact** — a single-file page
 that answers visitor questions **live** by calling the built-in `window.claude.complete(prompt)` API,
 grounded only in the creator's real hardcoded material.
-**Primary way to do it:** Claude.ai chat — enable *Settings → Feature preview → "Create AI-powered
+**Primary way to do it:** Claude.ai chat — enable *Settings → Capabilities → "AI-powered
 artifacts"*, prompt Claude to build it, then **Publish** for a share link. **No API key needed** —
 live answers run on the *viewer's* own Claude account.
 The work lives under `samples/sample-01 … sample-05`; each sample has its own `README.md` with a

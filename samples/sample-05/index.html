@@ -132,7 +132,7 @@
     <ol class="steps">
       <li>
         <h4>Turn on AI-powered artifacts</h4>
-        <p>In claude.ai, open <b>Settings → Feature preview</b> and switch on <b>“Create AI-powered artifacts.”</b> This lets an artifact call Claude while it runs — that’s what makes your assistant answer live.</p>
+        <p>In claude.ai, open <b>Settings → Capabilities</b> and switch on <b>“AI-powered artifacts.”</b> This lets an artifact call Claude while it runs — that’s what makes your assistant answer live.</p>
       </li>
       <li>
         <h4>Start a new chat and paste this build prompt</h4>
@@ -154,22 +154,20 @@ FACTS:
       <li>
         <h4>Swap in your own info</h4>
         <p>Replace the <code>FACTS</code> block with your real details — this is the <b>only</b> material your assistant may use, so keep it short and true.</p>
-        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>Name: &lt;your name&gt;
-Role: &lt;what you do, one line&gt;
-Services and pricing:
-- &lt;service&gt; — From &lt;price&gt;. &lt;what's included&gt;
-- &lt;service&gt; — From &lt;price&gt;. &lt;what's included&gt;
-Process:
-1. &lt;first step&gt;  2. &lt;next step&gt;  3. &lt;next step&gt;
-Lead time: &lt;how far out you book&gt;
-Deposit / terms: &lt;e.g. 50% to book, up to 2 revision rounds&gt;</pre></div>
+        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>Brand: &lt;name&gt; — &lt;what you sell, one line&gt;
+Live offers:
+- &lt;CODE&gt; — &lt;discount&gt;. Runs &lt;start&gt; to &lt;end&gt;. &lt;stackable or not&gt;. Excludes &lt;what&gt;.
+- &lt;offer&gt; — &lt;discount&gt;. &lt;who is eligible, and how it's verified&gt;. Excludes &lt;what&gt;.
+Stacking rules: &lt;what may be combined with what&gt;
+Shipping / returns: &lt;the real terms&gt;
+NOT running: &lt;the offers people still ask about that are over, or never existed&gt;</pre></div>
       </li>
       <li>
         <h4>Test it live</h4>
         <p>Claude renders a live chat Artifact on the right. Sign in if asked, then try three real questions:</p>
-        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>How much is a landing page?
-What's your process?
-Do you offer retainers?</pre></div>
+        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>What's running right now?
+Can SPRING20 be stacked with the student discount?
+Do outlet items qualify for free delivery?</pre></div>
         <p>Every answer should stay true to your facts. If one drifts, just reply in the chat: <code>Only use the FACTS — don't invent anything</code> and Claude rebuilds it.</p>
       </li>
       <li>
@@ -205,7 +203,7 @@ Do you offer retainers?</pre></div>
 
   <div class="section-h"><i data-lucide="message-circle"></i> Ask it anything</div>
   <div class="ask-note">This answers <b>live</b> using Claude, grounded only in our real offer sheet — live offers, terms and exclusions above — it won't invent anything I don't offer. Anyone with a Claude account can ask it; when you send a question you'll be asked to sign in to your own Claude account first.</div>
-  <div class="setup" id="setup"><b>Almost there.</b> Live answers only work when this page runs as a <b>Claude Artifact</b>. Open it inside a Claude chat (with "Create AI-powered artifacts" turned on in Settings → Feature preview) and sign in. The offers and terms above still read fine on their own.</div>
+  <div class="setup" id="setup"><b>Almost there.</b> Live answers only work when this page runs as a <b>Claude Artifact</b>. Open it inside a Claude chat (with "AI-powered artifacts" turned on in Settings → Capabilities) and sign in. The offers and terms above still read fine on their own.</div>
 
   <div class="panel">
     <div class="transcript" id="transcript">
@@ -242,26 +240,18 @@ Do you offer retainers?</pre></div>
 <script>
   /* ── The grounding: the ONLY facts the assistant may use ─────────────── */
   const PROFILE = `
-Name: Rally Sportswear
-Role: Freelance conversion copywriter for SaaS and e-commerce (DTC) brands.
-What I do: landing pages, email sequences, and messaging/positioning that read like a person and move the number that matters. Research-first — I dig into real customer language before writing.
+Brand: Rally Sportswear — sportswear and outdoor kit, sold direct.
+Why this desk exists: several promotions run at once, and sales, support and social all quote them from memory. One wrong end-date, or a code stacked that should not be, costs real money. This desk is the single source of truth.
 
-Services and pricing:
-- Landing page copy — From £850. Research call + competitor teardown + full page copy (hero to CTA) + one revision round.
-- Welcome / nurture email sequence — From £1,200. A 5-email sequence written to a defined goal, with subject lines and A/B variants.
-- Messaging & positioning — From £1,500. A half-day workshop plus a one-page messaging framework the whole team can use.
-- Monthly retainer — From £1,800/mo. A set number of copy tasks each month (ads, emails, pages) at a lower blended rate; minimum 3 months.
+Live offers and terms:
+- SPRING20 — 20% off full-price. Ends 31 May, 23:59 BST. Not stackable. Excludes sale, gift cards and the Trail Pro range.
+- Student — 10%, verified via Student Beans. Stackable with sale, but not with SPRING20. Excludes gift cards.
+- Outlet — up to 50% off, permanent, no code. Final sale: no returns or exchanges.
 
-Process:
-1. 30-minute discovery call.
-2. Written proposal within 2 working days.
-3. 50% deposit to book the slot.
-4. First draft within 1 week.
-5. Up to 2 revision rounds.
-Availability: usually booking about 2 weeks out.
+Delivery: free over £60 (UK mainland).
+Returns: 30 days, unworn, tags on — except outlet, which is final sale.
 
-Good fit: SaaS and DTC / e-commerce brands who want clearer, higher-converting copy and value a research-first approach.
-Not a fit: pure SEO content mills or high-volume, low-rate article writing — that's not the work I do.
+NOT running: there is no sitewide sale, and no free delivery on everything. If an offer is not listed above, it is not live — say so.
 `.trim();
 
   const transcript = document.getElementById('transcript');
@@ -304,12 +294,12 @@ Not a fit: pure SEO content mills or high-volume, low-rate article writing — t
        Anthropic changed this method's behaviour on 2025-07-31 — if it stops
        working, confirm the current call inside claude.ai and adjust here. */
     const prompt =
-      'You are the personal "Ask-Me" assistant for Rally Sportswear, a freelance conversion copywriter, speaking in the first person as Rally. '+
-      'Answer the visitor\'s question using ONLY the facts in the PROFILE below. '+
-      'Be warm, specific and concise (2–4 sentences). Quote her real prices and process steps exactly as written in the PROFILE. '+
-      'Never invent services, prices, timelines or clients that are not in the PROFILE. '+
-      'If the answer is not in the PROFILE, say "I don\'t have that detail — happy to confirm on a call" rather than guessing.\n\n'+
-      'PROFILE:\n'+PROFILE+'\n\nVisitor question: '+question+'\n\nAnswer as Rally:';
+      'You are the campaign and offer desk for Rally Sportswear, answering for the sales, support and social teams. '+
+      'Answer the question using ONLY the facts in the PROFILE below. '+
+      'Be warm, specific and concise (2–4 sentences). Quote the real codes, dates, discounts and exclusions exactly as written in the PROFILE. '+
+      'Never invent an offer, a code, a discount or an exclusion that is not in the PROFILE. '+
+      'If the answer is not in the PROFILE, say "That is not on the offer sheet — treat it as not running" rather than guessing.\n\n'+
+      'PROFILE:\n'+PROFILE+'\n\nQuestion: '+question+'\n\nAnswer as Rally\'s offer desk:';
     try{
       const reply = await window.claude.complete(prompt);
       wait.remove();

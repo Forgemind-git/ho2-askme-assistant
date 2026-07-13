@@ -19,7 +19,7 @@ You build it by prompting Claude, then click **Publish** to get a link you can s
 
 ## Who can actually use it live (read this — it's the honest bit)
 
-- To **build** it, you must turn on **Settings → Feature preview → "Create AI-powered artifacts"**
+- To **build** it, you must turn on **Settings → Capabilities → "AI-powered artifacts"**
   in Claude.ai (one-time).
 - To **use the live AI in a shared artifact**, a viewer needs their **own Claude account** — when
   they ask a question they're prompted to sign in, and the usage counts against **their** account.
@@ -44,11 +44,11 @@ Choose **one** — each maps to a fully-built example in `samples/` you can open
 
 2. As a freelancer with a scattered portfolio, you want one link that sells your work. Build an AI-powered Claude Artifact that explains each project, the problem it solved and the decisions behind it, grounded only in your own write-ups. Success: a shared artifact where a Claude-using visitor can ask about any project and get the real story, not invented detail.
 
-3. You freelance and lose leads to slow replies. Build an AI-powered Claude Artifact grounded in your services, pricing and process that answers a prospect's questions about working with you. Success: a published artifact where test questions about your pricing and process are answered accurately from your own content.
+3. You sell a product and the same pre-sale questions clog your inbox — pricing, integrations, refunds. Build an AI-powered Claude Artifact grounded in what you actually publish, so a prospect gets an accurate answer instantly. Success: a published artifact where test questions about your plans, integrations and refund policy are answered exactly from your own material.
 
-4. You are a speaker and creator fielding the same booking questions over and over. Build an AI-powered Claude Artifact grounded in your talks, topics and background so event organisers can ask what you speak about and whether you fit their event. Success: a shared artifact that answers three organiser questions correctly from your real material.
+4. Your team keeps asking the same brand questions — what is our tone, our positioning, which claims are approved. Build an AI-powered Claude Artifact grounded in your tone of voice and your approved / banned claims list, so anyone writing copy can check the rules before they publish. Success: a shared artifact that correctly approves an approved claim, refuses a banned one, and offers the closest approved wording instead.
 
-5. You are switching careers and your old titles do not signal your new target role. Build an AI-powered Claude Artifact grounded in your past experience that reframes it toward the role you want, answering "why are you qualified for this?". Success: a published artifact that convincingly reframes three of your past roles toward the target.
+5. Several promotions run at once and sales, support and social all quote them from memory — one wrong end-date, or a code stacked that should not be, costs real money. Build an AI-powered Claude Artifact grounded in your live offer sheet — codes, dates, eligibility, exclusions. Success: a published artifact that quotes the real terms, refuses to invent an offer, and says plainly when something is not running.
 
 ## Use it with your Claude.ai subscription
 
@@ -56,7 +56,7 @@ No API key needed.
 
 1. Open the landing page `index.html` (or view it on GitHub Pages) to browse the five examples.
 2. Open the README of the sample closest to your situation and copy its **example prompt**.
-3. In Claude.ai, enable **Settings → Feature preview → "Create AI-powered artifacts"**.
+3. In Claude.ai, enable **Settings → Capabilities → "AI-powered artifacts"**.
 4. Paste the prompt into a new chat with **your own details** filled in. Claude builds your page
    as an Artifact — refine it in the chat until it sounds like you.
 5. Click **Publish** on the artifact, copy the link, and paste it into your README.

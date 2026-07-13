@@ -132,7 +132,7 @@
     <ol class="steps">
       <li>
         <h4>Turn on AI-powered artifacts</h4>
-        <p>In claude.ai, open <b>Settings → Feature preview</b> and switch on <b>“Create AI-powered artifacts.”</b> This lets an artifact call Claude while it runs — that’s what makes your assistant answer live.</p>
+        <p>In claude.ai, open <b>Settings → Capabilities</b> and switch on <b>“AI-powered artifacts.”</b> This lets an artifact call Claude while it runs — that’s what makes your assistant answer live.</p>
       </li>
       <li>
         <h4>Start a new chat and paste this build prompt</h4>
@@ -154,22 +154,20 @@ FACTS:
       <li>
         <h4>Swap in your own info</h4>
         <p>Replace the <code>FACTS</code> block with your real details — this is the <b>only</b> material your assistant may use, so keep it short and true.</p>
-        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>Name: &lt;your name&gt;
-Role: &lt;what you do, one line&gt;
-Services and pricing:
-- &lt;service&gt; — From &lt;price&gt;. &lt;what's included&gt;
-- &lt;service&gt; — From &lt;price&gt;. &lt;what's included&gt;
-Process:
-1. &lt;first step&gt;  2. &lt;next step&gt;  3. &lt;next step&gt;
-Lead time: &lt;how far out you book&gt;
-Deposit / terms: &lt;e.g. 50% to book, up to 2 revision rounds&gt;</pre></div>
+        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>Brand: &lt;name&gt; — &lt;what you sell, one line&gt;
+Positioning: &lt;the one line you want people to remember&gt;
+Tone: &lt;how you sound&gt; — and how you never sound
+Approved claims: &lt;the exact wording anyone may publish&gt;
+Banned claims: &lt;the wording nobody may publish, and why&gt;
+Competitors: &lt;named, or never named&gt;
+Product names: &lt;the exact spelling and capitalisation&gt;</pre></div>
       </li>
       <li>
         <h4>Test it live</h4>
         <p>Claude renders a live chat Artifact on the right. Sign in if asked, then try three real questions:</p>
-        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>How much is a landing page?
-What's your process?
-Do you offer retainers?</pre></div>
+        <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>How do we describe the product?
+Can we say 'clinically proven'?
+Are we allowed to name a competitor?</pre></div>
         <p>Every answer should stay true to your facts. If one drifts, just reply in the chat: <code>Only use the FACTS — don't invent anything</code> and Claude rebuilds it.</p>
       </li>
       <li>
@@ -205,7 +203,7 @@ Do you offer retainers?</pre></div>
 
   <div class="section-h"><i data-lucide="message-circle"></i> Ask it anything</div>
   <div class="ask-note">This answers <b>live</b> using Claude, grounded only in our real brand guidelines and approved claims above — it won't invent anything I don't offer. Anyone with a Claude account can ask it; when you send a question you'll be asked to sign in to your own Claude account first.</div>
-  <div class="setup" id="setup"><b>Almost there.</b> Live answers only work when this page runs as a <b>Claude Artifact</b>. Open it inside a Claude chat (with "Create AI-powered artifacts" turned on in Settings → Feature preview) and sign in. The brand guidelines above still read fine on their own.</div>
+  <div class="setup" id="setup"><b>Almost there.</b> Live answers only work when this page runs as a <b>Claude Artifact</b>. Open it inside a Claude chat (with "AI-powered artifacts" turned on in Settings → Capabilities) and sign in. The brand guidelines above still read fine on their own.</div>
 
   <div class="panel">
     <div class="transcript" id="transcript">
@@ -242,26 +240,28 @@ Do you offer retainers?</pre></div>
 <script>
   /* ── The grounding: the ONLY facts the assistant may use ─────────────── */
   const PROFILE = `
-Name: Lumen Skincare
-Role: Freelance conversion copywriter for SaaS and e-commerce (DTC) brands.
-What I do: landing pages, email sequences, and messaging/positioning that read like a person and move the number that matters. Research-first — I dig into real customer language before writing.
+Brand: Lumen Skincare — a D2C skincare brand built on short, honest ingredient lists.
+Why this assistant exists: anyone writing copy — in-house or freelance — can check the rules before they publish.
 
-Services and pricing:
-- Landing page copy — From £850. Research call + competitor teardown + full page copy (hero to CTA) + one revision round.
-- Welcome / nurture email sequence — From £1,200. A 5-email sequence written to a defined goal, with subject lines and A/B variants.
-- Messaging & positioning — From £1,500. A half-day workshop plus a one-page messaging framework the whole team can use.
-- Monthly retainer — From £1,800/mo. A set number of copy tasks each month (ads, emails, pages) at a lower blended rate; minimum 3 months.
+Positioning: "Fewer ingredients. Better skin." We compete on honesty and restraint, not on miracle claims.
 
-Process:
-1. 30-minute discovery call.
-2. Written proposal within 2 working days.
-3. 50% deposit to book the slot.
-4. First draft within 1 week.
-5. Up to 2 revision rounds.
-Availability: usually booking about 2 weeks out.
+Tone: plain, warm, factual. Short sentences. Never hype, and never shame the reader about their skin.
 
-Good fit: SaaS and DTC / e-commerce brands who want clearer, higher-converting copy and value a research-first approach.
-Not a fit: pure SEO content mills or high-volume, low-rate article writing — that's not the work I do.
+Approved claims — use this wording exactly:
+- "dermatologist-tested"
+- "fragrance-free"
+- "suitable for sensitive skin"
+- "92% saw smoother skin in a 4-week user trial (n=104)"
+
+Banned claims — never publish these, they are regulatory risks:
+- "clinically proven"
+- "anti-ageing"
+- "cures"
+- "heals"
+- "100% natural"
+- "chemical-free"
+
+Competitors: never named, never compared directly.
 `.trim();
 
   const transcript = document.getElementById('transcript');
@@ -304,12 +304,12 @@ Not a fit: pure SEO content mills or high-volume, low-rate article writing — t
        Anthropic changed this method's behaviour on 2025-07-31 — if it stops
        working, confirm the current call inside claude.ai and adjust here. */
     const prompt =
-      'You are the personal "Ask-Me" assistant for Lumen Skincare, a freelance conversion copywriter, speaking in the first person as Lumen. '+
-      'Answer the visitor\'s question using ONLY the facts in the PROFILE below. '+
-      'Be warm, specific and concise (2–4 sentences). Quote her real prices and process steps exactly as written in the PROFILE. '+
-      'Never invent services, prices, timelines or clients that are not in the PROFILE. '+
-      'If the answer is not in the PROFILE, say "I don\'t have that detail — happy to confirm on a call" rather than guessing.\n\n'+
-      'PROFILE:\n'+PROFILE+'\n\nVisitor question: '+question+'\n\nAnswer as Lumen:';
+      'You are the brand assistant for Lumen Skincare, an internal guide for anyone writing copy. '+
+      'Answer the question using ONLY the facts in the PROFILE below. '+
+      'Be warm, specific and concise (2–4 sentences). Quote approved and banned claims exactly as written in the PROFILE. '+
+      'If a claim is banned, say so plainly and offer the closest approved wording instead. '+
+      'Never approve wording that is not in the PROFILE. If the answer is not there, say "That is not covered in the guide — check with brand before you publish" rather than guessing.\n\n'+
+      'PROFILE:\n'+PROFILE+'\n\nQuestion: '+question+'\n\nAnswer as Lumen:';
     try{
       const reply = await window.claude.complete(prompt);
       wait.remove();

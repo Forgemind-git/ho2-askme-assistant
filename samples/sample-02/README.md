@@ -17,7 +17,7 @@ your head with "anyone with a Claude account can ask it live."
 ## Use it with your Claude.ai subscription
 No API key needed. This runs on your normal Claude.ai login.
 
-1. In Claude.ai, turn on **Settings → Feature preview → "Create AI-powered artifacts"** (one-time).
+1. In Claude.ai, turn on **Settings → Capabilities → "AI-powered artifacts"** (one-time).
 2. Start a new chat and paste **the example prompt below**, filled in with your real projects.
 3. Claude builds the page as an **Artifact** on the right. Ask it in the chat to tweak wording,
    colours or which questions show — until it feels like you.
